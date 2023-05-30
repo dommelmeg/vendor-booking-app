@@ -1,10 +1,5 @@
 import React from 'react';
 import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerContent,
   Button,
   Stack,
   Text,
@@ -16,6 +11,7 @@ import {
 import { RxDashboard } from 'react-icons/rx'
 import { CiMusicNote1 } from 'react-icons/ci'
 import { RiLogoutBoxLine } from 'react-icons/ri'
+import { Link as RouteLink } from 'react-router-dom'
 
 const NavDrawer = () => {
   return (
@@ -25,14 +21,14 @@ const NavDrawer = () => {
         </Flex>
 
         <Stack marginTop='12'>
-          <Button variant='link' colorScheme='black' justifyContent='left'>
+          <Button variant='link' colorScheme='black' justifyContent='left' size='md'>
             <Icon as={RxDashboard} />
-            Dashboard
+            <RouteLink to="dashboard">Dashboard</RouteLink>
           </Button>
 
           <Button variant='link' colorScheme='black' justifyContent='left'>
             <Icon as={CiMusicNote1} />
-            All Bands
+            <RouteLink to="all-bands">All Bands</RouteLink>
           </Button>
         </Stack>
         

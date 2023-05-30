@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Image, Stack, CardFooter, Heading, Text, Button, Badge, Link, Flex } from '@chakra-ui/react'
+import { Card, CardBody, Image, Stack, Heading, Badge, Link } from '@chakra-ui/react'
 
 const EventCards = () => {
   return(

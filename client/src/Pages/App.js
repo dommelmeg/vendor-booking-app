@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Text, Box, HStack, Flex, ChakraProvider } from '@chakra-ui/react'
+import { Box, Flex, ChakraProvider } from '@chakra-ui/react'
 import NavDrawer from '../Components/NavDrawer';
 import Dashboard from './Dashboard';
 import { Route, Routes } from "react-router-dom"
@@ -14,7 +14,7 @@ function App() {
           <NavDrawer />
         </Box>
 
-        <Box w='full' ml='320px'>
+        <Box w='full' ml='320px' backgroundColor='blackAlpha.100'>
           <Routes>
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/all-bands' element={<AllBands />} />
