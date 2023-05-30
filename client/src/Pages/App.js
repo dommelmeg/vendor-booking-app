@@ -2,7 +2,8 @@ import React from 'react';
 import { Grid, Text, Box, HStack, Flex, ChakraProvider } from '@chakra-ui/react'
 import NavDrawer from '../Components/NavDrawer';
 import Dashboard from './Dashboard';
-import { Route, Switch } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
+import AllBands from './AllBands';
 
 function App() {
   return (
@@ -14,10 +15,13 @@ function App() {
         </Box>
 
         <Box w='full' ml='320px'>
-          <Dashboard />
+          <Routes>
+            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/all-bands' element={<AllBands />} />
+          </Routes>
         </Box>
       </Flex>
-      
+
     </ChakraProvider>
   );
 }
