@@ -15,7 +15,7 @@ import { Link as RouteLink } from 'react-router-dom'
 
 const NavDrawer = () => {
   return (
-      <Box padding='4' h='calc(100vh)'>
+      <Box padding='4' h='calc(100vh)' w='xs' boxShadow='lg' position='fixed'>
         <Flex>
           <Text fontSize='3xl'>Upbeat Booking</Text>
         </Flex>

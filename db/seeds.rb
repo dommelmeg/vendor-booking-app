@@ -1,6 +1,6 @@
 
 #Events
-bill_and_meg_wedding = Event.create(user_id: 2, band_id: 1, event_name: 'Dommel-Story Wedding', date: 20230923 , event_type: 'Wedding')
+# bill_and_meg_wedding = Event.create(user_id: 2, band_id: 1, event_name: 'Dommel-Story Wedding', date: 20230923 , event_type: 'Wedding')
 
 #Users
 
