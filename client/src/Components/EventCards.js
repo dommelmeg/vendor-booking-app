@@ -17,7 +17,7 @@ const EventCards = () => {
 
       <Stack>
         <CardBody>
-          <Badge colorScheme='green'>SEPT. 23, 2023</Badge>
+          <Badge colorScheme='purple'>SEPT. 23, 2023</Badge>
           <Heading size='md'>Bill & Meg's Wedding</Heading>
 
           <Link>

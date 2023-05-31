@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, HStack, Text, Box, Stack, Flex } from '@chakra-ui/react'
+import { Button, HStack, Text, Box, Stack } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import BandCards from "../Components/BandCards";
 
@@ -14,7 +14,7 @@ const AllBands = () => {
         
         <HStack direction={['column', 'row']} spacing='24px'>
           <Text fontSize='3xl' fontWeight='bold'>All Bands</Text>
-          <Button onClick={handleClick} colorScheme='green'>
+          <Button onClick={handleClick} colorScheme='purple'>
             <AddIcon />
           </Button>
         </HStack>

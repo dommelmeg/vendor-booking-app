@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, ChakraProvider, Box } from '@chakra-ui/react'
+import { Flex, ChakraProvider } from '@chakra-ui/react'
 import Dashboard from './Dashboard';
 import { Route, Routes } from "react-router-dom"
 import AllBands from './AllBands';
@@ -16,7 +16,6 @@ function App() {
 
   return (
     <ChakraProvider>
-
       <Flex>
         {isCreateAcct || isLogin ? null : <NavDrawer />}
 
@@ -27,7 +26,6 @@ function App() {
           <Route path='/all-bands' element={<AllBands />} />
         </Routes>
       </Flex>
-
     </ChakraProvider>
   );
 }
