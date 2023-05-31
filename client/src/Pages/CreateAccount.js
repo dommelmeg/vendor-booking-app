@@ -1,8 +1,11 @@
 import React from "react";
+import { Container} from "@chakra-ui/react";
 
 const CreateAccount = () => {
   return(
-    <div>Create an Account</div>
+    <Container>
+      
+    </Container>
   )
 }
 

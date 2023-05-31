@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, HStack, Text, Box, Stack, Flex } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
-import NavDrawer from "../Components/NavDrawer";
 import BandCards from "../Components/BandCards";
 
 const AllBands = () => {
@@ -10,7 +9,8 @@ const AllBands = () => {
   }
 
   return (
-      <Box margin='4'>
+    <Box h='calc(100vh)' w='full' ml='320px' backgroundColor='blackAlpha.100'>
+      <Box margin='12'>
         
         <HStack direction={['column', 'row']} spacing='24px'>
           <Text fontSize='3xl' fontWeight='bold'>All Bands</Text>
@@ -27,6 +27,7 @@ const AllBands = () => {
           <BandCards />
         </Stack>
       </Box>
+    </Box>
   )
 }
 
