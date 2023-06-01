@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
 
 const CreateAccount = () => {
 
@@ -24,6 +24,10 @@ const CreateAccount = () => {
             <FormLabel>Password</FormLabel>
             <Input type='text' />
           </FormControl>
+
+          <Text>
+            Already have an account? <a href="http://localhost:4000/login">Login here!</a>
+          </Text>
 
           <Button colorScheme="purple">
             Create Account

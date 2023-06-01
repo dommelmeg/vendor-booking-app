@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text, Link } from "@chakra-ui/react";
 
 const Login = () => {
   return(
@@ -17,6 +17,10 @@ const Login = () => {
             <FormLabel>Password</FormLabel>
             <Input type='text' />
           </FormControl>
+
+          <Text>
+            Don't have an account? <a href="http://localhost:4000/create-an-account">Sign up here!</a>
+          </Text>
 
           <Button colorScheme="purple">
             Sign In
