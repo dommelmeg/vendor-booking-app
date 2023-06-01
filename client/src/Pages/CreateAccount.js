@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
 
 const CreateAccount = () => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const newUserData = {
+      first_name: firstName,
+      last_name: lastName,
+      username: username,
+      password_digest: password
+    }
+
+    fetch('/create-an-account', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUserData),
+    })
+      .then((r) => r.json())
+      .then((newUser) => console.log(newUser))
+  }
 
   return(
     <Container marginTop='24'>
@@ -13,23 +39,54 @@ const CreateAccount = () => {
 
           <FormControl isRequired>
             <FormLabel>First Name</FormLabel>
-            <Input type='text' />
+            <Input 
+              type='text'
+              id="firstName"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
             
             <FormLabel>Last Name</FormLabel>
-            <Input type='text' />
+            <Input 
+              type='text' 
+              id='lastName'
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
 
             <FormLabel>Username</FormLabel>
-            <Input type='text' />
+            <Input 
+              type='text'
+              id='username'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)} 
+            />
 
             <FormLabel>Password</FormLabel>
-            <Input type='text' />
+            <Input 
+              type='password'
+              id='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <FormLabel>Password Confirmation</FormLabel>
+            <Input 
+              type='password'
+              id="password_confirmation"
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+            />
           </FormControl>
 
           <Text>
             Already have an account? <a href="http://localhost:4000/login">Login here!</a>
           </Text>
 
-          <Button colorScheme="purple">
+          <Button 
+            colorScheme="purple"
+            onClick={handleSubmit}
+          >
             Create Account
           </Button>
         </VStack>

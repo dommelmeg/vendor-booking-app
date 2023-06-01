@@ -1,12 +1,22 @@
-import React from "react";
-import { Button, HStack, Text, Box, Stack } from '@chakra-ui/react'
+import React, { useEffect, useState } from "react";
+import { Button, HStack, Text, Box, Stack, SimpleGrid } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import BandCards from "../Components/BandCards";
 
 const AllBands = () => {
+  const [bands, setBands] = useState([])
+
+  useEffect(() => {
+    fetch('/vendors')
+      .then((r) => r.json())
+      .then((bands) => setBands(bands))
+  }, [])
+
   const handleClick = () => {
     console.log('hi')
   }
+
+  console.log(bands)
 
   return (
     <Box h='calc(100vh)' w='full' ml='320px' backgroundColor='blackAlpha.100'>
@@ -19,13 +29,14 @@ const AllBands = () => {
           </Button>
         </HStack>
 
-        <Stack marginTop='12' gap='2'>
-          <BandCards />
-          <BandCards />
-          <BandCards />
-          <BandCards />
-          <BandCards />
-        </Stack>
+        <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(350px, 1fr))' marginTop='12' >
+
+          {bands.map((band) => {
+            return(
+              <BandCards key={band.id} band={band} />
+            )
+          })}
+        </SimpleGrid>
       </Box>
     </Box>
   )

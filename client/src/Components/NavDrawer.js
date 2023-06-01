@@ -15,7 +15,7 @@ import { Link as RouteLink } from 'react-router-dom'
 
 const NavDrawer = () => {
   return (
-      <Box padding='4' h='calc(100vh)' w='xs' boxShadow='lg' position='fixed'>
+      <Box padding='4' h='calc(100vh)' w='xs' boxShadow='lg' position='fixed' >
         <Flex>
           <Text fontSize='3xl'>Upbeat Booking</Text>
         </Flex>
@@ -31,8 +31,8 @@ const NavDrawer = () => {
             <RouteLink to="all-bands">All Bands</RouteLink>
           </Button>
         </Stack>
-        
-        <Flex position='fixed'>
+
+        <Flex>
           <Link>
             <Icon as={RiLogoutBoxLine} />
             Logout
