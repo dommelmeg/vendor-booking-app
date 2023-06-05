@@ -12,10 +12,10 @@ const CreateAccount = () => {
     e.preventDefault()
 
     const newUserData = {
-      first_name: firstName,
-      last_name: lastName,
-      username: username,
-      password_digest: password
+      firstName,
+      lastName,
+      username,
+      password
     }
 
     fetch('/create-an-account', {
