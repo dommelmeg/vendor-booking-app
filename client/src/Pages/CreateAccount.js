@@ -4,16 +4,12 @@ import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Butt
 const CreateAccount = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const newUserData = {
-      firstName,
-      lastName,
       username,
       password
     }
@@ -38,21 +34,6 @@ const CreateAccount = () => {
           </Heading>
 
           <FormControl isRequired>
-            <FormLabel>First Name</FormLabel>
-            <Input 
-              type='text'
-              id="firstName"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            
-            <FormLabel>Last Name</FormLabel>
-            <Input 
-              type='text' 
-              id='lastName'
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
 
             <FormLabel>Username</FormLabel>
             <Input 

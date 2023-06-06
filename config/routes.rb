@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :vendors
 
   post"/create-an-account", to: "users#create"
-  post "/login", to: "sessions#create"
   get "/me", to: "users#show"
+  # get "/auth", to: "users#show"
+  post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
   # Routing logic: fallback requests for React Router.

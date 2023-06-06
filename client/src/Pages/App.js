@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Flex, ChakraProvider } from '@chakra-ui/react'
 import Dashboard from './Dashboard';
 import { Route, Routes } from "react-router-dom"
@@ -14,6 +14,20 @@ function App() {
   const isCreateAcct = location.pathname === '/create-an-account'
   const isLogin = location.pathname === '/login'
 
+  const [currentUser, setCurrentUser] = useState('')
+
+  console.log(currentUser)
+
+  // useEffect(() => {
+  //   fetch('/auth')
+  //   .then((r) => {
+  //     if(r.ok) {
+  //       r.json().then((user) => setCurrentUser(user))
+  //     }
+  //   })
+  // }, [])
+
+  // if(!currentUser) return <Login setCurrentUser={setCurrentUser} />
   return (
     <ChakraProvider>
       <Flex>
