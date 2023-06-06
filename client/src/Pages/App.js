@@ -14,28 +14,25 @@ function App() {
   const isCreateAcct = location.pathname === '/create-an-account'
   const isLogin = location.pathname === '/login'
 
-  const [currentUser, setCurrentUser] = useState('')
+  const [currentUser, setCurrentUser] = useState(null)
 
-  console.log(currentUser)
 
-  // useEffect(() => {
-  //   fetch('/auth')
-  //   .then((r) => {
-  //     if(r.ok) {
-  //       r.json().then((user) => setCurrentUser(user))
-  //     }
-  //   })
-  // }, [])
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setCurrentUser(user));
+      }
+    });
+  }, []);
 
-  // if(!currentUser) return <Login setCurrentUser={setCurrentUser} />
   return (
     <ChakraProvider>
       <Flex>
         {isCreateAcct || isLogin ? null : <NavDrawer />}
 
         <Routes>
-          <Route path='/create-an-account' element={<CreateAccount />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/create-an-account' element={<CreateAccount user={currentUser} setUser={setCurrentUser} />} />
+          <Route path='/login' element={<Login user={currentUser} setUser={setCurrentUser} />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/all-bands' element={<AllBands />} />
         </Routes>

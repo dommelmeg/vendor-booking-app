@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text, Link } from "@chakra-ui/react";
 
-const Login = () => {
+const Login = ({ user, setUser }) => {
   const [username, setUsername] = useState('')
+
+  const onLogin = (user) => {
+    setUser(user)
+    
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -15,7 +20,7 @@ const Login = () => {
       body: JSON.stringify({ username }),
     })
       .then((r) => r.json())
-      .then((user) => console.log(user))
+      .then((user) => onLogin(user))
 
   }
 

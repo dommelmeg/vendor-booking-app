@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
+import { Link as RouteLink } from 'react-router-dom'
 
-const CreateAccount = () => {
+const CreateAccount = ({ user, setUser }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
+
+  const onLogin = (user) => {
+    setUser(user)
+    
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -22,7 +28,7 @@ const CreateAccount = () => {
       body: JSON.stringify(newUserData),
     })
       .then((r) => r.json())
-      .then((newUser) => console.log(newUser))
+      .then((newUser) => onLogin(newUser))
   }
 
   return(
