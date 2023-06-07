@@ -8,13 +8,6 @@ const CreateAccount = ({ user, setUser }) => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const navigate = useNavigate()
 
-  useEffect(() => {
-    console.log(user)
-    if (user) {
-      navigate('/')
-    }
-  }, [user])
-
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -23,7 +16,7 @@ const CreateAccount = ({ user, setUser }) => {
       password
     }
 
-    fetch('/create-an-account', {
+    fetch('/signup', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

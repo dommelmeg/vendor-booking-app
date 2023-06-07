@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text, Link } from "@chakra-ui/react";
-import { useNavigate } from 'react-router-dom'
 
 const Login = ({ user, setUser }) => {
   const [username, setUsername] = useState('')
-  const navigate = useNavigate()
+  const [password, setPassword] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -14,13 +13,26 @@ const Login = ({ user, setUser }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username }),
+      body: JSON.stringify({ username, password }),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      } else {
+        // r.json().then((err) => setErrors(err.errors));
+        console.log('whomp whomp')
+      }
     })
-      .then((r) => r.json())
-      .then((user) => setUser(user))
-  }
 
-  if (user) navigate('/')
+    // fetch('/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ username }),
+    // })
+    //   .then((r) => r.json())
+    //   .then((user) => setUser(user))
+  }
 
   return(
     <Container marginTop='24'>
@@ -39,11 +51,15 @@ const Login = ({ user, setUser }) => {
             />
             
             <FormLabel>Password</FormLabel>
-            <Input type='text' />
+            <Input 
+              type='text' 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </FormControl>
 
           <Text>
-            Don't have an account? <a href="http://localhost:4000/create-an-account">Sign up here!</a>
+            Don't have an account? <a href="http://localhost:4000/signup">Sign up here!</a>
           </Text>
 
           <Button 

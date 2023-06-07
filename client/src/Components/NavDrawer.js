@@ -13,17 +13,16 @@ import { CiMusicNote1 } from 'react-icons/ci'
 import { RiLogoutBoxLine } from 'react-icons/ri'
 import { Link as RouteLink } from 'react-router-dom'
 
-const NavDrawer = () => {
+const NavDrawer = ({ setUser }) => {
   const handleLogoutClick = () => {
-    console.log('hi')
-    // fetch('/logout', {
-    //   method: 'DELETE'
-    // })
-    //   .then((r) => {
-    //     if (r.ok) {
-    //       setUser(null)
-    //     }
-    //   })
+    fetch('/logout', {
+      method: 'DELETE'
+    })
+      .then((r) => {
+        if (r.ok) {
+          setUser(null)
+        }
+      })
     }
 
   return (

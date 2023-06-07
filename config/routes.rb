@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   resources :events
   resources :vendors
 
-  post"/create-an-account", to: "users#create"
+  post"/signup", to: "users#create"
   get "/me", to: "users#show"
-  # get "/auth", to: "users#show"
+  
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
