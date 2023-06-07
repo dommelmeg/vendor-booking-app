@@ -15,13 +15,13 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
   
-  // useEffect(() => {
-  //   fetch("/me").then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((user) => setCurrentUser(user));
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setCurrentUser(user));
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (currentUser) {
