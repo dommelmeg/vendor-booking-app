@@ -2,6 +2,7 @@ import React from "react";
 import { Button, HStack, Text, Box, Stack } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import EventCards from "../Components/EventCards";
+import NavDrawer from "../Components/NavDrawer";
 
 const Dashboard = () => {
   const handleClick = () => {
@@ -19,12 +20,7 @@ const Dashboard = () => {
         </HStack>
 
         <Stack marginTop='12' gap='2'>
-          <EventCards />
-          <EventCards />
-          <EventCards />
-          <EventCards />
-          <EventCards />
-          <EventCards />
+           
         </Stack>
       </Box>
     </Box>

@@ -14,6 +14,18 @@ import { RiLogoutBoxLine } from 'react-icons/ri'
 import { Link as RouteLink } from 'react-router-dom'
 
 const NavDrawer = () => {
+  const handleLogoutClick = () => {
+    console.log('hi')
+    // fetch('/logout', {
+    //   method: 'DELETE'
+    // })
+    //   .then((r) => {
+    //     if (r.ok) {
+    //       setUser(null)
+    //     }
+    //   })
+    }
+
   return (
       <Box padding='4' h='calc(100vh)' w='xs' boxShadow='lg' position='fixed' >
         <Flex>
@@ -23,7 +35,7 @@ const NavDrawer = () => {
         <Stack marginTop='12'>
           <Button variant='link' colorScheme='black' justifyContent='left' size='md'>
             <Icon as={RxDashboard} />
-            <RouteLink to="dashboard">Dashboard</RouteLink>
+            <RouteLink to="/">Dashboard</RouteLink>
           </Button>
 
           <Button variant='link' colorScheme='black' justifyContent='left'>
@@ -33,10 +45,16 @@ const NavDrawer = () => {
         </Stack>
 
         <Flex>
-          <Link>
+          <Button 
+            variant='link' 
+            colorScheme='black' 
+            justifyContent='left' 
+            size='md' 
+            onClick={handleLogoutClick}
+          >
             <Icon as={RiLogoutBoxLine} />
             Logout
-          </Link>
+          </Button>
         </Flex>
       </Box>
   )

@@ -16,7 +16,8 @@ class UsersController < ApplicationController
     if current_user
       render json: current_user
     else
-      render json: { error: "Not authorized" }, status: :unauthorized
+      render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+      session.delete :user_id
     end
   end
 

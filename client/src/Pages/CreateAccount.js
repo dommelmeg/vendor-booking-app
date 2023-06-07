@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
-import { Link as RouteLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const CreateAccount = ({ user, setUser }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  const navigate = useNavigate()
 
-  const onLogin = (user) => {
-    setUser(user)
-    
-  }
+  useEffect(() => {
+    console.log(user)
+    if (user) {
+      navigate('/')
+    }
+  }, [user])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -28,8 +31,9 @@ const CreateAccount = ({ user, setUser }) => {
       body: JSON.stringify(newUserData),
     })
       .then((r) => r.json())
-      .then((newUser) => onLogin(newUser))
+      .then((newUser) => setUser(newUser))
   }
+
 
   return(
     <Container marginTop='24'>

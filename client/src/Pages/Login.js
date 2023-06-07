@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text, Link } from "@chakra-ui/react";
+import { useNavigate } from 'react-router-dom'
 
 const Login = ({ user, setUser }) => {
   const [username, setUsername] = useState('')
-
-  const onLogin = (user) => {
-    setUser(user)
-    
-  }
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -20,9 +17,10 @@ const Login = ({ user, setUser }) => {
       body: JSON.stringify({ username }),
     })
       .then((r) => r.json())
-      .then((user) => onLogin(user))
-
+      .then((user) => setUser(user))
   }
+
+  if (user) navigate('/')
 
   return(
     <Container marginTop='24'>
