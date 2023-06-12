@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, HStack, Text, Box, Stack } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import EventCards from "../Components/EventCards";
 import { useNavigate } from 'react-router-dom'
+import AddEventModal from "../Components/AddEventModal";
 
 const Dashboard = ({ user }) => {
   const navigate = useNavigate()
+  const [events, setEvents] = useState([])
 
-  const handleClick = () => {
-    console.log('hi')
-  }
+  useEffect(() => {
+    fetch('/events')
+      .then((r) => r.json())
+      .then((allEvents) => setEvents(allEvents))
+  }, [])
 
   useEffect(() => {
     console.log(user)
@@ -23,9 +27,7 @@ const Dashboard = ({ user }) => {
       <Box margin='12'>
         <HStack direction={['column', 'row']} spacing='24px'>
           <Text fontSize='3xl' fontWeight='bold'>Your Events</Text>
-          <Button onClick={handleClick} colorScheme='purple'>
-            <AddIcon />
-          </Button>
+          <AddEventModal events={events} setEvents={setEvents} />
         </HStack>
 
         <Stack marginTop='12' gap='2'>

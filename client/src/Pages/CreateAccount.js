@@ -6,7 +6,6 @@ const CreateAccount = ({ user, setUser }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()

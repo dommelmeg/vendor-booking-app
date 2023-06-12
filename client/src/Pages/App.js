@@ -18,10 +18,10 @@ function App() {
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setCurrentUser(user));
+        r.json().then((user) => setCurrentUser(user))
       }
-    });
-  }, []);
+    })
+  }, [])
 
   useEffect(() => {
     if (currentUser) {
@@ -41,7 +41,7 @@ function App() {
         </Routes>
       </Flex>
     </ChakraProvider>
-  );
+  )
 }
 
 export default App;
