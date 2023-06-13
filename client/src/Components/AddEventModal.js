@@ -16,8 +16,12 @@ const AddEventModal = ({ events, setEvents, bands, setBands }) => {
   const [bandInput, setBandInput] = useState('')
 
   const handleBandSelect = (e) => {
-    setBandInput(e.target.value)
-
+    if(e.target.value === 'addNewBand') {
+      console.log('you did it!')
+    }
+    else {
+      setBandInput(e.target.value)
+    }
   }
   
   const handleSubmitClick = (e) => {
@@ -26,7 +30,8 @@ const AddEventModal = ({ events, setEvents, bands, setBands }) => {
     const formData = {
       event_name: eventNameInput,
       date: dateInput,
-      image_url: imageUrlInput
+      image_url: imageUrlInput,
+      band_id: bandInput
     }
     
     fetch('/events', {
@@ -37,7 +42,7 @@ const AddEventModal = ({ events, setEvents, bands, setBands }) => {
       body: JSON.stringify(formData)
     })
       .then((r) => r.json())
-      .then((newEvent) => console.log(newEvent))
+      .then((newEvent) => setEvents([...events, newEvent]))
 
     onClose()
   }
@@ -84,7 +89,7 @@ const AddEventModal = ({ events, setEvents, bands, setBands }) => {
               <option value='addNewBand'>Add a New Band</option>
               {bands.map((band) => {
                 return (
-                  <option value={band.name} key={band.id}>{band.name}</option>
+                  <option value={band.id} key={band.id}>{band.name}</option>
                 )
               })}
             </Select>
@@ -93,7 +98,7 @@ const AddEventModal = ({ events, setEvents, bands, setBands }) => {
           <FormControl mt={4}>
             <FormLabel>Image</FormLabel>
             <Input 
-              placeholder='Image URL' 
+              placeholder='Image URL'
               onChange={(e) => setImageUrlInput(e.target.value)}
               type="text"
               value={imageUrlInput}

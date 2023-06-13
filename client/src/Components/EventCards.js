@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardBody, Image, Stack, Heading, Badge, Link } from '@chakra-ui/react'
 
-const EventCards = () => {
+const EventCards = ({ event }) => {
   return(
     <Card
       direction={{ base: 'column', sm: 'row' }}
@@ -11,17 +11,17 @@ const EventCards = () => {
       <Image
         objectFit='cover'
         maxW={{ base: '100%', sm: '200px' }}
-        src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'
+        src={event.image_url}
         alt='Caffe Latte'
       />
 
       <Stack>
         <CardBody>
-          <Badge colorScheme='purple'>SEPT. 23, 2023</Badge>
-          <Heading size='md'>Bill & Meg's Wedding</Heading>
+          <Badge colorScheme='purple'>{event.date}</Badge>
+          <Heading size='md'>{event.event_name}</Heading>
 
           <Link>
-            The Dundies
+            {event.band_id}
           </Link>
         </CardBody>
 

@@ -32,7 +32,9 @@ const Dashboard = ({ user, bands, setBands }) => {
 
         <Stack marginTop='12' gap='2'>
            {events.map((event) => {
-              console.log(event)
+              return(
+                <EventCards event={event} key={event.id} />
+              )
            })}
         </Stack>
       </Box>
