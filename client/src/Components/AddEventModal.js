@@ -5,7 +5,6 @@ import events_default from '../images/events_default.jpeg'
 
 
 const AddEventModal = ({ events, setEvents}) => {
-  console.log(events)
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
@@ -32,7 +31,7 @@ const AddEventModal = ({ events, setEvents}) => {
       body: JSON.stringify(formData)
     })
       .then((r) => r.json())
-      .then((newEvent) => setEvents([...events, newEvent]))
+      .then((newEvent) => console.log(newEvent))
 
     onClose()
   }
@@ -66,7 +65,7 @@ const AddEventModal = ({ events, setEvents}) => {
           <FormControl mt={4}>
             <FormLabel>Date</FormLabel>
             <Input 
-              placeholder='Date'
+              placeholder='October 3, 2023'
               onChange={(e) => setDateInput(e.target.value)}
               type="text"
               value={dateInput}
