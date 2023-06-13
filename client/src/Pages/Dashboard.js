@@ -5,7 +5,7 @@ import EventCards from "../Components/EventCards";
 import { useNavigate } from 'react-router-dom'
 import AddEventModal from "../Components/AddEventModal";
 
-const Dashboard = ({ user }) => {
+const Dashboard = ({ user, bands, setBands }) => {
   const navigate = useNavigate()
   const [events, setEvents] = useState([])
 
@@ -27,11 +27,13 @@ const Dashboard = ({ user }) => {
       <Box margin='12'>
         <HStack direction={['column', 'row']} spacing='24px'>
           <Text fontSize='3xl' fontWeight='bold'>Your Events</Text>
-          <AddEventModal events={events} setEvents={setEvents} />
+          <AddEventModal events={events} setEvents={setEvents} bands={bands} setBands={setBands} />
         </HStack>
 
         <Stack marginTop='12' gap='2'>
-           
+           {events.map((event) => {
+              console.log(event)
+           })}
         </Stack>
       </Box>
     </Box>

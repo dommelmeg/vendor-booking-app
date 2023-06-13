@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Checkbox } from '@chakra-ui/react'
+import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import events_default from '../images/events_default.jpeg'
 
 
-const AddEventModal = ({ events, setEvents}) => {
+const AddEventModal = ({ events, setEvents, bands, setBands }) => {
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
@@ -13,6 +13,12 @@ const AddEventModal = ({ events, setEvents}) => {
   const [eventNameInput, setEventNameInput] = useState('')
   const [dateInput, setDateInput] = useState('')
   const [imageUrlInput, setImageUrlInput] = useState(`${events_default}`)
+  const [bandInput, setBandInput] = useState('')
+
+  const handleBandSelect = (e) => {
+    setBandInput(e.target.value)
+
+  }
   
   const handleSubmitClick = (e) => {
     e.preventDefault()
@@ -70,6 +76,18 @@ const AddEventModal = ({ events, setEvents}) => {
               type="text"
               value={dateInput}
               />
+          </FormControl>
+
+          <FormControl>
+            <FormLabel>Band</FormLabel>
+            <Select placeholder='Select Band' onChange={handleBandSelect}>
+              <option value='addNewBand'>Add a New Band</option>
+              {bands.map((band) => {
+                return (
+                  <option value={band.name} key={band.id}>{band.name}</option>
+                )
+              })}
+            </Select>
           </FormControl>
 
           <FormControl mt={4}>

@@ -14,13 +14,15 @@ function App() {
   const isLogin = location.pathname === '/login'
 
   const [currentUser, setCurrentUser] = useState(null)
+  const [bands, setBands] = useState([])
   
   useEffect(() => {
-    fetch("/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setCurrentUser(user))
-      }
-    })
+    fetch("/me")
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((user) => setCurrentUser(user))
+        }
+      })
   }, [])
 
   useEffect(() => {
@@ -29,12 +31,20 @@ function App() {
     }
   }, [currentUser])
 
+  useEffect(() => {
+    fetch('/vendors')
+      .then((r) => r.json())
+      .then((bands) => setBands(bands))
+  }, [])
+
+  console.log(bands)
+
   return ( 
     <ChakraProvider>
       <Flex>
         {isCreateAcct || isLogin ? null : <NavDrawer setUser={setCurrentUser} />}
         <Routes>
-          <Route path='/' element={<Dashboard user={currentUser} />} />
+          <Route path='/' element={<Dashboard user={currentUser} bands={bands} setBands={setBands} />} />
           <Route path='/signup' element={<CreateAccount user={currentUser} setUser={setCurrentUser} />} />
           <Route path='/login' element={<Login user={currentUser} setUser={setCurrentUser} />} />
           <Route path='/all-bands' element={<AllBands />} />
