@@ -4,26 +4,24 @@ import { AddIcon } from '@chakra-ui/icons'
 import BandCards from "../Components/BandCards";
 
 const AllBands = () => {
-  const [bands, setBands] = useState([])
+  const [vendors, setVendors] = useState([])
 
   useEffect(() => {
     fetch('/vendors')
       .then((r) => r.json())
-      .then((bands) => setBands(bands))
+      .then((vendors) => setVendors(vendors))
   }, [])
 
   const handleClick = () => {
     console.log('hi')
   }
 
-  console.log(bands)
-
   return (
     <Box h='calc(100vh)' w='full' ml='320px' backgroundColor='blackAlpha.100'>
       <Box margin='12'>
         
         <HStack direction={['column', 'row']} spacing='24px'>
-          <Text fontSize='3xl' fontWeight='bold'>All Bands</Text>
+          <Text fontSize='3xl' fontWeight='bold'>All Vendors</Text>
           <Button onClick={handleClick} colorScheme='purple'>
             <AddIcon />
           </Button>
@@ -31,9 +29,9 @@ const AllBands = () => {
 
         <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(350px, 1fr))' marginTop='12' >
 
-          {bands.map((band) => {
+          {vendors.map((vendor) => {
             return(
-              <BandCards key={band.id} band={band} />
+              <BandCards key={vendor.id} vendor={vendor} />
             )
           })}
         </SimpleGrid>

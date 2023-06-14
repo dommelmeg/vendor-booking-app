@@ -4,7 +4,7 @@ import { AddIcon } from '@chakra-ui/icons'
 import events_default from '../images/events_default.jpeg'
 
 
-const AddEventModal = ({ events, setEvents, bands, setBands }) => {
+const AddEventModal = ({ events, setEvents, vendors, setVendors }) => {
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
@@ -13,14 +13,14 @@ const AddEventModal = ({ events, setEvents, bands, setBands }) => {
   const [eventNameInput, setEventNameInput] = useState('')
   const [dateInput, setDateInput] = useState('')
   const [imageUrlInput, setImageUrlInput] = useState(`${events_default}`)
-  const [bandInput, setBandInput] = useState('')
+  const [vendorInput, setVendorInput] = useState('')
 
-  const handleBandSelect = (e) => {
-    if(e.target.value === 'addNewBand') {
+  const handleVendorSelect = (e) => {
+    if(e.target.value === 'addNewVendor') {
       console.log('you did it!')
     }
     else {
-      setBandInput(e.target.value)
+      setVendorInput(e.target.value)
     }
   }
   
@@ -31,7 +31,7 @@ const AddEventModal = ({ events, setEvents, bands, setBands }) => {
       event_name: eventNameInput,
       date: dateInput,
       image_url: imageUrlInput,
-      band_id: bandInput
+      vendor_id: vendorInput
     }
     
     fetch('/events', {
@@ -47,7 +47,7 @@ const AddEventModal = ({ events, setEvents, bands, setBands }) => {
     setEventNameInput('')
     setDateInput('')
     setImageUrlInput(`${events_default}`)
-    setBandInput('')
+    setVendorInput('')
     onClose()
   }
 
@@ -88,12 +88,12 @@ const AddEventModal = ({ events, setEvents, bands, setBands }) => {
           </FormControl>
 
           <FormControl>
-            <FormLabel>Band</FormLabel>
-            <Select placeholder='Select Band' onChange={handleBandSelect}>
-              <option value='addNewBand'>Add a New Band</option>
-              {bands.map((band) => {
+            <FormLabel>Vendor</FormLabel>
+            <Select placeholder='Select Vendor' onChange={handleVendorSelect}>
+              <option value='addNewVendor'>Add a New Vendor</option>
+              {vendors.map((vendor) => {
                 return (
-                  <option value={band.id} key={band.id}>{band.name}</option>
+                  <option value={vendor.id} key={vendor.id}>{vendor.name}</option>
                 )
               })}
             </Select>

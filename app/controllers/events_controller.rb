@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   def create
     new_event = Event.create!(
       user_id: session[:user_id],
-      band_id: params[:band_id],
+      vendor_id: params[:vendor_id],
       event_name: params[:event_name],
       date: params[:date],
       # rating: params[:rating],

@@ -21,7 +21,7 @@ const EventCards = ({ event }) => {
           <Heading size='md'>{event.event_name}</Heading>
 
           <Link>
-            {event.band_id}
+            {event.vendor_id}
           </Link>
         </CardBody>
 

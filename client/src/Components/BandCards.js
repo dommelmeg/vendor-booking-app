@@ -1,11 +1,11 @@
 import React from "react";
 import { Card, CardBody, Heading, Text, Badge, HStack, Circle, VStack } from "@chakra-ui/react";
-import { AiOutlineDollarCircle, AiFillDollarCircle } from 'react-icons/ai'
+import { AiFillDollarCircle } from 'react-icons/ai'
 import { BsCurrencyDollar } from 'react-icons/bs'
 
-const BandCards = ({ band }) => {
-  const price_range = band.price_range
-  const band_all_caps = band.genre.toUpperCase()
+const BandCards = ({ vendor }) => {
+  const price_range = vendor.price_range
+  const vendor_all_caps = vendor.genre.toUpperCase()
 
   return(
     <Card
@@ -21,8 +21,8 @@ const BandCards = ({ band }) => {
         </Circle>
         <VStack  alignItems='left'>
 
-        <Text color='purple.400' fontWeight='bold' fontSize='xs'>{band.genre.toUpperCase()}</Text>
-        <Heading size='md'>{band.name}</Heading>
+        <Text color='purple.400' fontWeight='bold' fontSize='xs'>{vendor.genre.toUpperCase()}</Text>
+        <Heading size='md'>{vendor.name}</Heading>
         <HStack marginTop='2' spacing='-1'>
         {!price_range && <em>No Reviews Yet</em>}
         {price_range > 0 && <BsCurrencyDollar />}

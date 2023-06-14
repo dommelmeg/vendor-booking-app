@@ -3,7 +3,6 @@ import {
   Button,
   Stack,
   Text,
-  Link,
   Icon,
   Flex,
   Box
@@ -26,36 +25,36 @@ const NavDrawer = ({ setUser }) => {
     }
 
   return (
-      <Box padding='4' h='calc(100vh)' w='xs' boxShadow='lg' position='fixed' >
-        <Flex>
-          <Text fontSize='3xl'>Upbeat Booking</Text>
-        </Flex>
+    <Box padding='4' h='calc(100vh)' w='xs' boxShadow='lg' position='fixed' >
+      <Flex>
+        <Text fontSize='3xl'>Upbeat Booking</Text>
+      </Flex>
 
-        <Stack marginTop='12'>
-          <Button variant='link' colorScheme='black' justifyContent='left' size='md'>
-            <Icon as={RxDashboard} />
-            <RouteLink to="/">Dashboard</RouteLink>
-          </Button>
+      <Stack marginTop='12'>
+        <Button variant='link' colorScheme='black' justifyContent='left' size='md'>
+          <Icon as={RxDashboard} />
+          <RouteLink to="/">Dashboard</RouteLink>
+        </Button>
 
-          <Button variant='link' colorScheme='black' justifyContent='left'>
-            <Icon as={CiMusicNote1} />
-            <RouteLink to="all-bands">All Bands</RouteLink>
-          </Button>
-        </Stack>
+        <Button variant='link' colorScheme='black' justifyContent='left'>
+          <Icon as={CiMusicNote1} />
+          <RouteLink to="all-bands">All Vendors</RouteLink>
+        </Button>
+      </Stack>
 
-        <Flex>
-          <Button 
-            variant='link' 
-            colorScheme='black' 
-            justifyContent='left' 
-            size='md' 
-            onClick={handleLogoutClick}
-          >
-            <Icon as={RiLogoutBoxLine} />
-            Logout
-          </Button>
-        </Flex>
-      </Box>
+      <Flex>
+        <Button 
+          variant='link' 
+          colorScheme='black' 
+          justifyContent='left' 
+          size='md' 
+          onClick={handleLogoutClick}
+        >
+          <Icon as={RiLogoutBoxLine} />
+          Logout
+        </Button>
+      </Flex>
+    </Box>
   )
 }
 
