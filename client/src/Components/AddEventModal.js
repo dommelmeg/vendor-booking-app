@@ -43,7 +43,11 @@ const AddEventModal = ({ events, setEvents, bands, setBands }) => {
     })
       .then((r) => r.json())
       .then((newEvent) => setEvents([...events, newEvent]))
-
+    
+    setEventNameInput('')
+    setDateInput('')
+    setImageUrlInput(`${events_default}`)
+    setBandInput('')
     onClose()
   }
 
