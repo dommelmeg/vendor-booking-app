@@ -10,39 +10,37 @@ const Dashboard = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch('/events')
-      .then((r) => r.json())
-      .then((allEvents) => setEvents(allEvents))
-  }, [])
-
-  useEffect(() => {
     if (!user) {
       navigate('/login')
     }
+
+    fetch('/events')
+      .then((r) => r.json())
+      .then((allEvents) => {
+        if (!user) return
+        const user_events = allEvents.filter((event) => event.user_id === user.id)
+        setEvents(user_events)
+      })
   }, [user])
 
-  // console.log(events)
-
   return (
-    <Box h='calc(100vh)' w='full' ml='320px' backgroundColor='blackAlpha.100'>
-      <Box margin='12'>
-        <HStack direction={['column', 'row']} spacing='24px'>
-          <Text fontSize='3xl' fontWeight='bold'>Your Events</Text>
-          <AddEventModal />
-        </HStack>
+    <Box h='calc(100vh)' w='full' margin='4'>
+      <HStack direction={['column', 'row']} spacing='24px'>
+        <Text fontSize='3xl' fontWeight='bold'>Your Events</Text>
+        <AddEventModal />
+      </HStack>
 
-        <Stack marginTop='12' gap='2'>
-          {events.length > 0 ? (
-            events.map((event) => {
-              if(event.user_id === user.id) {
-                return(<EventCards event={event} key={event.id} />)
-              }
-            })
-          ) : (
-            <Text>Get to planning!</Text>
-          )}
-        </Stack>
-      </Box>
+      <HStack marginTop='12' gap='2'>
+        {events.length > 0 ? (
+          events.map((event) => {
+            {
+              return(<EventCards event={event} key={event.id} />)
+            }
+          })
+        ) : (
+          <Text>Get to planning!</Text>
+        )}
+      </HStack>
     </Box>
   )
 }

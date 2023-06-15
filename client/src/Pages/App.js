@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Flex, ChakraProvider } from '@chakra-ui/react'
+import { Flex, ChakraProvider, Grid, GridItem } from '@chakra-ui/react'
 import Dashboard from './Dashboard';
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import AllBands from './AllBands';
@@ -7,6 +7,7 @@ import CreateAccount from './CreateAccount';
 import Login from './Login';
 import NavDrawer from '../Components/NavDrawer';
 import { VendorBookingContext } from "../context/vendorBooking"
+import Header from '../Components/Header';
 
 function App() {
   const { user, setUser, setVendors } = useContext(VendorBookingContext)
@@ -37,18 +38,42 @@ function App() {
       .then((vendors) => setVendors(vendors))
   }, [])
 
+  const showNav = !isCreateAcct && !isLogin
+
   return ( 
     <ChakraProvider>
-        <Flex>
-          {isCreateAcct || isLogin ? null : <NavDrawer />}
-          <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/signup' element={<CreateAccount />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/all-bands' element={<AllBands />} />
-          </Routes>
-        </Flex>
+      <Grid
+        h='calc(100vh)'
+        templateRows='repeat(9, 1fr)'
+        templateColumns='repeat(5, 1fr)'
+        bg='blackAlpha.100'
+      >
+        {showNav && <GridItem rowSpan={9} colSpan={1}><NavDrawer /></GridItem>}
+        {showNav && <GridItem colSpan={4}><Header /></GridItem>}
+        <Routes>
+          <Route path='/' element={<GridItem rowSpan={8} colSpan={4}><Dashboard /></GridItem>} />
+          <Route path='/signup' element={<GridItem rowSpan={9} colSpan={5}><CreateAccount /></GridItem>} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/all-bands' element={<GridItem rowSpan={8} colSpan={4}><AllBands /></GridItem>} />
+        </Routes>
+      </Grid>
     </ChakraProvider>
+
+
+
+
+
+    // <ChakraProvider>
+    //     <Flex>
+    //       {showNav && <NavDrawer />}
+    //       <Routes>
+    //         <Route path='/' element={<Dashboard />} />
+    //         <Route path='/signup' element={<CreateAccount />} />
+    //         <Route path='/login' element={<Login />} />
+    //         <Route path='/all-bands' element={<AllBands />} />
+    //       </Routes>
+    //     </Flex>
+    // </ChakraProvider>
   )
 }
 

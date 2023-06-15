@@ -5,6 +5,21 @@ class EventsController < ApplicationController
     render json: events
   end
 
+  def show
+    event = Event.find_by(id: params[:id])
+    render json: event
+  end
+
+  def destroy
+    event = Event.find_by(id: params[:id])
+    if event
+      event.destroy
+      # head :no_content
+    else
+      render json: { error: 'Event not found' }, status: :not_found
+    end
+  end
+
   def create
     new_event = Event.create!(
       user_id: session[:user_id],

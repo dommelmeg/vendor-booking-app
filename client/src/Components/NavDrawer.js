@@ -5,7 +5,8 @@ import {
   Text,
   Icon,
   Flex,
-  Box
+  Box,
+  HStack
 } from '@chakra-ui/react'
 import { RxDashboard } from 'react-icons/rx'
 import { CiMusicNote1 } from 'react-icons/ci'
@@ -31,7 +32,7 @@ const NavDrawer = () => {
   }
 
   return (
-    <Box padding='4' h='calc(100vh)' w='xs' boxShadow='lg' position='fixed' >
+    <Box padding='4' h='calc(100vh)' bg='white' boxShadow='lg' >
       <Flex>
         <Text fontSize='3xl'>Upbeat Booking</Text>
       </Flex>
@@ -55,7 +56,7 @@ const NavDrawer = () => {
           justifyContent='left' 
           size='md' 
           onClick={handleLogoutClick}
-        >
+          >
           <Icon as={RiLogoutBoxLine} />
           Logout
         </Button>
