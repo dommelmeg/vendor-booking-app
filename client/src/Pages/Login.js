@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text, Link } from "@chakra-ui/react";
+import React, { useState, useContext } from "react";
+import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
+import { VendorBookingContext } from "../context/vendorBooking"
 
-const Login = ({ user, setUser }) => {
+const Login = () => {
+  const { setUser } = useContext(VendorBookingContext)
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -22,16 +25,6 @@ const Login = ({ user, setUser }) => {
         console.log('whomp whomp')
       }
     })
-
-    // fetch('/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ username }),
-    // })
-    //   .then((r) => r.json())
-    //   .then((user) => setUser(user))
   }
 
   return(

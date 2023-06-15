@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import events_default from '../images/events_default.jpeg'
+import { VendorBookingContext } from "../context/vendorBooking"
 
-
-const AddEventModal = ({ events, setEvents, vendors, setVendors }) => {
+const AddEventModal = () => {
+  const { vendors, events, setEvents } = useContext(VendorBookingContext)
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)

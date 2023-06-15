@@ -13,16 +13,17 @@ import { RiLogoutBoxLine } from 'react-icons/ri'
 import { Link as RouteLink } from 'react-router-dom'
 
 const NavDrawer = ({ setUser }) => {
+  
   const handleLogoutClick = () => {
     fetch('/logout', {
       method: 'DELETE'
     })
-      .then((r) => {
-        if (r.ok) {
-          setUser(null)
-        }
-      })
-    }
+    .then((r) => {
+      if (r.ok) {
+        setUser(null)
+      }
+    })
+  }
 
   return (
     <Box padding='4' h='calc(100vh)' w='xs' boxShadow='lg' position='fixed' >

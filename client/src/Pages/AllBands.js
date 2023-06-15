@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Button, HStack, Text, Box, Stack, SimpleGrid } from '@chakra-ui/react'
+import React, { useEffect, useContext } from "react";
+import { Button, HStack, Text, Box, SimpleGrid } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import BandCards from "../Components/BandCards";
+import { VendorBookingContext } from "../context/vendorBooking"
 
 const AllBands = () => {
-  const [vendors, setVendors] = useState([])
+  const { vendors, setVendors } = useContext(VendorBookingContext)
 
   useEffect(() => {
     fetch('/vendors')
@@ -12,7 +13,7 @@ const AllBands = () => {
       .then((vendors) => setVendors(vendors))
   }, [])
 
-  const handleClick = () => {
+  const handleAddVendorClick = () => {
     console.log('hi')
   }
 
@@ -22,7 +23,7 @@ const AllBands = () => {
         
         <HStack direction={['column', 'row']} spacing='24px'>
           <Text fontSize='3xl' fontWeight='bold'>All Vendors</Text>
-          <Button onClick={handleClick} colorScheme='purple'>
+          <Button onClick={handleAddVendorClick} colorScheme='purple'>
             <AddIcon />
           </Button>
         </HStack>

@@ -7,31 +7,30 @@ const EventCards = ({ event }) => {
       direction={{ base: 'column', sm: 'row' }}
       overflow='hidden'
       variant='outline'
+      
     >
       <Image
         objectFit='cover'
         maxW={{ base: '100%', sm: '200px' }}
         src={event.image_url}
-        alt='Caffe Latte'
+        alt={event.event_name}
       />
-
       <Stack>
         <CardBody>
           <Badge colorScheme='purple'>{event.date}</Badge>
           <Heading size='md'>{event.event_name}</Heading>
 
           <Link>
-            {event.vendor_id}
+            Band: {event.vendor.name}
           </Link>
         </CardBody>
 
         {/* <CardFooter>
-          <Button variant='solid' colorScheme='blue'>
-            Buy Latte
+          <Button variant='solid' colorScheme='purple'>
+            Book a Vendor
           </Button>
         </CardFooter> */}
       </Stack>
-      
     </Card>
   )
 }

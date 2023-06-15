@@ -1,11 +1,11 @@
 import React from "react";
-import { Card, CardBody, Heading, Text, Badge, HStack, Circle, VStack } from "@chakra-ui/react";
+import { Card, CardBody, Heading, Text, HStack, Circle, VStack } from "@chakra-ui/react";
 import { AiFillDollarCircle } from 'react-icons/ai'
 import { BsCurrencyDollar } from 'react-icons/bs'
 
 const BandCards = ({ vendor }) => {
   const price_range = vendor.price_range
-  const vendor_all_caps = vendor.genre.toUpperCase()
+  // const vendor_all_caps = vendor.genre.toUpperCase()
 
   return(
     <Card

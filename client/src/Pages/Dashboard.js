@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { HStack, Text, Box, Stack } from '@chakra-ui/react'
 import EventCards from "../Components/EventCards";
 import { useNavigate } from 'react-router-dom'
 import AddEventModal from "../Components/AddEventModal";
+import { VendorBookingContext } from "../context/vendorBooking"
 
-const Dashboard = ({ user, vendors, setVendors }) => {
+const Dashboard = () => {
+  const { user, events, setEvents } = useContext(VendorBookingContext)
   const navigate = useNavigate()
-  const [events, setEvents] = useState([])
 
   useEffect(() => {
     fetch('/events')
@@ -20,12 +21,14 @@ const Dashboard = ({ user, vendors, setVendors }) => {
     }
   }, [user])
 
+  console.log(events)
+
   return (
     <Box h='calc(100vh)' w='full' ml='320px' backgroundColor='blackAlpha.100'>
       <Box margin='12'>
         <HStack direction={['column', 'row']} spacing='24px'>
           <Text fontSize='3xl' fontWeight='bold'>Your Events</Text>
-          <AddEventModal events={events} setEvents={setEvents} vendors={vendors} setVendors={setVendors} />
+          <AddEventModal />
         </HStack>
 
         <Stack marginTop='12' gap='2'>
