@@ -11,8 +11,6 @@ class EventsController < ApplicationController
       vendor_id: params[:vendor_id],
       event_name: params[:event_name],
       date: params[:date],
-      # rating: params[:rating],
-      # review: params[:review],
       image_url: params[:image_url]
     )
     if new_event.valid?

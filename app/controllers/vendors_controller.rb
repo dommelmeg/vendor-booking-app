@@ -2,7 +2,7 @@ class VendorsController < ApplicationController
 
   def index
     vendors = Vendor.all
-    render json: vendors, include: :events
+    render json: vendors
   end
 
 end
