@@ -21,7 +21,7 @@ const Dashboard = () => {
     }
   }, [user])
 
-  console.log(events)
+  // console.log(events)
 
   return (
     <Box h='calc(100vh)' w='full' ml='320px' backgroundColor='blackAlpha.100'>
@@ -32,11 +32,15 @@ const Dashboard = () => {
         </HStack>
 
         <Stack marginTop='12' gap='2'>
-           {events.map((event) => {
-              return(
-                <EventCards event={event} key={event.id} />
-              )
-           })}
+          {events.length > 0 ? (
+            events.map((event) => {
+              if(event.user_id === user.id) {
+                return(<EventCards event={event} key={event.id} />)
+              }
+            })
+          ) : (
+            <Text>Get to planning!</Text>
+          )}
         </Stack>
       </Box>
     </Box>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Button,
   Stack,
@@ -11,9 +11,13 @@ import { RxDashboard } from 'react-icons/rx'
 import { CiMusicNote1 } from 'react-icons/ci'
 import { RiLogoutBoxLine } from 'react-icons/ri'
 import { Link as RouteLink } from 'react-router-dom'
+import { VendorBookingContext } from "../context/vendorBooking"
+import { useNavigate } from 'react-router-dom'
 
-const NavDrawer = ({ setUser }) => {
-  
+const NavDrawer = () => {
+  const { setUser } = useContext(VendorBookingContext)
+  const navigate = useNavigate()
+
   const handleLogoutClick = () => {
     fetch('/logout', {
       method: 'DELETE'
@@ -21,6 +25,7 @@ const NavDrawer = ({ setUser }) => {
     .then((r) => {
       if (r.ok) {
         setUser(null)
+        navigate('/login')
       }
     })
   }
