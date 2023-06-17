@@ -2,13 +2,10 @@ import React, { useContext } from "react";
 import { Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
+import EditEvent from './EditEvent'
 
 const EventCards = ({ event }) => {
   const { events, setEvents } = useContext(VendorBookingContext)
-
-  const handleEditClick = () => {
-    console.log('LETS MAKE SOME CHANGES')
-  }
 
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
@@ -51,9 +48,7 @@ const EventCards = ({ event }) => {
       <Divider />
       <CardFooter>
         <ButtonGroup spacing='2'>
-          <Button variant='solid' colorScheme='purple' onClick={handleEditClick}>
-            Edit Event
-          </Button>
+          <EditEvent />
           <Button variant='ghost' colorScheme='grey' onClick={handleDeleteClick}>
             <DeleteIcon />
           </Button>

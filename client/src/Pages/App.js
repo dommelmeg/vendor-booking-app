@@ -49,7 +49,7 @@ function App() {
         templateColumns='repeat(5, 1fr)'
       >
         {showNav && <GridItem rowSpan={10} colSpan={1}><NavDrawer /></GridItem>}
-        {showNav && <GridItem colSpan={4}><Header /></GridItem>}
+        {showNav && <GridItem colSpan={4} rowSpan={1}><Header /></GridItem>}
         <Routes>
           <Route path='/' element={<GridItem rowSpan={9} colSpan={4}><Dashboard /></GridItem>} />
           <Route path='/signup' element={<GridItem rowSpan={10} colSpan={5}><CreateAccount /></GridItem>} />

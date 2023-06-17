@@ -15,7 +15,6 @@ import { VscComment } from 'react-icons/vsc'
 import { Link as RouteLink } from 'react-router-dom'
 import { VendorBookingContext } from "../context/vendorBooking"
 import { useNavigate } from 'react-router-dom'
-import { ChatIcon } from '@chakra-ui/icons'
 
 const NavDrawer = () => {
   const { setUser } = useContext(VendorBookingContext)
@@ -35,39 +34,33 @@ const NavDrawer = () => {
 
   return (
     <Box padding='4' h='full' bg='whiteAlpha.50' boxShadow='lg' >
-      <Flex>
-        <Text fontSize='3xl'>Upbeat Booking</Text>
-      </Flex>
-
+      <Text fontSize='3xl'>Upbeat Booking</Text>
+      
       <Stack marginTop='12'>
         <Button variant='ghost' colorScheme='purple' justifyContent='left' size='md'>
-          <Icon marginRight='2' as={RxDashboard} />
-          <RouteLink to="/">Dashboard</RouteLink>
+          <RouteLink to="/"><Icon marginRight='2' as={RxDashboard} /> Dashboard</RouteLink>
         </Button>
 
         <Button variant='ghost' colorScheme='black' justifyContent='left'>
-          <Icon marginRight='2' as={CiMusicNote1} />
-          <RouteLink to="all-bands">All Vendors</RouteLink>
+          <RouteLink to="all-bands"><Icon marginRight='2' as={CiMusicNote1} /> All Vendors</RouteLink>
         </Button>
 
         <Button variant='ghost' colorScheme='black' justifyContent='left'>
-          <Icon marginRight='2' as={VscComment} />
-          <RouteLink to="reviews">Your Reviews</RouteLink>
+          <RouteLink to="reviews"><Icon marginRight='2' as={VscComment} /> Your Reviews</RouteLink>
         </Button>
       </Stack>
 
-      <Flex>
+      <Box display='flex' alignItems='end' >
         <Button 
           variant='ghost' 
           colorScheme='black' 
-          justifyContent='left' 
           size='md' 
+          alignSelf='baseline'
           onClick={handleLogoutClick}
           >
-          <Icon marginRight='2' as={RiLogoutBoxLine} />
-          Logout
+          <Icon marginRight='2' as={RiLogoutBoxLine} /> Logout
         </Button>
-      </Flex>
+      </Box>
     </Box>
   )
 }
