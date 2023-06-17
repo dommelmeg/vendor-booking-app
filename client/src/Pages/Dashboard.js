@@ -24,7 +24,7 @@ const Dashboard = () => {
   }, [user])
 
   return (
-    <Box h='calc(100vh)'  margin='4'>
+    <Box h='full' margin='4'>
       <HStack direction={['column', 'row']} spacing='24px'>
         <Text fontSize='3xl' fontWeight='bold'>Your Events</Text>
         <AddEventModal />
@@ -33,12 +33,10 @@ const Dashboard = () => {
       <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(250px, 1fr))' marginTop='12'>
         {events.length > 0 ? (
           events.map((event) => {
-            {
               return(<EventCards event={event} key={event.id} />)
-            }
           })
         ) : (
-          <Text>Get to planning!</Text>
+          <Text>Lets get planning!</Text>
         )}
       </SimpleGrid>
     </Box>

@@ -43,7 +43,7 @@ const EventCards = ({ event }) => {
             spaces, earthy toned spaces and for people who love a chic design with a
             sprinkle of vintage design.
           </Text>
-          <Text color='blue.600' fontSize='2xl'>
+          <Text color='purple.700' fontSize='2xl'>
             {event.date}
           </Text>
         </Stack>
@@ -51,10 +51,10 @@ const EventCards = ({ event }) => {
       <Divider />
       <CardFooter>
         <ButtonGroup spacing='2'>
-          <Button variant='solid' colorScheme='blue' onClick={handleEditClick}>
+          <Button variant='solid' colorScheme='purple' onClick={handleEditClick}>
             Edit Event
           </Button>
-          <Button variant='ghost' colorScheme='blue' onClick={handleDeleteClick}>
+          <Button variant='ghost' colorScheme='grey' onClick={handleDeleteClick}>
             <DeleteIcon />
           </Button>
         </ButtonGroup>

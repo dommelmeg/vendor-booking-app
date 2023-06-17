@@ -12,7 +12,7 @@ const AllBands = () => {
   }
 
   return (
-    <Box h='calc(100vh)' w='full' margin='4'>
+    <Box h='full' w='full' margin='4'>
       <Box >
         
         <HStack direction={['column', 'row']} spacing='24px'>

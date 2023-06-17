@@ -6,11 +6,11 @@ const Header = () => {
   const { user } = useContext(VendorBookingContext)
 
   return (
-    <Flex h='20' bg='white' boxShadow='md' position='sticky' justify='right'>
+    <Flex h='20' bg='white' boxShadow='sm' position='sticky' justify='right'>
       <AbsoluteCenter axis='vertical' p='2' >
         <HStack padding='4'>
-          <Text>Welcome, <b>Meg</b>!</Text>
-          <Avatar name='Meg' />
+          <Text>Welcome, <b>{user?.username ?? 'user'}</b>!</Text>
+          <Avatar name={user?.username ?? 'user'} />
         </HStack>
       </AbsoluteCenter>
     </Flex>

@@ -32,7 +32,7 @@ const NavDrawer = () => {
   }
 
   return (
-    <Box padding='4' h='calc(100vh)' bg='white' boxShadow='lg' >
+    <Box padding='4' h='full' bg='white' boxShadow='lg' >
       <Flex>
         <Text fontSize='3xl'>Upbeat Booking</Text>
       </Flex>
