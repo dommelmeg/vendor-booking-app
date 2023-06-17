@@ -12,8 +12,8 @@ const AllBands = () => {
   }
 
   return (
-    <Box h='full' w='full' margin='4'>
-      <Box >
+    <Box h='calc(100vh)' margin='4'>
+      <Box>
         
         <HStack direction={['column', 'row']} spacing='24px'>
           <Text fontSize='3xl' fontWeight='bold'>All Vendors</Text>

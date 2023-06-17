@@ -30,7 +30,7 @@ const Login = () => {
   }
 
   return(
-    <Container marginTop='24'>
+    <Container marginTop='24' h='calc(100vh)'>
       <Center>
         <VStack spacing='12'>
           <Heading color='purple.600' size='3xl'>

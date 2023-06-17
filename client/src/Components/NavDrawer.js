@@ -11,9 +11,11 @@ import {
 import { RxDashboard } from 'react-icons/rx'
 import { CiMusicNote1 } from 'react-icons/ci'
 import { RiLogoutBoxLine } from 'react-icons/ri'
+import { VscComment } from 'react-icons/vsc'
 import { Link as RouteLink } from 'react-router-dom'
 import { VendorBookingContext } from "../context/vendorBooking"
 import { useNavigate } from 'react-router-dom'
+import { ChatIcon } from '@chakra-ui/icons'
 
 const NavDrawer = () => {
   const { setUser } = useContext(VendorBookingContext)
@@ -38,26 +40,31 @@ const NavDrawer = () => {
       </Flex>
 
       <Stack marginTop='12'>
-        <Button variant='link' colorScheme='black' justifyContent='left' size='md'>
-          <Icon as={RxDashboard} />
+        <Button variant='ghost' colorScheme='purple' justifyContent='left' size='md'>
+          <Icon marginRight='2' as={RxDashboard} />
           <RouteLink to="/">Dashboard</RouteLink>
         </Button>
 
-        <Button variant='link' colorScheme='black' justifyContent='left'>
-          <Icon as={CiMusicNote1} />
+        <Button variant='ghost' colorScheme='black' justifyContent='left'>
+          <Icon marginRight='2' as={CiMusicNote1} />
           <RouteLink to="all-bands">All Vendors</RouteLink>
+        </Button>
+
+        <Button variant='ghost' colorScheme='black' justifyContent='left'>
+          <Icon marginRight='2' as={VscComment} />
+          <RouteLink to="reviews">Your Reviews</RouteLink>
         </Button>
       </Stack>
 
       <Flex>
         <Button 
-          variant='link' 
+          variant='ghost' 
           colorScheme='black' 
           justifyContent='left' 
           size='md' 
           onClick={handleLogoutClick}
           >
-          <Icon as={RiLogoutBoxLine} />
+          <Icon marginRight='2' as={RiLogoutBoxLine} />
           Logout
         </Button>
       </Flex>
