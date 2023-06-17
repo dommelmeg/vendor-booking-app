@@ -47,7 +47,6 @@ function App() {
         h='full'
         templateRows='repeat(10, 1fr)'
         templateColumns='repeat(5, 1fr)'
-        bg='blackAlpha.100'
       >
         {showNav && <GridItem rowSpan={10} colSpan={1}><NavDrawer /></GridItem>}
         {showNav && <GridItem colSpan={4}><Header /></GridItem>}
