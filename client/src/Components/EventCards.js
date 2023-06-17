@@ -48,7 +48,7 @@ const EventCards = ({ event }) => {
       <Divider />
       <CardFooter>
         <ButtonGroup spacing='2'>
-          <EditEvent />
+          <EditEvent event={event} />
           <Button variant='ghost' colorScheme='grey' onClick={handleDeleteClick}>
             <DeleteIcon />
           </Button>
