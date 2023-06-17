@@ -5,7 +5,8 @@ import BandCards from "../Components/BandCards";
 import { VendorBookingContext } from "../context/vendorBooking"
 
 const AllBands = () => {
-  const { vendors, setVendors } = useContext(VendorBookingContext)
+  const { vendors, setVendors, vendorLength } = useContext(VendorBookingContext)
+
 
   const handleAddVendorClick = () => {
     console.log('hi')
@@ -23,12 +24,7 @@ const AllBands = () => {
         </HStack>
 
         <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(350px, 1fr))' marginTop='12' >
-
-          {vendors.map((vendor) => {
-            return(
-              <BandCards key={vendor.id} vendor={vendor} />
-            )
-          })}
+          {vendorLength ? vendors.map((vendor) => {return(<BandCards key={vendor.id} vendor={vendor} />)}) : console.log('no vendors')}
         </SimpleGrid>
       </Box>
     </Box>

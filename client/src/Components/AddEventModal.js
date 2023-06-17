@@ -5,7 +5,7 @@ import events_default from '../images/events_default.jpeg'
 import { VendorBookingContext } from "../context/vendorBooking"
 
 const AddEventModal = () => {
-  const { vendors, events, setEvents } = useContext(VendorBookingContext)
+  const { vendors, events, setEvents, vendorLength } = useContext(VendorBookingContext)
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
@@ -92,11 +92,7 @@ const AddEventModal = () => {
             <FormLabel>Vendor</FormLabel>
             <Select placeholder='Select Vendor' onChange={handleVendorSelect}>
               <option value='addNewVendor'>Add a New Vendor</option>
-              {vendors.map((vendor) => {
-                return (
-                  <option value={vendor.id} key={vendor.id}>{vendor.name}</option>
-                )
-              })}
+              {vendorLength ? vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor.name}</option>)}) : console.log('no vendors')}
             </Select>
           </FormControl>
 
