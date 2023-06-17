@@ -53,7 +53,7 @@ function App() {
         <Routes>
           <Route path='/' element={<GridItem rowSpan={8} colSpan={4}><Dashboard /></GridItem>} />
           <Route path='/signup' element={<GridItem rowSpan={9} colSpan={5}><CreateAccount /></GridItem>} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/login' element={<GridItem rowSpan={9} colSpan={5}><Login /></GridItem>} />
           <Route path='/all-bands' element={<GridItem rowSpan={8} colSpan={4}><AllBands /></GridItem>} />
         </Routes>
       </Grid>

@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react";
-import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
+import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { VendorBookingContext } from "../context/vendorBooking"
 
 const Login = () => {
   const { setUser } = useContext(VendorBookingContext)
-
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [show, setShow] = React.useState(false)
+
+  const handleClick = () => setShow(!show)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -43,12 +45,20 @@ const Login = () => {
               onChange={(e) => setUsername(e.target.value)}
             />
             
-            <FormLabel>Password</FormLabel>
-            <Input 
-              type='text' 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <InputGroup size='md'>
+              <Input
+                pr='4.5rem'
+                type={show ? 'text' : 'password'}
+                placeholder='Enter password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <InputRightElement width='4.5rem'>
+                <Button h='1.75rem' size='sm' onClick={handleClick}>
+                  {show ? 'Hide' : 'Show'}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
           </FormControl>
 
           <Text>

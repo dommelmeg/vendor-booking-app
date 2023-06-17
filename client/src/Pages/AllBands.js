@@ -7,12 +7,6 @@ import { VendorBookingContext } from "../context/vendorBooking"
 const AllBands = () => {
   const { vendors, setVendors } = useContext(VendorBookingContext)
 
-  useEffect(() => {
-    fetch('/vendors')
-      .then((r) => r.json())
-      .then((vendors) => setVendors(vendors))
-  }, [])
-
   const handleAddVendorClick = () => {
     console.log('hi')
   }
