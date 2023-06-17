@@ -58,22 +58,6 @@ function App() {
         </Routes>
       </Grid>
     </ChakraProvider>
-
-
-
-
-
-    // <ChakraProvider>
-    //     <Flex>
-    //       {showNav && <NavDrawer />}
-    //       <Routes>
-    //         <Route path='/' element={<Dashboard />} />
-    //         <Route path='/signup' element={<CreateAccount />} />
-    //         <Route path='/login' element={<Login />} />
-    //         <Route path='/all-bands' element={<AllBands />} />
-    //       </Routes>
-    //     </Flex>
-    // </ChakraProvider>
   )
 }
 

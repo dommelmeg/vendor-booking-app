@@ -9,8 +9,8 @@ const Header = () => {
     <Flex h='20' bg='white' boxShadow='md' position='sticky' justify='right'>
       <AbsoluteCenter axis='vertical' p='2' >
         <HStack padding='4'>
-          <Text>Welcome, <b>{user.username}</b>!</Text>
-          <Avatar name={user.username} />
+          <Text>Welcome, <b>Meg</b>!</Text>
+          <Avatar name='Meg' />
         </HStack>
       </AbsoluteCenter>
     </Flex>

@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { HStack, Text, Box, Stack } from '@chakra-ui/react'
+import { HStack, Text, Box, Stack, SimpleGrid } from '@chakra-ui/react'
 import EventCards from "../Components/EventCards";
 import { useNavigate } from 'react-router-dom'
 import AddEventModal from "../Components/AddEventModal";
@@ -24,13 +24,13 @@ const Dashboard = () => {
   }, [user])
 
   return (
-    <Box h='calc(100vh)' w='full' margin='4'>
+    <Box h='calc(100vh)'  margin='4'>
       <HStack direction={['column', 'row']} spacing='24px'>
         <Text fontSize='3xl' fontWeight='bold'>Your Events</Text>
         <AddEventModal />
       </HStack>
 
-      <HStack marginTop='12' gap='2'>
+      <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(250px, 1fr))' marginTop='12'>
         {events.length > 0 ? (
           events.map((event) => {
             {
@@ -40,7 +40,7 @@ const Dashboard = () => {
         ) : (
           <Text>Get to planning!</Text>
         )}
-      </HStack>
+      </SimpleGrid>
     </Box>
   )
 }
