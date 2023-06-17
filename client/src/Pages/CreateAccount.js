@@ -25,7 +25,6 @@ const CreateAccount = ({ user, setUser }) => {
       .then((newUser) => setUser(newUser))
   }
 
-
   return(
     <Container marginTop='24'>
       <Center>

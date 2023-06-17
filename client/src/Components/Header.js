@@ -1,10 +1,16 @@
-import React from "react";
-import { Box } from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { Box, Switch, AbsoluteCenter, Avatar, useRadio } from "@chakra-ui/react";
+import { VendorBookingContext } from "../context/vendorBooking";
 
 const Header = () => {
-  return (
-    <Box h='20' bg='white' boxShadow='lg'>
+  const { user } = useContext(VendorBookingContext)
 
+  return (
+    <Box h='20' bg='white' boxShadow='lg' position='sticky' >
+      <AbsoluteCenter axis='vertical' p='2'>
+        {/* <Switch /> */}
+        <Avatar name={user.username} />
+      </AbsoluteCenter>
     </Box>
   )
 }

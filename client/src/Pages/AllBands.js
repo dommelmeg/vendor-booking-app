@@ -7,14 +7,13 @@ import { VendorBookingContext } from "../context/vendorBooking"
 const AllBands = () => {
   const { vendors, setVendors, vendorLength } = useContext(VendorBookingContext)
 
-
   const handleAddVendorClick = () => {
     console.log('hi')
   }
 
   return (
-    <Box h='calc(100vh)' w='full' ml='320px' backgroundColor='blackAlpha.100'>
-      <Box margin='12'>
+    <Box h='calc(100vh)' w='full' margin='4'>
+      <Box >
         
         <HStack direction={['column', 'row']} spacing='24px'>
           <Text fontSize='3xl' fontWeight='bold'>All Vendors</Text>
