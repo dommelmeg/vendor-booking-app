@@ -5,26 +5,14 @@ import events_default from '../images/events_default.jpeg'
 import { VendorBookingContext } from "../context/vendorBooking"
 
 const AddEventModal = () => {
-  const { vendors, events, setEvents, vendorLength } = useContext(VendorBookingContext)
+  const { vendors, events, setEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput } = useContext(VendorBookingContext)
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
 
-  const [eventNameInput, setEventNameInput] = useState('')
-  const [dateInput, setDateInput] = useState('')
-  const [imageUrlInput, setImageUrlInput] = useState(`${events_default}`)
-  const [vendorInput, setVendorInput] = useState('')
+  const addNewVendorSelect = vendorInput === 'addNewVendor'
 
-  const handleVendorSelect = (e) => {
-    if(e.target.value === 'addNewVendor') {
-      console.log('you did it!')
-    }
-    else {
-      setVendorInput(e.target.value)
-    }
-  }
-  
   const handleSubmitClick = (e) => {
     e.preventDefault()
 
@@ -90,9 +78,11 @@ const AddEventModal = () => {
 
           <FormControl>
             <FormLabel>Vendor</FormLabel>
-            <Select placeholder='Select Vendor' onChange={handleVendorSelect}>
+            <Select placeholder='Select Vendor' onChange={(e) => setVendorInput(e.target.value)}>
               <option value='addNewVendor'>Add a New Vendor</option>
-              {vendorLength ? vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor.name}</option>)}) : console.log('no vendors')}
+              {vendorLength ? vendors.map((vendor) => {
+                return(<option value={vendor.id} key={vendor.id}>{vendor.name}</option>)
+                }) : console.log('no vendors')}
             </Select>
           </FormControl>
 
@@ -105,6 +95,18 @@ const AddEventModal = () => {
               value={imageUrlInput}
               />
           </FormControl>
+
+          {/* {addNewVendorSelect ? {return(
+            <FormControl>
+              <FormLabel>New Vendor</FormLabel>
+              <Input 
+                placeholder='Image URL'
+                onChange={(e) => setImageUrlInput(e.target.value)}
+                type="text"
+                value={imageUrlInput}
+              />
+            </FormControl>
+          )} : console.log('vendor selected')} */}
         </ModalBody>
 
         <ModalFooter>

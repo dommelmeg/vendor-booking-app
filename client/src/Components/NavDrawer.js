@@ -1,24 +1,21 @@
-import React, { useContext } from 'react';
-import {
-  Button,
-  Stack,
-  Text,
-  Icon,
-  Flex,
-  Box,
-  HStack
-} from '@chakra-ui/react'
+import React, { useContext, useState } from 'react';
+import { Button, Stack, Text, Icon, Box } from '@chakra-ui/react'
 import { RxDashboard } from 'react-icons/rx'
 import { CiMusicNote1 } from 'react-icons/ci'
 import { RiLogoutBoxLine } from 'react-icons/ri'
 import { VscComment } from 'react-icons/vsc'
 import { Link as RouteLink } from 'react-router-dom'
 import { VendorBookingContext } from "../context/vendorBooking"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const NavDrawer = () => {
   const { setUser } = useContext(VendorBookingContext)
   const navigate = useNavigate()
+  const location = useLocation()
+
+  const dashboard = location.pathname === '/'
+  const allBands = location.pathname === '/all-bands'
+  const reviews = location.pathname === '/reviews'
 
   const handleLogoutClick = () => {
     fetch('/logout', {
@@ -37,15 +34,15 @@ const NavDrawer = () => {
       <Text fontSize='3xl'>Upbeat Booking</Text>
       
       <Stack marginTop='12'>
-        <Button variant='ghost' colorScheme='purple' justifyContent='left' size='md'>
+        <Button variant='ghost' colorScheme={dashboard ? 'purple' : 'black'} justifyContent='left' size='md'>
           <RouteLink to="/"><Icon marginRight='2' as={RxDashboard} /> Dashboard</RouteLink>
         </Button>
 
-        <Button variant='ghost' colorScheme='black' justifyContent='left'>
+        <Button variant='ghost' colorScheme={allBands ? 'purple' : 'black'} justifyContent='left'>
           <RouteLink to="all-bands"><Icon marginRight='2' as={CiMusicNote1} /> All Vendors</RouteLink>
         </Button>
 
-        <Button variant='ghost' colorScheme='black' justifyContent='left'>
+        <Button variant='ghost' colorScheme={reviews ? 'purple' : 'black'} justifyContent='left'>
           <RouteLink to="reviews"><Icon marginRight='2' as={VscComment} /> Your Reviews</RouteLink>
         </Button>
       </Stack>

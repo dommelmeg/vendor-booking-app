@@ -10,6 +10,16 @@ class EventsController < ApplicationController
     render json: event
   end
 
+  def update
+    event = Event.find_by(id: params[:id])
+    if event
+      event.update(event_params)
+      render json: event
+    else
+      render json: { error: 'Event not found' }, status: :not_found
+    end
+  end
+
   def destroy
     event = Event.find_by(id: params[:id])
     if event
@@ -33,6 +43,12 @@ class EventsController < ApplicationController
     else
       render json: { errors: new_event.errors.full_messages}, status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def event_params
+    params.permit(:vendor_id, :event_name, :date, :image_url)
   end
   
 end

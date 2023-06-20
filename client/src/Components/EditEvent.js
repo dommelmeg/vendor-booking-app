@@ -3,20 +3,32 @@ import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalH
 import { VendorBookingContext } from "../context/vendorBooking";
 
 const EditEvent = ({ event }) => {
-  const { vendors, events, setEvents, vendorLength } = useContext(VendorBookingContext)
+  const { vendors, events, setEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput } = useContext(VendorBookingContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
 
-  const [eventNameInput, setEventNameInput] = useState('')
-  const [dateInput, setDateInput] = useState('')
-  const [imageUrlInput, setImageUrlInput] = useState('')
-  const [vendorInput, setVendorInput] = useState('')
+  const handleSubmitClick = (e) => {
+    e.preventDefault()
 
-  const handleSubmitClick = () => {
-    console.log('Changes are being made')
-  }
+    const formData = {
+      event_name: eventNameInput,
+      date: dateInput,
+      image_url: imageUrlInput,
+      vendor_id: vendorInput
+    }
+
+    fetch(`/events/${event.id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+    .then((r) => r.json())
+    .then((updatedEvent) => console.log(updatedEvent))
+    }
 
   const handleVendorSelect = (e) => {
     if(e.target.value === 'addNewVendor') {
@@ -48,20 +60,20 @@ const EditEvent = ({ event }) => {
               <FormLabel>Name of Event</FormLabel>
               <Input 
                 ref={initialRef} 
-                placeholder='Event Name' 
+                placeholder={event.event_name}
                 onChange={(e) => setEventNameInput(e.target.value)}
                 type="text"
-                value={event.event_name}
+                value={eventNameInput}
               />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Date</FormLabel>
               <Input 
-                placeholder='October 3, 2023'
+                placeholder={event.date}
                 onChange={(e) => setDateInput(e.target.value)}
                 type="text"
-                value={event.date}
+                value={dateInput}
                 />
             </FormControl>
 
@@ -77,10 +89,10 @@ const EditEvent = ({ event }) => {
             <FormControl mt={4}>
               <FormLabel>Image</FormLabel>
               <Input 
-                placeholder='Image URL'
+                placeholder={event.image_url}
                 onChange={(e) => setImageUrlInput(e.target.value)}
                 type="text"
-                value={event.image_url}
+                value={imageUrlInput}
                 />
             </FormControl>
           </ModalBody>
