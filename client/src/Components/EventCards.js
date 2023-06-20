@@ -26,7 +26,6 @@ const EventCards = ({ event }) => {
         return vendor
       }
     })
-    
     setVendors(updatedVendors)
   }
 
