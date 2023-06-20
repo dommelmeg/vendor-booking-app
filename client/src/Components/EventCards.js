@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { Link, Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
+import { Icon, Link, Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 import EditEvent from './EditEvent'
+import { CiMusicNote1 } from 'react-icons/ci'
 
 const EventCards = ({ event }) => {
   const { events, setEvents } = useContext(VendorBookingContext)
@@ -42,9 +43,9 @@ const EventCards = ({ event }) => {
             {dateTimeFormat3.format(eventDate)}
           </Text>
           <Heading size='md'>{event.event_name}</Heading>
-          <Link>
-            Band – {event.vendor.name}
-          </Link>
+          <Text>
+            <Icon marginRight='2' as={CiMusicNote1} /> {event.vendor.name}
+          </Text>
         </Stack>
       </CardBody>
       <Divider />
