@@ -6,6 +6,10 @@ import EditEvent from './EditEvent'
 
 const EventCards = ({ event }) => {
   const { events, setEvents } = useContext(VendorBookingContext)
+  const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' }
+  const eventDate = new Date(event.date)
+
+  const dateTimeFormat3 = new Intl.DateTimeFormat('en-US', dateOptions);
 
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
@@ -41,7 +45,7 @@ const EventCards = ({ event }) => {
             sprinkle of vintage design.
           </Text>
           <Text color='purple.700' fontSize='2xl'>
-            {event.date}
+            {dateTimeFormat3.format(eventDate)}
           </Text>
         </Stack>
       </CardBody>
