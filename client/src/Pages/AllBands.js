@@ -11,6 +11,8 @@ const AllBands = () => {
     console.log('hi')
   }
 
+  console.log(vendors)
+
   return (
     <Box h='calc(100vh)' margin='4'>
       <Box>
@@ -29,6 +31,5 @@ const AllBands = () => {
     </Box>
   )
 }
-
 
 export default AllBands

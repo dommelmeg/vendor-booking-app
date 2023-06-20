@@ -1,3 +1,3 @@
 class VendorReviewSerializer < ActiveModel::Serializer
-  attributes :review, :rating
+  attributes :id, :review, :rating
 end

@@ -7,8 +7,6 @@ const BandCards = ({ vendor }) => {
   const price_range = vendor.price_range
   const vendorEvents = vendor.events
 
-  console.log(vendorEvents)
-
   return(
     <Card
       size='sm'
@@ -21,7 +19,7 @@ const BandCards = ({ vendor }) => {
           <Text color='purple.400' fontWeight='bold' fontSize='xs'>{vendor.genre.toUpperCase()}</Text>
           {vendorEvents.map((event) => {
           return(
-            <Text>{event.rating}</Text>
+            <Text key={event.id}>{event.rating}</Text>
           )
         })} 
           <Heading size='md'>{vendor.name}</Heading>
@@ -40,7 +38,7 @@ const BandCards = ({ vendor }) => {
 
         {vendorEvents.map((event) => {
           return(
-            <Text>{event.review}</Text>
+            <Text key={event.id}>{event.review}</Text>
           )
         })}        
 

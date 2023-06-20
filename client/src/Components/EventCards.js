@@ -6,7 +6,7 @@ import EditEvent from './EditEvent'
 import { CiMusicNote1 } from 'react-icons/ci'
 
 const EventCards = ({ event }) => {
-  const { events, setEvents } = useContext(VendorBookingContext)
+  const { events, setEvents, vendors, setVendors } = useContext(VendorBookingContext)
   const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' }
   const eventDate = new Date(event.date)
 
@@ -15,6 +15,19 @@ const EventCards = ({ event }) => {
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
     setEvents(updatedEvents)
+
+    const updatedVendors = vendors.map((vendor) => {
+      if (vendor.id === deletedEvent.vendor_id) {
+        const { events: deletedVendorEvents, ...rest } = vendor
+        const updatedDeletedVendorEvents = deletedVendorEvents.filter((event) => event.id !== deletedEvent.id)
+        return { events: updatedDeletedVendorEvents, ...rest }
+      }
+      else {
+        return vendor
+      }
+    })
+    
+    setVendors(updatedVendors)
   }
 
   const handleDeleteClick = () => {
