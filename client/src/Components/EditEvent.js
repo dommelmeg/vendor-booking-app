@@ -80,7 +80,7 @@ const EditEvent = ({ event }) => {
             {/* Fix value - should be set to the current vendor */}
             <FormControl>
               <FormLabel>Vendor</FormLabel>
-              <Select placeholder={event.vendor.name} onChange={handleVendorSelect}>
+              <Select placeholder='Select a Vendor' onChange={handleVendorSelect}>
                 <option value='Select Vendor'>Add a New Vendor</option>
                 {vendorLength ? vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor.name}</option>)}) : console.log('no vendors')}
               </Select>

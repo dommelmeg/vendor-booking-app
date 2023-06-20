@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
+import { Link, Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 import EditEvent from './EditEvent'
@@ -38,15 +38,13 @@ const EventCards = ({ event }) => {
           borderRadius='lg'
         />
         <Stack mt='6' spacing='3'>
-          <Heading size='md'>{event.event_name}</Heading>
-          <Text>
-            This sofa is perfect for modern tropical spaces, baroque inspired
-            spaces, earthy toned spaces and for people who love a chic design with a
-            sprinkle of vintage design.
-          </Text>
           <Text color='purple.700' fontSize='2xl'>
             {dateTimeFormat3.format(eventDate)}
           </Text>
+          <Heading size='md'>{event.event_name}</Heading>
+          <Link>
+            Band – {event.vendor.name}
+          </Link>
         </Stack>
       </CardBody>
       <Divider />
