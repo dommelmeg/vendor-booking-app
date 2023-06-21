@@ -20,12 +20,12 @@ const BandCards = ({ vendor }) => {
           <Heading size='md'>{vendor.name}</Heading>
 
           <HStack marginTop='2' spacing='-1'>
-          {!price_range && <em>No Reviews Yet</em>}
-          {price_range > 0 && <AiFillStar color='orange' />}
-          {price_range > 1 && <AiFillStar color='orange' />}
-          {price_range > 2 && <AiFillStar color='orange' />}
-          {price_range > 3 && <AiFillStar color='orange' />}
-          {price_range > 4 && <AiFillStar color='orange' />}
+            {!price_range && <em>No Reviews Yet</em>}
+            {price_range > 0 && <AiFillStar color='orange' />}
+            {price_range > 1 && <AiFillStar color='orange' />}
+            {price_range > 2 && <AiFillStar color='orange' />}
+            {price_range > 3 && <AiFillStar color='orange' />}
+            {price_range > 4 && <AiFillStar color='orange' />}
           </HStack>
         </VStack>
 
