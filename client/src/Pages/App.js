@@ -8,7 +8,6 @@ import Login from './Login';
 import NavDrawer from '../Components/NavDrawer';
 import { VendorBookingContext } from "../context/vendorBooking"
 import Header from '../Components/Header';
-import Reviews from './Reviews';
 
 function App() {
   const { user, setUser, setVendors } = useContext(VendorBookingContext)
