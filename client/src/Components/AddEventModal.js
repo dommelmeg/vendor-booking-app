@@ -11,6 +11,8 @@ const AddEventModal = () => {
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
 
+  console.log(events)
+
   const addNewVendorSelect = vendorInput === 'addNewVendor'
 
   const handleSubmitClick = (e) => {
@@ -80,9 +82,9 @@ const AddEventModal = () => {
             <FormLabel>Vendor</FormLabel>
             <Select placeholder='Select Vendor' onChange={(e) => setVendorInput(e.target.value)}>
               <option value='addNewVendor'>Add a New Vendor</option>
-              {vendorLength ? vendors.map((vendor) => {
+              {vendorLength && vendors.map((vendor) => {
                 return(<option value={vendor.id} key={vendor.id}>{vendor.name}</option>)
-                }) : console.log('no vendors')}
+                })}
             </Select>
           </FormControl>
 

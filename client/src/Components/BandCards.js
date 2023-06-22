@@ -49,17 +49,19 @@ const BandCards = ({ vendor }) => {
               <PopoverHeader>Header</PopoverHeader>
               <PopoverCloseButton />
               <PopoverBody>
-                <Button colorScheme='blue'>Button</Button>
+                {vendorEvents.map((event) => {
+                  return(
+                    <VStack>
+                      <Text align='left' key={event.id}>{event.review}</Text>
+                      <Divider />
+                    </VStack>
+                  )
+                })}        
               </PopoverBody>
               <PopoverFooter>This is the footer</PopoverFooter>
             </PopoverContent>
           </Portal>
         </Popover>}
-        {/* {vendorEvents.map((event) => {
-          return(
-            <Text key={event.id}>{event.review}</Text>
-          )
-        })}         */}
 
       </CardBody>
     </Card>
