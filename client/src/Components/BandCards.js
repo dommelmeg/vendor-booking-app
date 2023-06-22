@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Heading, Text, HStack, Link, VStack, Divider } from "@chakra-ui/react";
+import { Card, CardBody, Heading, Text, HStack, Link, VStack, Divider, Popover, PopoverTrigger, Button, Portal, PopoverContent, PopoverArrow, PopoverBody,PopoverHeader, PopoverCloseButton, PopoverFooter } from "@chakra-ui/react";
 import { AiFillStar } from 'react-icons/ai'
 import { BsCurrencyDollar } from 'react-icons/bs'
 
@@ -16,8 +16,6 @@ const BandCards = ({ vendor }) => {
      0,
   )
   const avgRating = Math.floor(sum/vendorReviews.length)
-
-  console.log(sum)
 
   return(
     <Card
@@ -40,8 +38,23 @@ const BandCards = ({ vendor }) => {
           {avgRating > 4 && <AiFillStar color='orange' />}
           </HStack>
         </VStack>
-        <Link>{vendorReviews.length > 0 && `Read Reviews (${vendorReviews.length})`}</Link>
 
+        {vendorReviews.length > 0 && <Popover>
+          <PopoverTrigger>
+            <Button variant='outline' marginTop='2' colorScheme='purple'>Read Reviews ({vendorReviews.length})</Button>
+          </PopoverTrigger>
+          <Portal>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverHeader>Header</PopoverHeader>
+              <PopoverCloseButton />
+              <PopoverBody>
+                <Button colorScheme='blue'>Button</Button>
+              </PopoverBody>
+              <PopoverFooter>This is the footer</PopoverFooter>
+            </PopoverContent>
+          </Portal>
+        </Popover>}
         {/* {vendorEvents.map((event) => {
           return(
             <Text key={event.id}>{event.review}</Text>

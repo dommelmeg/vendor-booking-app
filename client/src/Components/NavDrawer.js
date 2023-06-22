@@ -41,10 +41,6 @@ const NavDrawer = () => {
         <Button variant='ghost' colorScheme={allBands ? 'purple' : 'black'} justifyContent='left'>
           <RouteLink to="all-bands"><Icon marginRight='2' as={CiMusicNote1} /> All Vendors</RouteLink>
         </Button>
-
-        {/* <Button variant='ghost' colorScheme={reviews ? 'purple' : 'black'} justifyContent='left'>
-          <RouteLink to="reviews"><Icon marginRight='2' as={VscComment} /> Your Reviews</RouteLink>
-        </Button> */}
       </Stack>
 
       <Box display='flex' alignItems='end' >
