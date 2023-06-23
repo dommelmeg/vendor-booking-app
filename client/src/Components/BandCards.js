@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardBody, Heading, Text, HStack, Link, VStack, Divider, Popover, PopoverTrigger, Button, Portal, PopoverContent, PopoverArrow, PopoverBody,PopoverHeader, PopoverCloseButton, PopoverFooter } from "@chakra-ui/react";
 import { AiFillStar } from 'react-icons/ai'
-import { BsCurrencyDollar } from 'react-icons/bs'
+import Comments from "./Comments";
 
 const BandCards = ({ vendor }) => {
   const price_range = vendor.price_range
@@ -17,6 +17,8 @@ const BandCards = ({ vendor }) => {
   )
   const avgRating = Math.floor(sum/vendorReviews.length)
 
+  console.log(vendor)
+  
   return(
     <Card
       size='sm'
@@ -46,19 +48,16 @@ const BandCards = ({ vendor }) => {
           <Portal>
             <PopoverContent>
               <PopoverArrow />
-              <PopoverHeader>Header</PopoverHeader>
+              <PopoverHeader>Reviews</PopoverHeader>
               <PopoverCloseButton />
               <PopoverBody>
                 {vendorEvents.map((event) => {
                   return(
-                    <VStack>
-                      <Text align='left' key={event.id}>{event.review}</Text>
-                      <Divider />
-                    </VStack>
+                    <Comments key={event.id} event={event} />
                   )
                 })}        
               </PopoverBody>
-              <PopoverFooter>This is the footer</PopoverFooter>
+              {/* <PopoverFooter>This is the footer</PopoverFooter> */}
             </PopoverContent>
           </Portal>
         </Popover>}
