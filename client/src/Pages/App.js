@@ -10,7 +10,7 @@ import { VendorBookingContext } from "../context/vendorBooking"
 import Header from '../Components/Header';
 
 function App() {
-  const { user, setUser, setVendors } = useContext(VendorBookingContext)
+  const { user, setUser, setVendors, setUserEvents } = useContext(VendorBookingContext)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -22,6 +22,15 @@ function App() {
       .then((r) => {
         if (r.ok) {
           r.json().then((user) => setUser(user))
+        }
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch("/userevents")
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((events) => setUserEvents(events))
         }
       })
   }, [])

@@ -7,12 +7,26 @@ const Comments = ({ event }) => {
   const [updatedReview, setUpdatedReview] = useState('')
   const { user } = useContext(VendorBookingContext)
 
+  const handleDeletedReview = () => {
+    console.log(event)
 
-  const handleDeleteBtn = () => {
-    console.log('DELETED YO')
   }
 
-  function EditableControls() {
+  const handleDeleteBtn = () => {
+    fetch(`/events/${event.id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        rating: null, review: null
+      }),
+    })
+    .then((r) => r.json())
+    .then((deletedReview) => console.log(deletedReview))
+  }
+
+  const EditableControls = () => {
     const {
       isEditing,
       getSubmitButtonProps,

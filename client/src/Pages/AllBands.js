@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { Button, HStack, Text, Box, SimpleGrid } from '@chakra-ui/react'
-import { AddIcon } from '@chakra-ui/icons'
+import { HStack, Text, Box, SimpleGrid } from '@chakra-ui/react'
 import BandCards from "../Components/BandCards";
 import { VendorBookingContext } from "../context/vendorBooking"
 
@@ -10,8 +9,6 @@ const AllBands = () => {
   const handleAddVendorClick = () => {
     console.log('hi')
   }
-
-  console.log(vendors)
 
   return (
     <Box h='calc(100vh)' margin='4'>

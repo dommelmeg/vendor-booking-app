@@ -11,8 +11,6 @@ const AddEventModal = () => {
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
 
-  console.log(events)
-
   const addNewVendorSelect = vendorInput === 'addNewVendor'
 
   const handleSubmitClick = (e) => {

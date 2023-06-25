@@ -5,6 +5,11 @@ class EventsController < ApplicationController
     render json: events
   end
 
+  def user_index
+    user_events = Event.where(user_id: session[:user_id])
+    render json: user_events
+  end
+
   def show
     event = Event.find_by(id: params[:id])
     render json: event

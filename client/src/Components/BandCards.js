@@ -17,8 +17,6 @@ const BandCards = ({ vendor }) => {
   )
   const avgRating = Math.floor(sum/vendorReviews.length)
 
-  console.log(vendor)
-  
   return(
     <Card
       size='sm'

@@ -6,7 +6,7 @@ import AddEventModal from "../Components/AddEventModal";
 import { VendorBookingContext } from "../context/vendorBooking"
 
 const Dashboard = () => {
-  const { user, events, setEvents } = useContext(VendorBookingContext)
+  const { user, events, setEvents, userEvents, setUserEvents } = useContext(VendorBookingContext)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -14,13 +14,13 @@ const Dashboard = () => {
       navigate('/login')
     }
 
-    fetch('/events')
-      .then((r) => r.json())
-      .then((allEvents) => {
-        if (!user) return
-        const user_events = allEvents.filter((event) => event.user_id === user.id)
-        setEvents(user_events)
-      })
+    // fetch('/events')
+    //   .then((r) => r.json())
+    //   .then((allEvents) => {
+    //     if (!user) return
+    //     const user_events = allEvents.filter((event) => event.user_id === user.id)
+    //     setEvents(user_events)
+    //   })
   }, [user])
 
   return (
@@ -31,8 +31,8 @@ const Dashboard = () => {
       </HStack>
 
       <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(250px, 1fr))' marginTop='12'>
-        {events.length > 0 ? (
-          events.map((event) => {
+        {userEvents.length > 0 ? (
+          userEvents.map((event) => {
               return(<EventCards event={event} key={event.id} />)
           })
         ) : (
