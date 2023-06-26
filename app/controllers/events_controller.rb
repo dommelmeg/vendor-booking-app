@@ -53,7 +53,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.permit(:vendor_id, :event_name, :date, :image_url)
+    params.permit(:vendor_id, :event_name, :date, :image_url, :review, :rating)
   end
   
 end

@@ -23,7 +23,7 @@ const Comments = ({ event }) => {
       }),
     })
     .then((r) => r.json())
-    .then((deletedReview) => console.log(deletedReview))
+    .then((deletedReview) => handleDeletedReview(deletedReview))
   }
 
   const EditableControls = () => {
