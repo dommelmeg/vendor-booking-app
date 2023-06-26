@@ -5,11 +5,44 @@ import { VendorBookingContext } from "../context/vendorBooking";
 
 const Comments = ({ event }) => {
   const [updatedReview, setUpdatedReview] = useState('')
-  const { user } = useContext(VendorBookingContext)
+  const { user, events, setEvents, vendors, setVendors } = useContext(VendorBookingContext)
 
-  const handleDeletedReview = () => {
-    console.log(event)
+  const handleDeletedReview = (deletedReview) => {
+    const updatedEvents = events.map((event) => {
+      if (event.id === deletedReview.id) {
+        const { rating, review, ...rest } = event
+        return { 
+          rating: null, 
+          review: null, 
+          ...rest 
+        }
+      } else {
+        return event
+      }
+    })
+    setEvents(updatedEvents)
 
+    const updatedVendors = vendors.map((vendor) => {
+      if (vendor.id === deletedReview.vendor_id) {
+        const { events: vendorEvents, ...restVendor } = vendor
+        const updatedVendorEvents = vendorEvents.map((event) => {
+          if (event.id === deletedReview.id) {
+            const { rating, review, ...restEvent } = event
+            return {
+              rating: null,
+              review: null,
+              ...restEvent
+            }
+          } else {
+            return event
+          }
+        })
+        return { events: updatedVendorEvents, ...restVendor }
+      } else {
+        return vendor
+      }
+    })
+    setVendors(updatedVendors)
   }
 
   const handleDeleteBtn = () => {

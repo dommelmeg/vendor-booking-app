@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const VendorBookingContext = React.createContext()
 
@@ -13,6 +13,12 @@ const VendorBookingProvider = ({ children }) => {
   const [vendorInput, setVendorInput] = useState('')
 
   const vendorLength = vendors.length > 0
+
+  useEffect(() => {
+    fetch('/events')
+      .then((r) => r.json())
+      .then((allEvents) => setEvents(allEvents))
+  }, [])
   
   return (
     <VendorBookingContext.Provider value={{ user, setUser, vendors, setVendors, events, setEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput, userEvents, setUserEvents }} >

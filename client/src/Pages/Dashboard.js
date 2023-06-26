@@ -13,14 +13,6 @@ const Dashboard = () => {
     if (!user) {
       navigate('/login')
     }
-
-    // fetch('/events')
-    //   .then((r) => r.json())
-    //   .then((allEvents) => {
-    //     if (!user) return
-    //     const user_events = allEvents.filter((event) => event.user_id === user.id)
-    //     setEvents(user_events)
-    //   })
   }, [user])
 
   return (
