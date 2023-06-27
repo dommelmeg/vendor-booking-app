@@ -27,25 +27,17 @@ function App() {
   }, [])
 
   useEffect(() => {
+    if (user) {
+      navigate('/')
+    }
+
     fetch("/userevents")
       .then((r) => {
         if (r.ok) {
           r.json().then((events) => setUserEvents(events))
         }
       })
-  }, [])
-
-  useEffect(() => {
-    if (user) {
-      navigate('/')
-    }
   }, [user])
-
-  useEffect(() => {
-    fetch('/vendors')
-      .then((r) => r.json())
-      .then((vendors) => setVendors(vendors))
-  }, [])
 
   const showNav = !isCreateAcct && !isLogin
 

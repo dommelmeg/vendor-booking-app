@@ -26,6 +26,12 @@ const VendorBookingProvider = ({ children }) => {
       .then((r) => r.json())
       .then((users) => setAllUsers(users))
   }, [])
+
+  useEffect(() => {
+    fetch('/vendors')
+      .then((r) => r.json())
+      .then((vendors) => setVendors(vendors))
+  }, [])
   
   return (
     <VendorBookingContext.Provider value={{ user, setUser, vendors, setVendors, events, setEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput, userEvents, setUserEvents, allUsers, setAllUsers }} >

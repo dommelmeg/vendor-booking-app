@@ -63,7 +63,7 @@ const EditEvent = ({ event }) => {
                 placeholder={event.event_name}
                 onChange={(e) => setEventNameInput(e.target.value)}
                 type="text"
-                value={eventNameInput}
+                value={event.event_name}
               />
             </FormControl>
 
@@ -73,7 +73,7 @@ const EditEvent = ({ event }) => {
                 placeholder={event.date}
                 onChange={(e) => setDateInput(e.target.value)}
                 type="text"
-                value={dateInput}
+                value={event.date}
                 />
             </FormControl>
 
@@ -82,7 +82,7 @@ const EditEvent = ({ event }) => {
               <FormLabel>Vendor</FormLabel>
               <Select placeholder='Select a Vendor' onChange={handleVendorSelect}>
                 <option value='Select Vendor'>Add a New Vendor</option>
-                {vendorLength ? vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor.name}</option>)}) : console.log('no vendors')}
+                {vendorLength && vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor.name}</option>)})}
               </Select>
             </FormControl>
 

@@ -3,9 +3,9 @@ import { VStack, HStack, Divider, Text, useEditableControls, IconButton, ButtonG
 import { CheckIcon, CloseIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 import { AiFillStar } from 'react-icons/ai'
-import { useScroll } from "framer-motion";
+import { useScroll } from "framer-motion"
 
-const Comments = ({ event }) => {
+const Comment = ({ event, isLast }) => {
   const [updatedReview, setUpdatedReview] = useState('')
   const { user, events, setEvents, vendors, setVendors, allUsers } = useContext(VendorBookingContext)
   const eventRating = event.rating
@@ -114,10 +114,10 @@ const Comments = ({ event }) => {
             }
           })}
       {user?.id === event.user_id && <EditableControls />}
-        <Divider marginTop='2' />
+        {!isLast && <Divider marginTop='2' />}
       </Editable>
     </VStack>
   )
 }
 
-export default Comments
+export default Comment

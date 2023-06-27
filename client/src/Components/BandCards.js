@@ -1,21 +1,21 @@
 import React from "react";
-import { Card, CardBody, Heading, Text, HStack, Link, VStack, Divider, Popover, PopoverTrigger, Button, Portal, PopoverContent, PopoverArrow, PopoverBody,PopoverHeader, PopoverCloseButton, PopoverFooter } from "@chakra-ui/react";
+import { Card, CardBody, Heading, Text, HStack, VStack, Popover, PopoverTrigger, Button, Portal, PopoverContent, PopoverArrow, PopoverBody,PopoverHeader, PopoverCloseButton } from "@chakra-ui/react";
 import { AiFillStar } from 'react-icons/ai'
-import Comments from "./Comments";
+import Comment from "./Comment";
 
 const BandCards = ({ vendor }) => {
-  const price_range = vendor.price_range
   const vendorEvents = vendor.events
-  const vendorReviews = vendorEvents.filter((event) => {
+  const eventsWithReviews = vendorEvents.filter((event) => {
     if(event.rating != null) {
       return event
     }
   })
-  const sum = vendorReviews.reduce(
+
+  const sum = eventsWithReviews.reduce(
     (acc, currVal) => acc + currVal.rating,
      0,
   )
-  const avgRating = Math.floor(sum/vendorReviews.length)
+  const avgRating = Math.floor(sum/eventsWithReviews.length)
 
   return(
     <Card
@@ -39,9 +39,9 @@ const BandCards = ({ vendor }) => {
           </HStack>
         </VStack>
 
-        {vendorReviews.length > 0 && <Popover>
+        {eventsWithReviews.length > 0 && <Popover>
           <PopoverTrigger>
-            <Button variant='outline' marginTop='2' colorScheme='purple'>Read Reviews ({vendorReviews.length})</Button>
+            <Button variant='outline' marginTop='2' colorScheme='purple'>Read Reviews ({eventsWithReviews.length})</Button>
           </PopoverTrigger>
           <Portal>
             <PopoverContent>
@@ -49,16 +49,8 @@ const BandCards = ({ vendor }) => {
               <PopoverHeader>Reviews</PopoverHeader>
               <PopoverCloseButton />
               <PopoverBody>
-                {vendorEvents.map((event) => {
-                  if (event.review != null)
-                  {
-                    return(
-                      <Comments key={event.id} event={event} />
-                    )
-                  }
-                })}        
+                {eventsWithReviews.map((event, idx) => event.review && <Comment key={event.id} event={event} isLast={eventsWithReviews.length - 1 === idx}/>)}
               </PopoverBody>
-              {/* <PopoverFooter>This is the footer</PopoverFooter> */}
             </PopoverContent>
           </Portal>
         </Popover>}
