@@ -27,9 +27,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (user) {
-      navigate('/')
-    }
+    user && navigate('/')
 
     fetch("/userevents")
       .then((r) => {

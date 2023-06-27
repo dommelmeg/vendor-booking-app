@@ -5,7 +5,7 @@ import events_default from '../images/events_default.jpeg'
 import { VendorBookingContext } from "../context/vendorBooking"
 
 const AddEventModal = () => {
-  const { vendors, events, setEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput } = useContext(VendorBookingContext)
+  const { vendors, events, setEvents, setUserEvents, userEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput } = useContext(VendorBookingContext)
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
@@ -31,7 +31,10 @@ const AddEventModal = () => {
       body: JSON.stringify(formData)
     })
       .then((r) => r.json())
-      .then((newEvent) => setEvents([...events, newEvent]))
+      .then((newEvent) => {
+        setEvents([...events, newEvent])
+        setUserEvents([...userEvents, newEvent])
+      })
     
     // setEventNameInput('')
     // setDateInput('')
@@ -40,7 +43,7 @@ const AddEventModal = () => {
     onClose()
   }
 
-  return(
+  return (
     <>
       <Button onClick={onOpen} colorScheme='purple'><AddIcon /></Button>
 

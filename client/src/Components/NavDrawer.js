@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Button, Stack, Text, Icon, Box } from '@chakra-ui/react'
 import { RxDashboard } from 'react-icons/rx'
 import { CiMusicNote1 } from 'react-icons/ci'
 import { RiLogoutBoxLine } from 'react-icons/ri'
-import { VscComment } from 'react-icons/vsc'
 import { Link as RouteLink } from 'react-router-dom'
 import { VendorBookingContext } from "../context/vendorBooking"
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -15,7 +14,6 @@ const NavDrawer = () => {
 
   const dashboard = location.pathname === '/'
   const allBands = location.pathname === '/all-bands'
-  const reviews = location.pathname === '/reviews'
 
   const handleLogoutClick = () => {
     fetch('/logout', {
@@ -30,7 +28,7 @@ const NavDrawer = () => {
   }
 
   return (
-    <Box padding='4' h='calc(100vh)' bg='whiteAlpha.50' boxShadow='lg' >
+    <Box padding='4' h='full' bg='whiteAlpha.50' boxShadow='lg'>
       <Text fontSize='3xl'>Upbeat Booking</Text>
       
       <Stack marginTop='12'>
@@ -50,7 +48,7 @@ const NavDrawer = () => {
           size='md' 
           alignSelf='baseline'
           onClick={handleLogoutClick}
-          >
+        >
           <Icon marginRight='2' as={RiLogoutBoxLine} /> Logout
         </Button>
       </Box>
