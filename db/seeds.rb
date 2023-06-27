@@ -11,8 +11,8 @@ here_comes_treble = Vendor.create(name: 'Here Comes Treble', genre: 'Acapella', 
 
 # Events
 ##User1
-tornado = Event.create(user_id: 1, vendor_id: 4, event_name: 'House Moving Party', date: 2022-03-03, rating: 5, review: 'The band played right through the tornado, it was a sight to see!', image_url: 'https://images.squarespace-cdn.com/content/v1/56530521e4b0c307d59bbe97/1472129043027-X71SRB6AMNE3EMB90TWY/image-asset.jpeg')
-ball = Event.create(user_id: 1, vendor_id: 3, event_name: 'Emerald City Ball', date: 2022-11-04, image_url: 'https://cdn.mos.cms.futurecdn.net/MUFfedzbgLjsW5t2NoVcCK-1200-80.jpg')
+tornado = Event.create(user_id: 1, vendor_id: 4, event_name: 'House Moving Party', date: 'March 3, 2003', rating: 5, review: 'The band played right through the tornado, it was a sight to see!', image_url: 'https://images.squarespace-cdn.com/content/v1/56530521e4b0c307d59bbe97/1472129043027-X71SRB6AMNE3EMB90TWY/image-asset.jpeg')
+ball = Event.create(user_id: 1, vendor_id: 3, event_name: 'Emerald City Ball', date: 'November 4, 2023', image_url: 'https://cdn.mos.cms.futurecdn.net/MUFfedzbgLjsW5t2NoVcCK-1200-80.jpg')
 ##User2
 bach = Event.create(user_id: 2, vendor_id: 2, event_name: 'Bachelorette Party', date: 2023-05-05, rating: 5, review: 'We danced all night, great band!', image_url: 'https://cdn0.weddingwire.com/article/1222/3_2/960/jpg/12221-bachelorette-alexes-lauren-photography.jpeg')
 wedding = Event.create(user_id: 2, vendor_id: 1, event_name: 'Wedding', date: 2023-9-9, image_url: 'https://hips.hearstapps.com/hmg-prod/images/wedding-quotes-index-1621485694.jpg?crop=0.936xw:0.702xh;0.0561xw,0.106xh&resize=640:*')

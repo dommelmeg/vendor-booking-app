@@ -7,7 +7,7 @@ const BandCards = ({ vendor }) => {
   const price_range = vendor.price_range
   const vendorEvents = vendor.events
   const vendorReviews = vendorEvents.filter((event) => {
-    if(event.rating !== null) {
+    if(event.rating != null) {
       return event
     }
   })
@@ -50,9 +50,12 @@ const BandCards = ({ vendor }) => {
               <PopoverCloseButton />
               <PopoverBody>
                 {vendorEvents.map((event) => {
-                  return(
-                    <Comments key={event.id} event={event} />
-                  )
+                  if (event.review != null)
+                  {
+                    return(
+                      <Comments key={event.id} event={event} />
+                    )
+                  }
                 })}        
               </PopoverBody>
               {/* <PopoverFooter>This is the footer</PopoverFooter> */}
