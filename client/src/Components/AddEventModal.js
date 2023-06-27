@@ -33,10 +33,10 @@ const AddEventModal = () => {
       .then((r) => r.json())
       .then((newEvent) => setEvents([...events, newEvent]))
     
-    setEventNameInput('')
-    setDateInput('')
-    setImageUrlInput(`${events_default}`)
-    setVendorInput('')
+    // setEventNameInput('')
+    // setDateInput('')
+    // setImageUrlInput(`${events_default}`)
+    // setVendorInput('')
     onClose()
   }
 

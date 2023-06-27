@@ -3,10 +3,11 @@ import { VStack, HStack, Divider, Text, useEditableControls, IconButton, ButtonG
 import { CheckIcon, CloseIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 import { AiFillStar } from 'react-icons/ai'
+import { useScroll } from "framer-motion";
 
 const Comments = ({ event }) => {
   const [updatedReview, setUpdatedReview] = useState('')
-  const { user, events, setEvents, vendors, setVendors } = useContext(VendorBookingContext)
+  const { user, events, setEvents, vendors, setVendors, allUsers } = useContext(VendorBookingContext)
   const eventRating = event.rating
 
   const handleDeleteBtn = () => {
@@ -82,32 +83,40 @@ const Comments = ({ event }) => {
 
   return (
     <VStack>
-
       <HStack marginTop='2' spacing='-1'>
          {eventRating > 0 && <AiFillStar color='orange' />}
          {eventRating > 1 && <AiFillStar color='orange' />}
          {eventRating > 2 && <AiFillStar color='orange' />}
          {eventRating > 3 && <AiFillStar color='orange' />}
          {eventRating > 4 && <AiFillStar color='orange' />}
-     </HStack>
-    <Editable
-      textAlign='center'
-      defaultValue={event.review}
-      fontSize='sm'
-      isPreviewFocusable={false}
-      >
-      <EditablePreview />
-      {/* Here is the custom input
-       */}
-      <Input 
-        as={EditableInput}
-        value={updatedReview}
-        onChange={(e) => setUpdatedReview(e.target.value)}
-        />
-     {user?.id === event.user_id && <EditableControls />}
-      <Divider marginTop='2' />
-    </Editable>
-        </VStack>
+      </HStack>
+      <Editable
+        textAlign='center'
+        defaultValue={event.review}
+        fontSize='sm'
+        isPreviewFocusable={false}
+        >
+        <EditablePreview />
+        {/* Here is the custom input
+        */}
+        <Input 
+          as={EditableInput}
+          value={updatedReview}
+          onChange={(e) => setUpdatedReview(e.target.value)}
+          />
+          {allUsers.map((user) => {
+            if (user.id === event.user_id) {
+              return (
+                <Text key={event.id} fontStyle='italic' fontSize='2xs' >
+                  – {user.username}, {event.event_name}
+                </Text>
+              )
+            }
+          })}
+      {user?.id === event.user_id && <EditableControls />}
+        <Divider marginTop='2' />
+      </Editable>
+    </VStack>
   )
 }
 
