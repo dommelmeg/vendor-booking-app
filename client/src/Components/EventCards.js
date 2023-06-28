@@ -4,14 +4,26 @@ import { DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 import EditEvent from './EditEvent'
 import { CiMusicNote1 } from 'react-icons/ci'
-import LeaveReviewModal from "./LeaveReviewModal";
+import LeaveReviewModal from "./LeaveReviewModal"
+import { format, compareAsc } from 'date-fns'
+import { formatInTimeZone } from 'date-fns-tz'
 
 const EventCards = ({ event }) => {
   const { events, setEvents, vendors, setVendors } = useContext(VendorBookingContext)
-  const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' }
+  // const { zonedTimeToUtc, utcToZonedTime, format } = require('date-fns-tz')
   const eventDate = new Date(event.date)
 
-  const dateTimeFormat3 = new Intl.DateTimeFormat('en-US', dateOptions);
+  // const date = new Date('2018-09-01T16:01:36.386Z')
+  // const timeZone = 'America/New_York'
+  // const zonedDate = utcToZonedTime(eventDate, timeZone)
+  // const test = formatInTimeZone(eventDate, 'America/New_York')
+
+  console.log(eventDate)
+
+  // const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' }
+
+
+  // const dateTimeFormat3 = new Intl.DateTimeFormat('en-US', dateOptions);
 
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
@@ -52,7 +64,7 @@ const EventCards = ({ event }) => {
           borderRadius='lg'
         />
         <Stack mt='6' spacing='3'>
-          <Text fontSize='2xl'>{dateTimeFormat3.format(eventDate)}</Text>
+          {/* <Text fontSize='2xl'>{dateTimeFormat3.format(eventDate)}</Text> */}
           <Heading size='md'>{event.event_name}</Heading>
           <Text>
             <Icon marginRight='2' as={CiMusicNote1} /> {event.vendor.name}
