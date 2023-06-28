@@ -74,7 +74,7 @@ const Comment = ({ event, isLast }) => {
         <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
       </ButtonGroup>
     ) : (
-      <Flex justifyContent='center'>
+      <Flex justifyContent='center' marginTop='2'>
         <IconButton size='sm' icon={<EditIcon />} {...getEditButtonProps()} />
         <IconButton size='sm' marginLeft='2' icon={<DeleteIcon />} onClick={handleDeleteBtn} />
       </Flex>

@@ -29,7 +29,7 @@ const NavDrawer = () => {
 
   return (
     <Box padding='4' h='full' bg='whiteAlpha.50' boxShadow='lg' position='fixed'>
-      <Text fontSize='3xl'>Upbeat Booking</Text>
+      <Text fontSize='3xl' marginTop='4' >Upbeat Booking</Text>
       
       <Stack marginTop='12'>
           <Button variant='ghost' colorScheme={dashboard ? 'purple' : 'black'} justifyContent='left' size='md'>

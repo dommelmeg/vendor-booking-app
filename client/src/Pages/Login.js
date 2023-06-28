@@ -45,6 +45,7 @@ const Login = () => {
               onChange={(e) => setUsername(e.target.value)}
             />
             
+            <FormLabel>Password</FormLabel>
             <InputGroup size='md'>
               <Input
                 pr='4.5rem'

@@ -74,7 +74,7 @@ const AddEventModal = () => {
             <Input 
               placeholder='October 3, 2023'
               onChange={(e) => setDateInput(e.target.value)}
-              type="text"
+              type="datetime-local"
               value={dateInput}
               />
           </FormControl>

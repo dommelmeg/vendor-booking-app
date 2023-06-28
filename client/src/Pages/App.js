@@ -7,7 +7,6 @@ import CreateAccount from './CreateAccount';
 import Login from './Login';
 import NavDrawer from '../Components/NavDrawer';
 import { VendorBookingContext } from "../context/vendorBooking"
-import Header from '../Components/Header';
 
 function App() {
   const { user, setUser, setUserEvents } = useContext(VendorBookingContext)
@@ -47,7 +46,6 @@ function App() {
         templateColumns='repeat(7, 1fr)'
       >
         {showNav && <GridItem rowSpan={10} colSpan={1}><NavDrawer /></GridItem>}
-        {/* {showNav && <GridItem colSpan={4} rowSpan={1}><Header /></GridItem>} */}
         <Routes>
           <Route path='/' element={<GridItem rowSpan={9} colSpan={6}><Dashboard /></GridItem>} />
           <Route path='/signup' element={<GridItem rowSpan={10} colSpan={7}><CreateAccount /></GridItem>} />
