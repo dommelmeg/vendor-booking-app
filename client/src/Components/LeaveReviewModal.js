@@ -1,6 +1,9 @@
-import React, { useContext } from "react";
-import { Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react"
-import { VendorBookingContext } from "../context/vendorBooking";
+import React, { useContext, useState } from "react";
+import { HStack, Box, Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react"
+import { VendorBookingContext } from "../context/vendorBooking"
+import {AiOutlineStar} from 'react-icons/ai'
+import {AiFillStar} from 'react-icons/ai'
+import StarRating from "./StarRating";
 
 const LeaveReviewModal = ({ event }) => {
   const { vendors, reviewInput, setReviewInput } = useContext(VendorBookingContext)
@@ -31,13 +34,7 @@ const LeaveReviewModal = ({ event }) => {
         <ModalBody pb={6}>
           <FormControl>
             <FormLabel>Rating</FormLabel>
-            {/* <Input 
-              ref={initialRef} 
-              placeholder='Event Name' 
-              onChange={(e) => setEventNameInput(e.target.value)}
-              type="text"
-              value={eventNameInput}
-            /> */}
+            <StarRating />
           </FormControl>
 
           <FormControl mt={4}>
