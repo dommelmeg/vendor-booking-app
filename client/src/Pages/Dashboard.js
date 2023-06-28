@@ -26,7 +26,7 @@ const Dashboard = () => {
         <Header />
       </HStack>
 
-      <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))' marginTop='12'>
+      <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))' marginTop='4'>
         {userEvents.length > 0 ? (
           userEvents.map((event) => {
               return(<EventCards event={event} key={event.id} />)

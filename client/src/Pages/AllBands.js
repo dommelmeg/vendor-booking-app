@@ -23,7 +23,7 @@ const AllBands = () => {
           <Header />
         </HStack>
 
-        <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))' marginTop='12' >
+        <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))' marginTop='4' >
           {vendorLength ? vendors.map((vendor) => {return(<BandCards key={vendor.id} vendor={vendor} />)}) : console.log('no vendors')}
         </SimpleGrid>
       </Box>
