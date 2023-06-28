@@ -4,6 +4,7 @@ import { DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 import EditEvent from './EditEvent'
 import { CiMusicNote1 } from 'react-icons/ci'
+import LeaveReviewModal from "./LeaveReviewModal";
 
 const EventCards = ({ event }) => {
   const { events, setEvents, vendors, setVendors } = useContext(VendorBookingContext)
@@ -43,7 +44,7 @@ const EventCards = ({ event }) => {
   }
 
   return(
-    <Card maxW='sm'>
+    <Card>
       <CardBody>
         <Image
           src={event.image_url}
@@ -62,7 +63,8 @@ const EventCards = ({ event }) => {
       <CardFooter>
         <ButtonGroup spacing='2'>
           <EditEvent event={event} />
-          <Button variant='ghost' colorScheme='grey' onClick={handleDeleteClick}>
+          <LeaveReviewModal event={event} />
+          <Button size='md' variant='ghost' colorScheme='grey' onClick={handleDeleteClick}>
             <DeleteIcon />
           </Button>
         </ButtonGroup>

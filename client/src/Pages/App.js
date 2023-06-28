@@ -1,5 +1,5 @@
-import React, { useEffect, useContext } from 'react';
-import { Flex, ChakraProvider, Grid, GridItem } from '@chakra-ui/react'
+import React, { useEffect, useContext } from 'react'
+import { ChakraProvider, Grid, GridItem } from '@chakra-ui/react'
 import Dashboard from './Dashboard';
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import AllBands from './AllBands';
@@ -10,7 +10,7 @@ import { VendorBookingContext } from "../context/vendorBooking"
 import Header from '../Components/Header';
 
 function App() {
-  const { user, setUser, setVendors, setUserEvents } = useContext(VendorBookingContext)
+  const { user, setUser, setUserEvents } = useContext(VendorBookingContext)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -44,15 +44,15 @@ function App() {
       <Grid
         h='full'
         templateRows='repeat(10, 1fr)'
-        templateColumns='repeat(5, 1fr)'
+        templateColumns='repeat(7, 1fr)'
       >
         {showNav && <GridItem rowSpan={10} colSpan={1}><NavDrawer /></GridItem>}
-        {showNav && <GridItem colSpan={4} rowSpan={1}><Header /></GridItem>}
+        {/* {showNav && <GridItem colSpan={4} rowSpan={1}><Header /></GridItem>} */}
         <Routes>
-          <Route path='/' element={<GridItem rowSpan={9} colSpan={4}><Dashboard /></GridItem>} />
-          <Route path='/signup' element={<GridItem rowSpan={10} colSpan={5}><CreateAccount /></GridItem>} />
-          <Route path='/login' element={<GridItem rowSpan={10} colSpan={5}><Login /></GridItem>} />
-          <Route path='/all-bands' element={<GridItem rowSpan={9} colSpan={4}><AllBands /></GridItem>} />
+          <Route path='/' element={<GridItem rowSpan={9} colSpan={6}><Dashboard /></GridItem>} />
+          <Route path='/signup' element={<GridItem rowSpan={10} colSpan={7}><CreateAccount /></GridItem>} />
+          <Route path='/login' element={<GridItem rowSpan={10} colSpan={7}><Login /></GridItem>} />
+          <Route path='/all-bands' element={<GridItem rowSpan={9} colSpan={6}><AllBands /></GridItem>} />
         </Routes>
       </Grid>
     </ChakraProvider>

@@ -41,8 +41,8 @@ const EditEvent = ({ event }) => {
 
   return(
     <>
-      <Button onClick={onOpen} variant='solid' colorScheme='purple'>
-        Edit Event
+      <Button size='md' onClick={onOpen} variant='solid' colorScheme='purple'>
+        Edit
       </Button>
 
       <Modal
@@ -59,28 +59,32 @@ const EditEvent = ({ event }) => {
             <FormControl>
               <FormLabel>Name of Event</FormLabel>
               <Input 
-                ref={initialRef} 
+                ref={initialRef}
+                defaultValue={event.event_name} 
                 placeholder={event.event_name}
                 onChange={(e) => setEventNameInput(e.target.value)}
                 type="text"
-                value={event.event_name}
+                // value={eventNameInput}
               />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Date</FormLabel>
-              <Input 
+              <Input
+                // defaultValue={event.date}
                 placeholder={event.date}
                 onChange={(e) => setDateInput(e.target.value)}
                 type="text"
-                value={event.date}
+                value={dateInput}
                 />
             </FormControl>
 
             {/* Fix value - should be set to the current vendor */}
             <FormControl>
               <FormLabel>Vendor</FormLabel>
-              <Select placeholder='Select a Vendor' onChange={handleVendorSelect}>
+              <Select 
+                // defaultValue={event.vendor.name}
+                placeholder='Select a Vendor' onChange={handleVendorSelect}>
                 <option value='Select Vendor'>Add a New Vendor</option>
                 {vendorLength && vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor.name}</option>)})}
               </Select>
@@ -89,10 +93,11 @@ const EditEvent = ({ event }) => {
             <FormControl mt={4}>
               <FormLabel>Image</FormLabel>
               <Input 
+                defaultValue={event.image_url}
                 placeholder={event.image_url}
                 onChange={(e) => setImageUrlInput(e.target.value)}
                 type="text"
-                value={imageUrlInput}
+                // value={imageUrlInput}
                 />
             </FormControl>
           </ModalBody>

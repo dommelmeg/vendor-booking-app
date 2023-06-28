@@ -7,15 +7,11 @@ const Header = () => {
   const { user } = useContext(VendorBookingContext)
 
   return (
-    <Flex h='20' bg='whiteAlpha.50' boxShadow='sm' position='sticky' justify='right'>
-      <AbsoluteCenter axis='vertical' p='2' >
-        <HStack padding='4'>
-          <Text>Welcome, <b>{user?.username ?? 'user'}</b>!</Text>
-          <Avatar name={user?.username ?? 'user'} />
-          <Switch colorScheme='purple' onChange={toggleColorMode} />
-        </HStack>
-      </AbsoluteCenter>
-    </Flex>
+    <HStack padding='4' justify='right'>
+      <Text>Welcome, <b>{user?.username ?? 'user'}</b>!</Text>
+      <Avatar name={user?.username ?? 'user'} />
+      <Switch colorScheme='purple' onChange={toggleColorMode} />
+    </HStack>
   )
 }
 

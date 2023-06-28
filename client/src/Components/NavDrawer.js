@@ -28,7 +28,7 @@ const NavDrawer = () => {
   }
 
   return (
-    <Box padding='4' h='full' bg='whiteAlpha.50' boxShadow='lg'>
+    <Box padding='4' h='full' bg='whiteAlpha.50' boxShadow='lg' position='fixed'>
       <Text fontSize='3xl'>Upbeat Booking</Text>
       
       <Stack marginTop='12'>
