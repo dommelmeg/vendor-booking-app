@@ -6,13 +6,67 @@ import {AiFillStar} from 'react-icons/ai'
 import StarRating from "./StarRating";
 
 const LeaveReviewModal = ({ event }) => {
-  const { vendors, reviewInput, setReviewInput } = useContext(VendorBookingContext)
+  const { setVendors, vendors, setEvents, events, reviewInput, setReviewInput, ratingInput, setShowReviewButton } = useContext(VendorBookingContext)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
 
+  // this isnt working...
   const handleSubmitClick = () => {
-    console.log('hey there')
+    fetch(`/events/${event.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        rating: ratingInput,
+        review: reviewInput
+      }),
+    })
+      .then((r) => r.json())
+      .then((newReview) => {
+        const updatedEvents = events.map((oneEvent) => {
+          if (oneEvent.id === newReview.id) {
+            const { rating, review, ...rest } = oneEvent
+            return {
+              rating: newReview.rating,
+              review: newReview.review,
+              ...rest
+            }
+          } else {
+            return oneEvent
+          }
+        })
+        setEvents(updatedEvents)
+
+        setShowReviewButton(false)
+
+        // this isnt working!!!
+
+      //   const updatedVendors = vendors.map((oneVendor) => {
+      //     if (oneVendor.id === newReview.id) {
+      //       const { events: vendorEvents, ...restVendor } = oneVendor
+      //       const updatedVendorEvents = vendorEvents.map((singleEvent) => {
+      //         if (singleEvent.id === newReview.id) {
+      //           const { rating, review, ...restEvent } = singleEvent
+      //           return { 
+      //             rating: newReview.rating,
+      //             review: newReview.review,
+      //             ...restEvent
+      //           }
+      //       } else {
+      //         return singleEvent
+      //       }
+      //     })
+      //     return { events: updatedVendorEvents, ...restVendor }
+      //   } else {
+      //     return oneVendor
+      //   }
+      // })
+      // setVendors(updatedVendors)
+    })
+
+    onClose()
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Icon, Link, Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
@@ -9,7 +9,7 @@ import { format, compareAsc } from 'date-fns'
 import { formatInTimeZone } from 'date-fns-tz'
 
 const EventCards = ({ event }) => {
-  const { events, setEvents, vendors, setVendors } = useContext(VendorBookingContext)
+  const { events, setEvents, vendors, setVendors, setShowReviewButton, showReviewButton } = useContext(VendorBookingContext)
   // const { zonedTimeToUtc, utcToZonedTime, format } = require('date-fns-tz')
   const eventDate = new Date(event.date)
 
@@ -17,13 +17,14 @@ const EventCards = ({ event }) => {
   // const timeZone = 'America/New_York'
   // const zonedDate = utcToZonedTime(eventDate, timeZone)
   // const test = formatInTimeZone(eventDate, 'America/New_York')
-
-  console.log(eventDate)
-
   // const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' }
-
-
   // const dateTimeFormat3 = new Intl.DateTimeFormat('en-US', dateOptions);
+
+  // useEffect(() => {
+  //   if (event.review !== null) {
+  //     setShowReviewButton(false)
+  //   }
+  // }, [])
 
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
@@ -75,7 +76,7 @@ const EventCards = ({ event }) => {
       <CardFooter>
         <ButtonGroup spacing='2'>
           <EditEvent event={event} />
-          <LeaveReviewModal event={event} />
+          {event.review === null && showReviewButton && <LeaveReviewModal event={event} />}
           <Button size='md' variant='ghost' colorScheme='grey' onClick={handleDeleteClick}>
             <DeleteIcon />
           </Button>

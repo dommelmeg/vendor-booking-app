@@ -7,10 +7,12 @@ import { useScroll } from "framer-motion"
 
 const Comment = ({ event, isLast }) => {
   const [updatedReview, setUpdatedReview] = useState('')
-  const { user, events, setEvents, vendors, setVendors, allUsers } = useContext(VendorBookingContext)
+  const { user, events, setEvents, vendors, setVendors, allUsers, setShowReviewButton } = useContext(VendorBookingContext)
   const eventRating = event.rating
 
   const handleDeleteBtn = () => {
+    setShowReviewButton(true)
+
     fetch(`/events/${event.id}`, {
       method: 'PATCH',
       headers: {

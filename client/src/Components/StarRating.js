@@ -1,13 +1,16 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Box } from "@chakra-ui/react"
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import { VendorBookingContext } from "../context/vendorBooking"
 
 const StarRating = () => {
+  const { reviewInput, setRatingInput } = useContext(VendorBookingContext)
   const [activeStar, setActiveStar] = useState(-1)
   const totalStars = 5
 
   const handleClick = (index) => {
     setActiveStar(index)
+    setRatingInput(index + 1)
   }
 
   return (
@@ -23,7 +26,7 @@ const StarRating = () => {
             key={Math.random()}
             cursor='pointer'
             position='relative'
-            onClick={() => setActiveStar(index)}
+            onClick={() => handleClick(index)}
           >
             <Box
               w={index <= activeStar ? '100%' : '0%'}
