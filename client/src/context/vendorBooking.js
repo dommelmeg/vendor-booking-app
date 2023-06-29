@@ -15,6 +15,8 @@ const VendorBookingProvider = ({ children }) => {
   const [allUsers, setAllUsers] = useState([])
   const [ratingInput, setRatingInput] = useState(null)
   const [showReviewButton, setShowReviewButton] = useState(true)
+  const [vendorNameInput, setVendorNameInput] = useState('')
+  const [genreInput, setGenreInput] = useState('')
 
   const vendorLength = vendors.length > 0
 
@@ -37,7 +39,7 @@ const VendorBookingProvider = ({ children }) => {
   }, [])
   
   return (
-    <VendorBookingContext.Provider value={{ user, setUser, vendors, setVendors, events, setEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput, userEvents, setUserEvents, allUsers, setAllUsers, reviewInput, setReviewInput, ratingInput, setRatingInput, showReviewButton, setShowReviewButton }} >
+    <VendorBookingContext.Provider value={{ user, setUser, vendors, setVendors, events, setEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput, userEvents, setUserEvents, allUsers, setAllUsers, reviewInput, setReviewInput, ratingInput, setRatingInput, showReviewButton, setShowReviewButton, vendorNameInput, setVendorNameInput, genreInput, setGenreInput }} >
       {children}
     </VendorBookingContext.Provider>
   )

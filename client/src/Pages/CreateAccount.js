@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
+import { VendorBookingContext } from "../context/vendorBooking";
 
-const CreateAccount = ({ user, setUser }) => {
+const CreateAccount = () => {
+  const { setUser } = useContext(VendorBookingContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -61,7 +63,7 @@ const CreateAccount = ({ user, setUser }) => {
           </FormControl>
 
           <Text>
-            Already have an account? <a href="http://localhost:4000/login">Login here!</a>
+            Already have an account? <a href="/login">Login here!</a>
           </Text>
 
           <Button 

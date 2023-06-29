@@ -11,7 +11,6 @@ const LeaveReviewModal = ({ event }) => {
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
 
-  // this isnt working...
   const handleSubmitClick = () => {
     fetch(`/events/${event.id}`, {
       method: "PATCH",

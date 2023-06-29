@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
-import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select } from '@chakra-ui/react'
+import React, { useContext } from "react";
+import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select, Divider } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
-import events_default from '../images/events_default.jpeg'
 import { VendorBookingContext } from "../context/vendorBooking"
 
 const AddEventModal = () => {
-  const { vendors, events, setEvents, setUserEvents, userEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput } = useContext(VendorBookingContext)
+  const { genreInput, setGenreInput, vendorNameInput, setVendorNameInput, vendors, events, setEvents, setUserEvents, userEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput } = useContext(VendorBookingContext)
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
@@ -99,17 +98,30 @@ const AddEventModal = () => {
               />
           </FormControl>
 
-          {/* {addNewVendorSelect ? {return(
-            <FormControl>
-              <FormLabel>New Vendor</FormLabel>
-              <Input 
-                placeholder='Image URL'
-                onChange={(e) => setImageUrlInput(e.target.value)}
-                type="text"
-                value={imageUrlInput}
-              />
-            </FormControl>
-          )} : console.log('vendor selected')} */}
+          {vendorInput === 'addNewVendor' && 
+            <>
+            <Divider mt='4' />
+              <FormControl>
+                <FormLabel mt='4'>Vendor Name</FormLabel>
+                <Input 
+                  placeholder='Vendor Name'
+                  onChange={(e) => setVendorNameInput(e.target.value)}
+                  type="text"
+                  value={vendorNameInput}
+                  />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Genre</FormLabel>
+                <Input 
+                  placeholder='Genre'
+                  onChange={(e) => setGenreInput(e.target.value)}
+                  type="text"
+                  value={genreInput}
+                  />
+              </FormControl>
+            </>
+          }
         </ModalBody>
 
         <ModalFooter>
