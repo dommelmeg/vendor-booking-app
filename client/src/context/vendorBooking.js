@@ -8,7 +8,6 @@ const VendorBookingProvider = ({ children }) => {
   const [events, setEvents] = useState([])
   const [userEvents, setUserEvents] = useState([])
   const [allUsers, setAllUsers] = useState([])
-  const [showReviewButton, setShowReviewButton] = useState(true)
 
   const vendorLength = vendors.length > 0
 
@@ -31,7 +30,7 @@ const VendorBookingProvider = ({ children }) => {
   }, [])
   
   return (
-    <VendorBookingContext.Provider value={{ user, setUser, vendors, setVendors, events, setEvents, vendorLength, userEvents, setUserEvents, allUsers, setAllUsers, showReviewButton, setShowReviewButton }} >
+    <VendorBookingContext.Provider value={{ user, setUser, vendors, setVendors, events, setEvents, vendorLength, userEvents, setUserEvents, allUsers, setAllUsers }} >
       {children}
     </VendorBookingContext.Provider>
   )

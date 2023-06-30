@@ -6,11 +6,12 @@ import AddEventModal from "../Components/AddEventModal";
 import { VendorBookingContext } from "../context/vendorBooking"
 import Header from "../Components/Header";
 
-const Dashboard = () => {
+const Dashboard = ({ showReviewButton, setShowReviewButton }) => {
   const { 
     user, 
     userEvents 
   } = useContext(VendorBookingContext)
+  
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -33,7 +34,12 @@ const Dashboard = () => {
         {userEvents.length > 0 ? (
           userEvents.map((event) => {
             return (
-              <EventCards event={event} key={event.id} />
+              <EventCards 
+                event={event} 
+                key={event.id} 
+                showReviewButton={showReviewButton} 
+                setShowReviewButton={setShowReviewButton} 
+              />
             )
           })
         ) : (

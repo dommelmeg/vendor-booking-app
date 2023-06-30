@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { ChakraProvider, Grid, GridItem } from '@chakra-ui/react'
 import Dashboard from './Dashboard';
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
@@ -19,6 +19,8 @@ function App() {
   const location = useLocation()
   const isCreateAcct = location.pathname === '/signup'
   const isLogin = location.pathname === '/login'
+
+  const [showReviewButton, setShowReviewButton] = useState(false)
   
   useEffect(() => {
     fetch("/me")
@@ -51,10 +53,32 @@ function App() {
       >
         {showNav && <GridItem rowSpan={10} colSpan={1}><NavDrawer /></GridItem>}
         <Routes>
-          <Route path='/' element={<GridItem rowSpan={9} colSpan={6}><Dashboard /></GridItem>} />
-          <Route path='/signup' element={<GridItem rowSpan={10} colSpan={7}><CreateAccount /></GridItem>} />
-          <Route path='/login' element={<GridItem rowSpan={10} colSpan={7}><Login /></GridItem>} />
-          <Route path='/all-bands' element={<GridItem rowSpan={9} colSpan={6}><AllBands /></GridItem>} />
+          <Route path='/' element={
+            <GridItem rowSpan={9} colSpan={6}>
+              <Dashboard 
+                showReviewButton={showReviewButton} 
+                setShowReviewButton={setShowReviewButton} 
+              />
+            </GridItem>} 
+          />
+          <Route path='/all-bands' element={
+            <GridItem rowSpan={9} colSpan={6}>
+              <AllBands 
+                showReviewButton={showReviewButton} 
+                setShowReviewButton={setShowReviewButton} 
+              />
+            </GridItem>} 
+          />
+          <Route path='/signup' element={
+            <GridItem rowSpan={10} colSpan={7}>
+              <CreateAccount  />
+            </GridItem>} 
+          />
+          <Route path='/login' element={
+            <GridItem rowSpan={10} colSpan={7}>
+              <Login />
+            </GridItem>} 
+          />
         </Routes>
       </Grid>
     </ChakraProvider>

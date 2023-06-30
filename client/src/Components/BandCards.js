@@ -4,7 +4,7 @@ import Comment from "./Comment"
 import { Card, CardBody, Heading, Text, HStack, VStack, Popover, PopoverTrigger, Button, Portal, PopoverContent, PopoverArrow, PopoverBody,PopoverHeader, PopoverCloseButton } from "@chakra-ui/react"
 import { AiFillStar } from 'react-icons/ai'
 
-const BandCards = ({ vendor }) => {
+const BandCards = ({ vendor, showReviewButton, setShowReviewButton }) => {
   const vendorEvents = vendor.events
   
   const eventsWithReviews = vendorEvents.filter((event) => {
@@ -51,7 +51,16 @@ const BandCards = ({ vendor }) => {
               <PopoverHeader>Reviews</PopoverHeader>
               <PopoverCloseButton />
               <PopoverBody>
-                {eventsWithReviews.map((event, idx) => event.review && <Comment key={event.id} event={event} isLast={eventsWithReviews.length - 1 === idx}/>)}
+                {eventsWithReviews.map((event, idx) => 
+                  event.review && 
+                  <Comment 
+                    key={event.id} 
+                    event={event} 
+                    isLast={eventsWithReviews.length - 1 === idx}
+                    showReviewButton={showReviewButton}
+                    setShowReviewButton={setShowReviewButton}
+                  />
+                )}
               </PopoverBody>
             </PopoverContent>
           </Portal>

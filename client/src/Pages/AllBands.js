@@ -4,7 +4,7 @@ import BandCards from "../Components/BandCards";
 import { VendorBookingContext } from "../context/vendorBooking"
 import Header from "../Components/Header";
 
-const AllBands = () => {
+const AllBands = ({ showReviewButton, setShowReviewButton }) => {
   const { 
     vendors, 
     vendorLength 
@@ -20,7 +20,15 @@ const AllBands = () => {
         </HStack>
 
         <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))' marginTop='4' >
-          {vendorLength && vendors.map((vendor) => {return(<BandCards key={vendor.id} vendor={vendor} />)})}
+          {vendorLength && vendors.map((vendor) => {
+            return(
+              <BandCards 
+                key={vendor.id} 
+                vendor={vendor} 
+                showReviewButton={showReviewButton} 
+                setShowReviewButton={setShowReviewButton} 
+              />
+            )})}
         </SimpleGrid>
       </Box>
     </Box>

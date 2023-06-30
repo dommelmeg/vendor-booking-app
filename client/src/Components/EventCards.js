@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Icon, Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
@@ -6,16 +6,23 @@ import EditEvent from './EditEvent'
 import { CiMusicNote1 } from 'react-icons/ci'
 import LeaveReviewModal from "./LeaveReviewModal"
 
-const EventCards = ({ event }) => {
+const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
   const { 
     userEvents, 
     setUserEvents, 
     events, 
     setEvents, 
     vendors, 
-    setVendors, 
-    showReviewButton 
+    setVendors 
   } = useContext(VendorBookingContext)
+
+  useEffect(() => {
+    if (event.review === null) {
+      setShowReviewButton(true)
+    } else {
+      setShowReviewButton(false)
+    }
+  }, [event.review, setShowReviewButton])
   
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
@@ -69,7 +76,14 @@ const EventCards = ({ event }) => {
       <CardFooter>
         <ButtonGroup spacing='2'>
           <EditEvent event={event} />
-          {event.review === null && showReviewButton && <LeaveReviewModal event={event} /> }
+          {/* {event.review === null && showReviewButton && <LeaveReviewModal event={event} /> } */}
+          {event.review === null && showReviewButton && 
+            <LeaveReviewModal 
+              event={event} 
+              showReviewButton={showReviewButton} 
+              setShowReviewButton={setShowReviewButton} 
+            /> 
+          }
           <Button size='md' variant='ghost' colorScheme='grey' onClick={handleDeleteClick}>
             <DeleteIcon />
           </Button>

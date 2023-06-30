@@ -3,11 +3,10 @@ import { Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, 
 import { VendorBookingContext } from "../context/vendorBooking"
 import StarRating from "./StarRating";
 
-const LeaveReviewModal = ({ event }) => {
+const LeaveReviewModal = ({ event, showReviewButton, setShowReviewButton }) => {
   const { 
     setEvents, 
     events,
-    setShowReviewButton,
     vendors,
     setVendors
   } = useContext(VendorBookingContext)
@@ -19,7 +18,6 @@ const LeaveReviewModal = ({ event }) => {
   const [reviewInput, setReviewInput] = useState('')
   const [ratingInput, setRatingInput] = useState(null)
 
-  //test this!!!
   const handleSubmitClick = () => {
     fetch(`/events/${event.id}`, {
       method: "PATCH",
@@ -49,8 +47,6 @@ const LeaveReviewModal = ({ event }) => {
         setEvents(updatedEvents)
 
         setShowReviewButton(false)
-
-// this isnt working!!!
 
         const updatedVendors = vendors.map((oneVendor) => {
           if (oneVendor.id === newReview.vendor_id) {

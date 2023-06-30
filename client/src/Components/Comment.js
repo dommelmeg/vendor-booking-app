@@ -4,7 +4,7 @@ import { CheckIcon, CloseIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 import { AiFillStar } from 'react-icons/ai'
 
-const Comment = ({ event, isLast }) => {
+const Comment = ({ event, isLast, showReviewButton, setShowReviewButton }) => {
   const { 
     user, 
     events, 
@@ -12,8 +12,8 @@ const Comment = ({ event, isLast }) => {
     vendors, 
     setVendors, 
     allUsers, 
-    setShowReviewButton 
   } = useContext(VendorBookingContext)
+  
   const [updatedReview, setUpdatedReview] = useState('')
   const eventRating = event.rating
 
