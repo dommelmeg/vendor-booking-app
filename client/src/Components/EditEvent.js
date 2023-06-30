@@ -7,6 +7,9 @@ const EditEvent = ({ event }) => {
   const { 
     vendors,
     vendorLength, 
+    userEvents,
+    setUserEvents,
+    setVendors
   } = useContext(VendorBookingContext)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
@@ -16,8 +19,6 @@ const EditEvent = ({ event }) => {
   const [dateInput, setDateInput] = useState(event.date)
   const [imageUrlInput, setImageUrlInput] = useState(event.image_url)
   const [vendorInput, setVendorInput] = useState(event.vendor_id)
-  const [vendorNameInput, setVendorNameInput] = useState('')
-  const [genreInput, setGenreInput] = useState('')
 
   // fix this
   const handleSubmitClick = (e) => {
@@ -37,18 +38,40 @@ const EditEvent = ({ event }) => {
       },
       body: JSON.stringify(eventData),
     })
-    .then((r) => r.json())
-    .then((updatedEvent) => console.log(updatedEvent))
-    }
+      .then((r) => r.json())
+      .then((updatedEvent) => {
+        const updatedUserEvents = userEvents.map((event) => {
+          if (event.id === updatedEvent.id) {
+            return updatedEvent
+          } else {
+            return event
+          }
+        })
+        setUserEvents(updatedUserEvents)
 
-  const handleVendorSelect = (e) => {
-    if(e.target.value === 'addNewVendor') {
-      console.log('you did it!')
+        // map through vendors to find matching updatedEvent.vendor id
+        // map through that vendors events to find event id that matches updatedEvent.vendor id
+        // update that event 
+
+        const updatedVendors = vendors.map((vendor) => {
+          if (vendor.id === updatedEvent.vendor_id) {
+            const { events: vendorEvents, ...restVendor } = vendor
+            const updatedVendorEvents = vendorEvents.map((event) => {
+              if (event.id === updatedEvent.id) {
+                return updatedEvent
+              } else {
+                return event
+              }
+            })
+            return { events: updatedVendorEvents, ...restVendor}
+          } else {
+            return vendor
+          }
+        })
+        setVendors(updatedVendors)
+      })
+      onClose()
     }
-    else {
-      setVendorInput(e.target.value)
-    }
-  }
 
   return(
     <>
@@ -87,17 +110,18 @@ const EditEvent = ({ event }) => {
             />
           </FormControl>
 
-            {/* Fix value - should be set to the current vendor */}
-            <FormControl>
-              <FormLabel>Vendor</FormLabel>
-              <Select 
-                defaultValue={event.vendor.id} 
-                onChange={(e) => setVendorInput(e.target.value)}
-              >
-                <option value='addNewVendor'>Add a New Vendor</option>
-                {vendorLength && vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor?.name}</option>)})}
-              </Select>
-            </FormControl>
+            {event.review === null && 
+              <FormControl>
+                <FormLabel>Vendor</FormLabel>
+                <Select 
+                  defaultValue={event.vendor.id} 
+                  onChange={(e) => setVendorInput(e.target.value)}
+                >
+                  <option value='addNewVendor'>Add a New Vendor</option>
+                  {vendorLength && vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor?.name}</option>)})}
+                </Select>
+              </FormControl>
+            }
 
             <FormControl mt={4}>
               <FormLabel>Image</FormLabel>
