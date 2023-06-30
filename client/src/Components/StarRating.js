@@ -1,10 +1,8 @@
 import React, { useState, useContext } from "react"
 import { Box } from "@chakra-ui/react"
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
-import { VendorBookingContext } from "../context/vendorBooking"
 
-const StarRating = () => {
-  const { setRatingInput } = useContext(VendorBookingContext)
+const StarRating = ({ setRatingInput }) => {
   const [activeStar, setActiveStar] = useState(-1)
   const totalStars = 5
 

@@ -17,6 +17,41 @@ const Comment = ({ event, isLast }) => {
   const [updatedReview, setUpdatedReview] = useState('')
   const eventRating = event.rating
 
+  const handleUpdatedReview = () => {
+    fetch(`/events/${event.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        review: updatedReview
+      }),
+    })
+      .then((r) => r.json())
+      .then((updatedReview) => {
+        const updatedVendors = vendors.map((vendor) => {
+          if (vendor.id === updatedReview.vendor_id) {
+            const { events: vendorEvents, ...restVendor } = vendor
+            const updatedVendorEvents = vendorEvents.map((event) => {
+              if (event.id === updatedReview.id) {
+                const { review, ...restEvent } = event
+                return {
+                  review: updatedReview,
+                  ...restEvent
+                }
+              } else {
+                return event
+              }
+            })
+            return { events: updatedVendorEvents, ...restVendor }
+          } else {
+            return vendor
+          }
+        })
+        setVendors(updatedVendors)
+      })
+  }
+
   const handleDeleteBtn = () => {
     setShowReviewButton(true)
 
@@ -104,6 +139,7 @@ const Comment = ({ event, isLast }) => {
         defaultValue={event.review}
         fontSize='sm'
         isPreviewFocusable={false}
+        onSubmit={handleUpdatedReview}
         >
         <EditablePreview />
         <Input 

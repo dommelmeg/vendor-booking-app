@@ -1,36 +1,31 @@
+import React, { useContext, useState } from "react";
 import { VendorBookingContext } from "../context/vendorBooking"
 
-import React, { useContext } from "react";
 import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select, Divider } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import AddVendorHiddenInput from "./AddVendorHiddenInput";
 
 const AddEventModal = () => {
-  const { 
-    genreInput, 
-    setGenreInput, 
-    vendorNameInput, 
-    setVendorNameInput, 
+  const {  
     vendors, 
     setVendors, 
     events, 
     setEvents, 
     setUserEvents, 
     userEvents, 
-    vendorLength, 
-    eventNameInput, 
-    setEventNameInput, 
-    dateInput, 
-    setDateInput, 
-    imageUrlInput, 
-    setImageUrlInput, 
-    vendorInput, 
-    setVendorInput 
+    vendorLength
   } = useContext(VendorBookingContext)
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
+
+  const [eventNameInput, setEventNameInput] = useState('')
+  const [dateInput, setDateInput] = useState('')
+  const [imageUrlInput, setImageUrlInput] = useState('')
+  const [vendorInput, setVendorInput] = useState('')
+  const [vendorNameInput, setVendorNameInput] = useState('')
+  const [genreInput, setGenreInput] = useState('')
 
   const handleClose = () => {
     setEventNameInput('')

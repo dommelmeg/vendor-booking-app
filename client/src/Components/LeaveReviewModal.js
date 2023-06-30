@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react"
 import { VendorBookingContext } from "../context/vendorBooking"
 import StarRating from "./StarRating";
@@ -6,15 +6,16 @@ import StarRating from "./StarRating";
 const LeaveReviewModal = ({ event }) => {
   const { 
     setEvents, 
-    events, 
-    reviewInput, 
-    setReviewInput, 
-    ratingInput, 
+    events,
     setShowReviewButton 
   } = useContext(VendorBookingContext)
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
+
+  const [reviewInput, setReviewInput] = useState('')
+  const [ratingInput, setRatingInput] = useState(null)
 
   const handleSubmitClick = () => {
     fetch(`/events/${event.id}`, {
@@ -92,7 +93,7 @@ const LeaveReviewModal = ({ event }) => {
         <ModalBody pb={6}>
           <FormControl>
             <FormLabel>Rating</FormLabel>
-            <StarRating />
+            <StarRating setRatingInput={setRatingInput} />
           </FormControl>
 
           <FormControl mt={4}>

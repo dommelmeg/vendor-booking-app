@@ -10,15 +10,6 @@ const VendorBookingProvider = ({ children }) => {
   const [allUsers, setAllUsers] = useState([])
   const [showReviewButton, setShowReviewButton] = useState(true)
 
-  const [eventNameInput, setEventNameInput] = useState('')
-  const [dateInput, setDateInput] = useState('')
-  const [imageUrlInput, setImageUrlInput] = useState('')
-  const [vendorInput, setVendorInput] = useState('')
-  const [reviewInput, setReviewInput] = useState('')
-  const [ratingInput, setRatingInput] = useState(null)
-  const [vendorNameInput, setVendorNameInput] = useState('')
-  const [genreInput, setGenreInput] = useState('')
-
   const vendorLength = vendors.length > 0
 
   useEffect(() => {
@@ -40,7 +31,7 @@ const VendorBookingProvider = ({ children }) => {
   }, [])
   
   return (
-    <VendorBookingContext.Provider value={{ user, setUser, vendors, setVendors, events, setEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput, userEvents, setUserEvents, allUsers, setAllUsers, reviewInput, setReviewInput, ratingInput, setRatingInput, showReviewButton, setShowReviewButton, vendorNameInput, setVendorNameInput, genreInput, setGenreInput }} >
+    <VendorBookingContext.Provider value={{ user, setUser, vendors, setVendors, events, setEvents, vendorLength, userEvents, setUserEvents, allUsers, setAllUsers, showReviewButton, setShowReviewButton }} >
       {children}
     </VendorBookingContext.Provider>
   )

@@ -28,7 +28,7 @@ const AddVendorHiddenInput = () => {
           />
       </FormControl>
     </>
-)
+  )
 }
 
 export default AddVendorHiddenInput
