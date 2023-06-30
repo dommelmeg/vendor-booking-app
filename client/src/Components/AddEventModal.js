@@ -3,6 +3,7 @@ import { VendorBookingContext } from "../context/vendorBooking"
 import React, { useContext } from "react";
 import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select, Divider } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
+import AddVendorHiddenInput from "./AddVendorHiddenInput";
 
 const AddEventModal = () => {
   const { 
@@ -31,6 +32,16 @@ const AddEventModal = () => {
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
 
+  const handleClose = () => {
+    setEventNameInput('')
+    setDateInput('')
+    setImageUrlInput('')
+    setVendorInput('')
+    setGenreInput('')
+    setVendorNameInput('')
+
+    onClose()
+  }
 
   const handleCreateEvent = (formData) => {
     fetch('/events', {
@@ -46,14 +57,7 @@ const AddEventModal = () => {
         setUserEvents([...userEvents, newEvent])
       })
 
-    setEventNameInput('')
-    setDateInput('')
-    setImageUrlInput('')
-    setVendorInput('')
-    setGenreInput('')
-    setVendorNameInput('')
-
-    onClose()
+    handleClose()
   }
 
   const handleCreateVendor = async () => {
@@ -109,7 +113,7 @@ const AddEventModal = () => {
       initialFocusRef={initialRef}
       finalFocusRef={finalRef}
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={() => handleClose()}
       >
       <ModalOverlay />
       <ModalContent>
@@ -130,7 +134,6 @@ const AddEventModal = () => {
           <FormControl mt={4}>
             <FormLabel>Date</FormLabel>
             <Input 
-              placeholder='October 3, 2023'
               onChange={(e) => setDateInput(e.target.value)}
               type="datetime-local"
               value={dateInput}
@@ -157,30 +160,7 @@ const AddEventModal = () => {
               />
           </FormControl>
 
-          {vendorInput === 'addNewVendor' && 
-            <>
-            <Divider mt='4' />
-              <FormControl>
-                <FormLabel mt='4'>Vendor Name</FormLabel>
-                <Input 
-                  placeholder='Vendor Name'
-                  onChange={(e) => setVendorNameInput(e.target.value)}
-                  type="text"
-                  value={vendorNameInput}
-                  />
-              </FormControl>
-
-              <FormControl>
-                <FormLabel>Genre</FormLabel>
-                <Input 
-                  placeholder='Genre'
-                  onChange={(e) => setGenreInput(e.target.value)}
-                  type="text"
-                  value={genreInput}
-                  />
-              </FormControl>
-            </>
-          }
+          {vendorInput === 'addNewVendor' && <AddVendorHiddenInput />}
         </ModalBody>
 
         <ModalFooter>
@@ -191,7 +171,7 @@ const AddEventModal = () => {
             >
             Save
           </Button>
-          <Button onClick={onClose}>Cancel</Button>
+          <Button onClick={() => handleClose()}>Cancel</Button>
         </ModalFooter>
       </ModalContent>
       </Modal>

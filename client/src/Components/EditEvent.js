@@ -1,23 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select } from '@chakra-ui/react'
 import { VendorBookingContext } from "../context/vendorBooking";
+import AddVendorHiddenInput from "./AddVendorHiddenInput";
 
 const EditEvent = ({ event }) => {
   const { 
     vendors,
     vendorLength, 
-    eventNameInput, 
-    setEventNameInput, 
-    dateInput, 
-    setDateInput, 
-    imageUrlInput, 
-    setImageUrlInput, 
-    vendorInput, 
-    setVendorInput 
   } = useContext(VendorBookingContext)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
+
+  const [eventNameInput, setEventNameInput] = useState(event.event_name)
+  const [dateInput, setDateInput] = useState(event.date)
+  const [imageUrlInput, setImageUrlInput] = useState(event.image_url)
+  const [vendorInput, setVendorInput] = useState(event.vendor_id)
+  const [vendorNameInput, setVendorNameInput] = useState('')
+  const [genreInput, setGenreInput] = useState('')
 
   // fix this
   const handleSubmitClick = (e) => {
@@ -71,32 +71,30 @@ const EditEvent = ({ event }) => {
               <FormLabel>Name of Event</FormLabel>
               <Input 
                 ref={initialRef}
-                defaultValue={event.event_name} 
                 placeholder={event.event_name}
                 onChange={(e) => setEventNameInput(e.target.value)}
                 type="text"
-                // value={eventNameInput}
+                value={eventNameInput}
               />
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Date</FormLabel>
-              <Input
-                // defaultValue={event.date}
-                placeholder={event.date}
-                onChange={(e) => setDateInput(e.target.value)}
-                type="text"
-                value={dateInput}
-                />
-            </FormControl>
+            <FormLabel>Date</FormLabel>
+            <Input
+              onChange={(e) => setDateInput(e.target.value)}
+              type="datetime-local"
+              value={dateInput}
+            />
+          </FormControl>
 
             {/* Fix value - should be set to the current vendor */}
             <FormControl>
               <FormLabel>Vendor</FormLabel>
               <Select 
-                // defaultValue={event.vendor.name}
-                placeholder='Select a Vendor' onChange={handleVendorSelect}>
-                <option value='Select Vendor'>Add a New Vendor</option>
+                defaultValue={event.vendor.id} 
+                onChange={(e) => setVendorInput(e.target.value)}
+              >
+                <option value='addNewVendor'>Add a New Vendor</option>
                 {vendorLength && vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor?.name}</option>)})}
               </Select>
             </FormControl>
@@ -104,13 +102,15 @@ const EditEvent = ({ event }) => {
             <FormControl mt={4}>
               <FormLabel>Image</FormLabel>
               <Input 
-                defaultValue={event.image_url}
                 placeholder={event.image_url}
                 onChange={(e) => setImageUrlInput(e.target.value)}
                 type="text"
-                // value={imageUrlInput}
+                value={imageUrlInput}
                 />
             </FormControl>
+
+            {vendorInput === 'addNewVendor' && <AddVendorHiddenInput />}
+
           </ModalBody>
 
           <ModalFooter>

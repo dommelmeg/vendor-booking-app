@@ -7,14 +7,15 @@ const VendorBookingProvider = ({ children }) => {
   const [vendors, setVendors] = useState([])
   const [events, setEvents] = useState([])
   const [userEvents, setUserEvents] = useState([])
+  const [allUsers, setAllUsers] = useState([])
+  const [showReviewButton, setShowReviewButton] = useState(true)
+
   const [eventNameInput, setEventNameInput] = useState('')
   const [dateInput, setDateInput] = useState('')
   const [imageUrlInput, setImageUrlInput] = useState('')
   const [vendorInput, setVendorInput] = useState('')
   const [reviewInput, setReviewInput] = useState('')
-  const [allUsers, setAllUsers] = useState([])
   const [ratingInput, setRatingInput] = useState(null)
-  const [showReviewButton, setShowReviewButton] = useState(true)
   const [vendorNameInput, setVendorNameInput] = useState('')
   const [genreInput, setGenreInput] = useState('')
 
