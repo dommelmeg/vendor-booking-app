@@ -9,7 +9,11 @@ import NavDrawer from '../Components/NavDrawer';
 import { VendorBookingContext } from "../context/vendorBooking"
 
 function App() {
-  const { user, setUser, setUserEvents } = useContext(VendorBookingContext)
+  const { 
+    user, 
+    setUser, 
+    setUserEvents 
+  } = useContext(VendorBookingContext)
 
   const navigate = useNavigate()
   const location = useLocation()

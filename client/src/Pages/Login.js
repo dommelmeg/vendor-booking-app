@@ -8,8 +8,6 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [show, setShow] = React.useState(false)
 
-  const handleClick = () => setShow(!show)
-
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -55,7 +53,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <InputRightElement width='4.5rem'>
-                <Button h='1.75rem' size='sm' onClick={handleClick}>
+                <Button h='1.75rem' size='sm' onClick={() => setShow(!show)}>
                   {show ? 'Hide' : 'Show'}
                 </Button>
               </InputRightElement>
@@ -63,7 +61,7 @@ const Login = () => {
           </FormControl>
 
           <Text>
-            Don't have an account? <a href="http://localhost:4000/signup">Sign up here!</a>
+            Don't have an account? <a href='/signup'>Sign up here!</a>
           </Text>
 
           <Button 

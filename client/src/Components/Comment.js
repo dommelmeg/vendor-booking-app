@@ -3,11 +3,18 @@ import { VStack, HStack, Divider, Text, useEditableControls, IconButton, ButtonG
 import { CheckIcon, CloseIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 import { AiFillStar } from 'react-icons/ai'
-import { useScroll } from "framer-motion"
 
 const Comment = ({ event, isLast }) => {
+  const { 
+    user, 
+    events, 
+    setEvents, 
+    vendors, 
+    setVendors, 
+    allUsers, 
+    setShowReviewButton 
+  } = useContext(VendorBookingContext)
   const [updatedReview, setUpdatedReview] = useState('')
-  const { user, events, setEvents, vendors, setVendors, allUsers, setShowReviewButton } = useContext(VendorBookingContext)
   const eventRating = event.rating
 
   const handleDeleteBtn = () => {
@@ -99,8 +106,6 @@ const Comment = ({ event, isLast }) => {
         isPreviewFocusable={false}
         >
         <EditablePreview />
-        {/* Here is the custom input
-        */}
         <Input 
           as={EditableInput}
           value={updatedReview}

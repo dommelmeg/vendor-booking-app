@@ -1,18 +1,29 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select } from '@chakra-ui/react'
 import { VendorBookingContext } from "../context/vendorBooking";
 
 const EditEvent = ({ event }) => {
-  const { vendors, events, setEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput } = useContext(VendorBookingContext)
-
+  const { 
+    vendors,
+    vendorLength, 
+    eventNameInput, 
+    setEventNameInput, 
+    dateInput, 
+    setDateInput, 
+    imageUrlInput, 
+    setImageUrlInput, 
+    vendorInput, 
+    setVendorInput 
+  } = useContext(VendorBookingContext)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
 
+  // fix this
   const handleSubmitClick = (e) => {
     e.preventDefault()
 
-    const formData = {
+    const eventData = {
       event_name: eventNameInput,
       date: dateInput,
       image_url: imageUrlInput,
@@ -24,7 +35,7 @@ const EditEvent = ({ event }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(eventData),
     })
     .then((r) => r.json())
     .then((updatedEvent) => console.log(updatedEvent))

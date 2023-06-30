@@ -1,12 +1,17 @@
-import React, { useContext, useState } from "react";
-import { HStack, Box, Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react"
+import React, { useContext } from "react";
+import { Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react"
 import { VendorBookingContext } from "../context/vendorBooking"
-import {AiOutlineStar} from 'react-icons/ai'
-import {AiFillStar} from 'react-icons/ai'
 import StarRating from "./StarRating";
 
 const LeaveReviewModal = ({ event }) => {
-  const { setVendors, vendors, setEvents, events, reviewInput, setReviewInput, ratingInput, setShowReviewButton } = useContext(VendorBookingContext)
+  const { 
+    setEvents, 
+    events, 
+    reviewInput, 
+    setReviewInput, 
+    ratingInput, 
+    setShowReviewButton 
+  } = useContext(VendorBookingContext)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
@@ -40,7 +45,7 @@ const LeaveReviewModal = ({ event }) => {
 
         setShowReviewButton(false)
 
-        // this isnt working!!!
+// this isnt working!!!
 
       //   const updatedVendors = vendors.map((oneVendor) => {
       //     if (oneVendor.id === newReview.id) {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Icon, Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
@@ -9,9 +9,17 @@ import { format, compareAsc } from 'date-fns'
 import { formatInTimeZone } from 'date-fns-tz'
 
 const EventCards = ({ event }) => {
-  const { userEvents, setUserEvents, events, setEvents, vendors, setVendors, setShowReviewButton, showReviewButton } = useContext(VendorBookingContext)
+  const { 
+    userEvents, 
+    setUserEvents, 
+    events, 
+    setEvents, 
+    vendors, 
+    setVendors, 
+    showReviewButton 
+  } = useContext(VendorBookingContext)
+  // const eventDate = new Date(event.date)
   // const { zonedTimeToUtc, utcToZonedTime, format } = require('date-fns-tz')
-  const eventDate = new Date(event.date)
 
   // const date = new Date('2018-09-01T16:01:36.386Z')
   // const timeZone = 'America/New_York'
@@ -19,13 +27,13 @@ const EventCards = ({ event }) => {
   // const test = formatInTimeZone(eventDate, 'America/New_York')
   // const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' }
   // const dateTimeFormat3 = new Intl.DateTimeFormat('en-US', dateOptions);
-
+  
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
     setEvents(updatedEvents)
     const updatedUserEvents = userEvents.filter((event) => event.id !== deletedEvent.id)
     setUserEvents(updatedUserEvents)
-
+    
     const updatedVendors = vendors.map((vendor) => {
       if (vendor.id === deletedEvent.vendor_id) {
         const { events: deletedVendorEvents, ...rest } = vendor
@@ -38,7 +46,7 @@ const EventCards = ({ event }) => {
     })
     setVendors(updatedVendors)
   }
-
+  
   const handleDeleteClick = () => {
     fetch(`/events/${event.id}`, {
       method: 'DELETE'
@@ -51,7 +59,7 @@ const EventCards = ({ event }) => {
       }
     })
   }
-
+  
   return(
     <Card>
       <CardBody>
@@ -72,7 +80,7 @@ const EventCards = ({ event }) => {
       <CardFooter>
         <ButtonGroup spacing='2'>
           <EditEvent event={event} />
-          {event.review === null && showReviewButton && <LeaveReviewModal event={event} />}
+          {event.review === null && showReviewButton && <LeaveReviewModal event={event} /> }
           <Button size='md' variant='ghost' colorScheme='grey' onClick={handleDeleteClick}>
             <DeleteIcon />
           </Button>

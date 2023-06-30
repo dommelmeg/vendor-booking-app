@@ -4,7 +4,7 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { VendorBookingContext } from "../context/vendorBooking"
 
 const StarRating = () => {
-  const { reviewInput, setRatingInput } = useContext(VendorBookingContext)
+  const { setRatingInput } = useContext(VendorBookingContext)
   const [activeStar, setActiveStar] = useState(-1)
   const totalStars = 5
 

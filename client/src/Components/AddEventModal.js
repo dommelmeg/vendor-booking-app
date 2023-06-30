@@ -1,10 +1,31 @@
+import { VendorBookingContext } from "../context/vendorBooking"
+
 import React, { useContext } from "react";
 import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select, Divider } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
-import { VendorBookingContext } from "../context/vendorBooking"
 
 const AddEventModal = () => {
-  const { genreInput, setGenreInput, vendorNameInput, setVendorNameInput, vendors, setVendors, events, setEvents, setUserEvents, userEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput } = useContext(VendorBookingContext)
+  const { 
+    genreInput, 
+    setGenreInput, 
+    vendorNameInput, 
+    setVendorNameInput, 
+    vendors, 
+    setVendors, 
+    events, 
+    setEvents, 
+    setUserEvents, 
+    userEvents, 
+    vendorLength, 
+    eventNameInput, 
+    setEventNameInput, 
+    dateInput, 
+    setDateInput, 
+    imageUrlInput, 
+    setImageUrlInput, 
+    vendorInput, 
+    setVendorInput 
+  } = useContext(VendorBookingContext)
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
@@ -12,8 +33,6 @@ const AddEventModal = () => {
 
 
   const handleCreateEvent = (formData) => {
-    console.log(formData)
-
     fetch('/events', {
       method: 'POST',
       headers: {
@@ -31,6 +50,8 @@ const AddEventModal = () => {
     setDateInput('')
     setImageUrlInput('')
     setVendorInput('')
+    setGenreInput('')
+    setVendorNameInput('')
 
     onClose()
   }
@@ -76,7 +97,6 @@ const AddEventModal = () => {
         image_url: imageUrlInput,
         vendor_id: vendorInput
       }
-
       handleCreateEvent(formData)
     }
   }

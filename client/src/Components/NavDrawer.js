@@ -50,18 +50,6 @@ const NavDrawer = () => {
           <Icon marginRight='2' as={RiLogoutBoxLine} /> Logout
         </Button>
       </Stack>
-
-      {/* <Box>
-        <Button 
-          variant='ghost' 
-          colorScheme='black' 
-          size='md' 
-          alignSelf='baseline'
-          onClick={handleLogoutClick}
-        >
-          <Icon marginRight='2' as={RiLogoutBoxLine} /> Logout
-        </Button>
-      </Box> */}
     </Box>
   )
 }

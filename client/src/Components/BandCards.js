@@ -1,7 +1,8 @@
-import React from "react";
-import { Card, CardBody, Heading, Text, HStack, VStack, Popover, PopoverTrigger, Button, Portal, PopoverContent, PopoverArrow, PopoverBody,PopoverHeader, PopoverCloseButton } from "@chakra-ui/react";
+import Comment from "./Comment"
+
+import React from "react"
+import { Card, CardBody, Heading, Text, HStack, VStack, Popover, PopoverTrigger, Button, Portal, PopoverContent, PopoverArrow, PopoverBody,PopoverHeader, PopoverCloseButton } from "@chakra-ui/react"
 import { AiFillStar } from 'react-icons/ai'
-import Comment from "./Comment";
 
 const BandCards = ({ vendor }) => {
   const vendorEvents = vendor.events
@@ -10,7 +11,6 @@ const BandCards = ({ vendor }) => {
       return event
     }
   })
-
   const sum = eventsWithReviews.reduce(
     (acc, currVal) => acc + currVal.rating,
      0,

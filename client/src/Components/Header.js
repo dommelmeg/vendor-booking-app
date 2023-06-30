@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { Box, Switch, AbsoluteCenter, Avatar, useRadio, Text, HStack, Flex, useColorMode } from "@chakra-ui/react";
+import { Switch, Avatar, Text, HStack, useColorMode } from "@chakra-ui/react";
 import { VendorBookingContext } from "../context/vendorBooking";
 
 const Header = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { toggleColorMode } = useColorMode()
   const { user } = useContext(VendorBookingContext)
 
   return (

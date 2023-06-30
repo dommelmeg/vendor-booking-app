@@ -7,7 +7,10 @@ import { VendorBookingContext } from "../context/vendorBooking"
 import Header from "../Components/Header";
 
 const Dashboard = () => {
-  const { user, events, setEvents, userEvents, setUserEvents } = useContext(VendorBookingContext)
+  const { 
+    user, 
+    userEvents 
+  } = useContext(VendorBookingContext)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -29,10 +32,12 @@ const Dashboard = () => {
       <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))' marginTop='4'>
         {userEvents.length > 0 ? (
           userEvents.map((event) => {
-              return(<EventCards event={event} key={event.id} />)
+            return (
+              <EventCards event={event} key={event.id} />
+            )
           })
         ) : (
-          <Text>Lets get planning!</Text>
+          <Text>No events created – add an event above!</Text>
         )}
       </SimpleGrid>
     </Box>
