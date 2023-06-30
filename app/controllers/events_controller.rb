@@ -46,7 +46,7 @@ class EventsController < ApplicationController
     if new_event.valid?
       render json: new_event, status: :created
     else
-      render json: { errors: new_event.errors.full_messages}, status: :unprocessable_entity
+      render json: { errors: new_event.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

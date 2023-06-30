@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Icon, Link, Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
+import { Icon, Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 import EditEvent from './EditEvent'
@@ -9,7 +9,7 @@ import { format, compareAsc } from 'date-fns'
 import { formatInTimeZone } from 'date-fns-tz'
 
 const EventCards = ({ event }) => {
-  const { events, setEvents, vendors, setVendors, setShowReviewButton, showReviewButton } = useContext(VendorBookingContext)
+  const { userEvents, setUserEvents, events, setEvents, vendors, setVendors, setShowReviewButton, showReviewButton } = useContext(VendorBookingContext)
   // const { zonedTimeToUtc, utcToZonedTime, format } = require('date-fns-tz')
   const eventDate = new Date(event.date)
 
@@ -20,15 +20,11 @@ const EventCards = ({ event }) => {
   // const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' }
   // const dateTimeFormat3 = new Intl.DateTimeFormat('en-US', dateOptions);
 
-  // useEffect(() => {
-  //   if (event.review !== null) {
-  //     setShowReviewButton(false)
-  //   }
-  // }, [])
-
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
     setEvents(updatedEvents)
+    const updatedUserEvents = userEvents.filter((event) => event.id !== deletedEvent.id)
+    setUserEvents(updatedUserEvents)
 
     const updatedVendors = vendors.map((vendor) => {
       if (vendor.id === deletedEvent.vendor_id) {
@@ -68,7 +64,7 @@ const EventCards = ({ event }) => {
           {/* <Text fontSize='2xl'>{dateTimeFormat3.format(eventDate)}</Text> */}
           <Heading size='md'>{event.event_name}</Heading>
           <Text>
-            <Icon marginRight='2' as={CiMusicNote1} /> {event.vendor.name}
+            <Icon marginRight='2' as={CiMusicNote1} /> {event.vendor?.name}
           </Text>
         </Stack>
       </CardBody>

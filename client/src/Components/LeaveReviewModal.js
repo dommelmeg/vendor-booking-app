@@ -82,7 +82,7 @@ const LeaveReviewModal = ({ event }) => {
       >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Write a Review for {event.vendor.name}</ModalHeader>
+        <ModalHeader>Write a Review for {event.vendor?.name}</ModalHeader>
         <ModalCloseButton />
         <ModalBody pb={6}>
           <FormControl>

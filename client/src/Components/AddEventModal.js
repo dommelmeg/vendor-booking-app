@@ -4,24 +4,16 @@ import { AddIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 
 const AddEventModal = () => {
-  const { genreInput, setGenreInput, vendorNameInput, setVendorNameInput, vendors, events, setEvents, setUserEvents, userEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput } = useContext(VendorBookingContext)
+  const { genreInput, setGenreInput, vendorNameInput, setVendorNameInput, vendors, setVendors, events, setEvents, setUserEvents, userEvents, vendorLength, eventNameInput, setEventNameInput, dateInput, setDateInput, imageUrlInput, setImageUrlInput, vendorInput, setVendorInput } = useContext(VendorBookingContext)
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
 
-  const addNewVendorSelect = vendorInput === 'addNewVendor'
 
-  const handleSubmitClick = (e) => {
-    e.preventDefault()
+  const handleCreateEvent = (formData) => {
+    console.log(formData)
 
-    const formData = {
-      event_name: eventNameInput,
-      date: dateInput,
-      image_url: imageUrlInput,
-      vendor_id: vendorInput
-    }
-    
     fetch('/events', {
       method: 'POST',
       headers: {
@@ -34,12 +26,59 @@ const AddEventModal = () => {
         setEvents([...events, newEvent])
         setUserEvents([...userEvents, newEvent])
       })
-    
-    // setEventNameInput('')
-    // setDateInput('')
-    // setImageUrlInput(`${events_default}`)
-    // setVendorInput('')
+
+    setEventNameInput('')
+    setDateInput('')
+    setImageUrlInput('')
+    setVendorInput('')
+
     onClose()
+  }
+
+  const handleCreateVendor = async () => {
+    const vendorData = {
+      name: vendorNameInput,
+      genre: genreInput
+    }
+
+    let response = await fetch('/vendors', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(vendorData)
+    })
+      .then((r) => r.json())
+      .then((newVendor) => {
+        setVendors([...vendors, newVendor])
+        return newVendor
+      })
+    
+    const formData = {
+      event_name: eventNameInput,
+      date: dateInput,
+      image_url: imageUrlInput,
+      vendor_id: response.id
+    }
+      
+    handleCreateEvent(formData)
+  }
+
+  const handleSubmitClick = (e) => {
+    e.preventDefault()
+
+    if (vendorInput === 'addNewVendor') {
+      handleCreateVendor()
+    } else {
+      const formData = {
+        event_name: eventNameInput,
+        date: dateInput,
+        image_url: imageUrlInput,
+        vendor_id: vendorInput
+      }
+
+      handleCreateEvent(formData)
+    }
   }
 
   return (
@@ -83,7 +122,7 @@ const AddEventModal = () => {
             <Select placeholder='Select Vendor' onChange={(e) => setVendorInput(e.target.value)}>
               <option value='addNewVendor'>Add a New Vendor</option>
               {vendorLength && vendors.map((vendor) => {
-                return(<option value={vendor.id} key={vendor.id}>{vendor.name}</option>)
+                return(<option value={vendor.id} key={vendor.id}>{vendor?.name}</option>)
                 })}
             </Select>
           </FormControl>

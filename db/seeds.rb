@@ -2,12 +2,12 @@ Vendor.destroy_all
 Event.destroy_all
 
 # Vendors
-the_dundies = Vendor.create(name: 'The Dundies', genre: 'Rock', price_range: 3)
-bachelor_boys_band = Vendor.create(name: 'Bachelor Boys Band', genre: 'Contemporary', price_range: 3)
-sam_hill_bands = Vendor.create(name: 'Sam Hill Bands', genre: 'Country', price_range: 2)
-munchkinlanders = Vendor.create(name: 'Munchkinlanders', genre: 'Folk', price_range: 1)
-scrantonicity = Vendor.create(name: 'Scrantonicity', genre: 'Wedding Band', price_range: 1)
-here_comes_treble = Vendor.create(name: 'Here Comes Treble', genre: 'Acapella', price_range: 4)
+the_dundies = Vendor.create(name: 'The Dundies', genre: 'Rock')
+bachelor_boys_band = Vendor.create(name: 'Bachelor Boys Band', genre: 'Contemporary')
+sam_hill_bands = Vendor.create(name: 'Sam Hill Bands', genre: 'Country')
+munchkinlanders = Vendor.create(name: 'Munchkinlanders', genre: 'Folk')
+scrantonicity = Vendor.create(name: 'Scrantonicity', genre: 'Wedding Band')
+here_comes_treble = Vendor.create(name: 'Here Comes Treble', genre: 'Acapella')
 
 # Events
 ##User1

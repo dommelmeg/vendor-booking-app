@@ -27,7 +27,7 @@ const BandCards = ({ vendor }) => {
       <CardBody>
         <VStack  alignItems='left'>
           <Text color='purple.400' fontWeight='bold' fontSize='xs'>{vendor.genre.toUpperCase()}</Text>
-          <Heading size='md'>{vendor.name}</Heading>
+          <Heading size='md'>{vendor?.name}</Heading>
           <HStack marginTop='2' spacing='-1'>
           {!avgRating && <em>No Reviews Yet</em>}
           {avgRating === 0 && <em>No Reviews Yet</em>}
