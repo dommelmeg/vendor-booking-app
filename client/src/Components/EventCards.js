@@ -23,6 +23,10 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
       setShowReviewButton(false)
     }
   }, [event.review, setShowReviewButton])
+
+  const eventDate = event.date
+  const moment = require('moment')
+  const formattedEventDate = moment(eventDate).format('ll')
   
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
@@ -65,8 +69,10 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
           borderRadius='lg'
         />
         <Stack mt='6' spacing='3'>
-          {/* <Text fontSize='2xl'>{dateTimeFormat3.format(eventDate)}</Text> */}
           <Heading size='md'>{event.event_name}</Heading>
+          <Stack spacing='0'>
+            <Text fontSize='xl' color='purple.500'><b>{formattedEventDate}</b></Text>
+          </Stack>
           <Text>
             <Icon marginRight='2' as={CiMusicNote1} /> {event.vendor?.name}
           </Text>
@@ -78,12 +84,11 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
           <EditEvent event={event} />
           {/* {event.review === null && showReviewButton && <LeaveReviewModal event={event} /> } */}
           {event.review === null && showReviewButton && 
-            <LeaveReviewModal 
-              event={event} 
-              showReviewButton={showReviewButton} 
-              setShowReviewButton={setShowReviewButton} 
-            /> 
-          }
+          <LeaveReviewModal 
+            event={event} 
+            showReviewButton={showReviewButton} 
+            setShowReviewButton={setShowReviewButton} 
+          />}
           <Button size='md' variant='ghost' colorScheme='grey' onClick={handleDeleteClick}>
             <DeleteIcon />
           </Button>

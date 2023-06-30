@@ -21,7 +21,6 @@ const EditEvent = ({ event }) => {
   const [imageUrlInput, setImageUrlInput] = useState(event.image_url)
   const [vendorInput, setVendorInput] = useState(event.vendor_id)
 
-  // fix this
   const handleSubmitClick = (e) => {
     e.preventDefault()
 
@@ -50,10 +49,6 @@ const EditEvent = ({ event }) => {
         })
         setUserEvents(updatedUserEvents)
 
-        // map through vendors to find matching updatedEvent.vendor id
-        // map through that vendors events to find event id that matches updatedEvent.vendor id
-        // update that event 
-
         const updatedVendors = vendors.map((vendor) => {
           if (vendor.id === updatedEvent.vendor_id) {
             const { events: vendorEvents, ...restVendor } = vendor
@@ -74,6 +69,7 @@ const EditEvent = ({ event }) => {
       onClose()
     }
 
+    console.log(dateInput)
   return(
     <>
       <Button size='md' onClick={onOpen} variant='solid' colorScheme='purple'>
@@ -106,7 +102,7 @@ const EditEvent = ({ event }) => {
             <FormLabel>Date</FormLabel>
             <Input
               onChange={(e) => setDateInput(e.target.value)}
-              type="datetime-local"
+              type="date"
               value={dateInput}
             />
           </FormControl>
