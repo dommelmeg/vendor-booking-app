@@ -7,7 +7,9 @@ const LeaveReviewModal = ({ event }) => {
   const { 
     setEvents, 
     events,
-    setShowReviewButton 
+    setShowReviewButton,
+    vendors,
+    setVendors
   } = useContext(VendorBookingContext)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -17,6 +19,7 @@ const LeaveReviewModal = ({ event }) => {
   const [reviewInput, setReviewInput] = useState('')
   const [ratingInput, setRatingInput] = useState(null)
 
+  //test this!!!
   const handleSubmitClick = () => {
     fetch(`/events/${event.id}`, {
       method: "PATCH",
@@ -30,6 +33,7 @@ const LeaveReviewModal = ({ event }) => {
     })
       .then((r) => r.json())
       .then((newReview) => {
+        console.log(newReview)
         const updatedEvents = events.map((oneEvent) => {
           if (oneEvent.id === newReview.id) {
             const { rating, review, ...rest } = oneEvent
@@ -48,28 +52,28 @@ const LeaveReviewModal = ({ event }) => {
 
 // this isnt working!!!
 
-      //   const updatedVendors = vendors.map((oneVendor) => {
-      //     if (oneVendor.id === newReview.id) {
-      //       const { events: vendorEvents, ...restVendor } = oneVendor
-      //       const updatedVendorEvents = vendorEvents.map((singleEvent) => {
-      //         if (singleEvent.id === newReview.id) {
-      //           const { rating, review, ...restEvent } = singleEvent
-      //           return { 
-      //             rating: newReview.rating,
-      //             review: newReview.review,
-      //             ...restEvent
-      //           }
-      //       } else {
-      //         return singleEvent
-      //       }
-      //     })
-      //     return { events: updatedVendorEvents, ...restVendor }
-      //   } else {
-      //     return oneVendor
-      //   }
-      // })
-      // setVendors(updatedVendors)
-    })
+        const updatedVendors = vendors.map((oneVendor) => {
+          if (oneVendor.id === newReview.vendor_id) {
+            const { events: vendorEvents, ...restVendor } = oneVendor
+            const updatedVendorEvents = vendorEvents.map((singleEvent) => {
+              if (singleEvent.id === newReview.id) {
+                const { rating, review, ...restEvent } = singleEvent
+                return { 
+                  rating: newReview.rating,
+                  review: newReview.review,
+                  ...restEvent
+                }
+            } else {
+              return singleEvent
+            }
+          })
+          return { events: updatedVendorEvents, ...restVendor }
+        } else {
+          return oneVendor
+        }
+      })
+      setVendors(updatedVendors)
+      })
 
     onClose()
   }
