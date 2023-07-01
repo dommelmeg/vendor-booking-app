@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react";
-import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { AlertIcon, Alert, Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { VendorBookingContext } from "../context/vendorBooking"
 
 const Login = () => {
   const { setUser } = useContext(VendorBookingContext)
+
+  const [show, setShow] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [show, setShow] = React.useState(false)
+  const [errors, setErrors] = useState([])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -21,8 +23,7 @@ const Login = () => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       } else {
-        // r.json().then((err) => setErrors(err.errors));
-        console.log('whomp whomp')
+        r.json().then((errorData) => setErrors(errorData.error.login))
       }
     })
   }
@@ -35,6 +36,11 @@ const Login = () => {
             Sign In
           </Heading>
 
+          {errors.length > 0 && 
+          <Alert status='error'>
+            <AlertIcon />
+            {errors}
+          </Alert>}
           <FormControl isRequired>
             <FormLabel>Username</FormLabel>
             <Input

@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
   def index
     events = Event.all
@@ -54,6 +55,10 @@ class EventsController < ApplicationController
 
   def event_params
     params.permit(:vendor_id, :event_name, :date, :image_url, :review, :rating)
+  end
+
+  def render_not_found_response
+    render json: { error: "Event not found" }, status: :not_found
   end
   
 end

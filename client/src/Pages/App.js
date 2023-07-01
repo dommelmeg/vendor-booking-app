@@ -27,7 +27,7 @@ function App() {
       .then((r) => {
         if (r.ok) {
           r.json().then((user) => setUser(user))
-        }
+        } 
       })
   }, [])
 
@@ -38,7 +38,7 @@ function App() {
       .then((r) => {
         if (r.ok) {
           r.json().then((events) => setUserEvents(events))
-        }
+        } 
       })
   }, [user])
 

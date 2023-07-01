@@ -69,7 +69,6 @@ const EditEvent = ({ event }) => {
       onClose()
     }
 
-    console.log(dateInput)
   return(
     <>
       <Button size='md' onClick={onOpen} variant='solid' colorScheme='purple'>
