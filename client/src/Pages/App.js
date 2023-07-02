@@ -38,7 +38,9 @@ function App() {
       .then((r) => {
         if (r.ok) {
           r.json().then((events) => setUserEvents(events))
-        } 
+        } else {
+          r.json().then((errorData) => console.log(errorData.errors)) 
+        }
       })
   }, [user])
 

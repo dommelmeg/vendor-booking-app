@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
-import { Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
+import { Alert, AlertIcon, Container, Center, VStack, Heading, FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
 import { VendorBookingContext } from "../context/vendorBooking";
 
 const CreateAccount = () => {
   const { setUser } = useContext(VendorBookingContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  const [errors, setErrors] = useState([])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -23,8 +23,15 @@ const CreateAccount = () => {
       },
       body: JSON.stringify(newUserData),
     })
-      .then((r) => r.json())
-      .then((newUser) => setUser(newUser))
+      .then((r) => {
+        if (r.ok) {
+          r.json()
+            .then((newUser) => setUser(newUser))
+        } else {
+          r.json()
+            .then((errorData) => setErrors(errorData.errors))
+        }
+      })
   }
 
   return(
@@ -35,8 +42,13 @@ const CreateAccount = () => {
             Create an Account
           </Heading>
 
-          <FormControl isRequired>
+          {errors.length > 0 && 
+          <Alert status='error'>
+            <AlertIcon />
+            {errors}
+          </Alert>}
 
+          <FormControl isRequired>
             <FormLabel>Username</FormLabel>
             <Input 
               type='text'
@@ -45,20 +57,12 @@ const CreateAccount = () => {
               onChange={(e) => setUsername(e.target.value)} 
             />
 
-            <FormLabel>Password</FormLabel>
+            <FormLabel mt='2'>Password</FormLabel>
             <Input 
               type='password'
               id='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <FormLabel>Password Confirmation</FormLabel>
-            <Input 
-              type='password'
-              id="password_confirmation"
-              value={passwordConfirmation}
-              onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
           </FormControl>
 

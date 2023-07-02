@@ -8,7 +8,11 @@ class EventsController < ApplicationController
 
   def user_index
     user_events = Event.where(user_id: session[:user_id])
-    render json: user_events
+    if user_events
+      render json: user_events.order('date')
+    else
+      render json: { errors: user_events.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def show

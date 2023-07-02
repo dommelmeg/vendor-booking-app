@@ -8,6 +8,7 @@ import LeaveReviewModal from "./LeaveReviewModal"
 
 const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
   const { 
+    user,
     userEvents, 
     setUserEvents, 
     events, 
@@ -22,7 +23,7 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
     } else {
       setShowReviewButton(false)
     }
-  }, [event.review, setShowReviewButton])
+  }, [event.review, setShowReviewButton, user])
 
   const eventDate = event.date
   const moment = require('moment')
@@ -59,6 +60,8 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
       }
     })
   }
+
+  console.log(`${event.event_name}: (${showReviewButton}) :${event.review}`)
   
   return(
     <Card>

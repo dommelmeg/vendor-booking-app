@@ -21,9 +21,11 @@ const Login = () => {
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json()
+          .then((user) => setUser(user));
       } else {
-        r.json().then((errorData) => setErrors(errorData.error.login))
+        r.json()
+          .then((errorData) => setErrors(errorData.error.login))
       }
     })
   }
@@ -41,15 +43,17 @@ const Login = () => {
             <AlertIcon />
             {errors}
           </Alert>}
+
           <FormControl isRequired>
             <FormLabel>Username</FormLabel>
             <Input
+              placeholder='Username'
               type='text'
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             
-            <FormLabel>Password</FormLabel>
+            <FormLabel mt='2'>Password</FormLabel>
             <InputGroup size='md'>
               <Input
                 pr='4.5rem'
