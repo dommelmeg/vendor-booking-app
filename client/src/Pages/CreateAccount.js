@@ -3,7 +3,7 @@ import { Alert, AlertIcon, Container, Center, VStack, Heading, FormControl, Form
 import { VendorBookingContext } from "../context/vendorBooking";
 
 const CreateAccount = () => {
-  const { setUser } = useContext(VendorBookingContext)
+  const { setUser, setAllUsers, allUsers } = useContext(VendorBookingContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState([])
@@ -26,7 +26,9 @@ const CreateAccount = () => {
       .then((r) => {
         if (r.ok) {
           r.json()
-            .then((newUser) => setUser(newUser))
+            .then((newUser) => {
+              setUser(newUser)
+            })
         } else {
           r.json()
             .then((errorData) => setErrors(errorData.errors))
@@ -67,7 +69,7 @@ const CreateAccount = () => {
           </FormControl>
 
           <Text>
-            Already have an account? <a href="/login">Login here!</a>
+            Already have an account? <a href="/login"><i>Login here!</i></a>
           </Text>
 
           <Button 

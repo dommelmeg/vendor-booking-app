@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Icon, Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
@@ -6,7 +6,7 @@ import EditEvent from './EditEvent'
 import { CiMusicNote1 } from 'react-icons/ci'
 import LeaveReviewModal from "./LeaveReviewModal"
 
-const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
+const EventCard = ({ event }) => {
   const { 
     user,
     userEvents, 
@@ -16,6 +16,12 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
     vendors, 
     setVendors 
   } = useContext(VendorBookingContext)
+  
+  const [showReviewButton, setShowReviewButton] = useState(false)
+
+  const eventDate = event.date
+  const moment = require('moment')
+  const formattedEventDate = moment(eventDate).format('ll')
 
   useEffect(() => {
     if (event.review === null) {
@@ -25,9 +31,6 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
     }
   }, [event.review, setShowReviewButton, user])
 
-  const eventDate = event.date
-  const moment = require('moment')
-  const formattedEventDate = moment(eventDate).format('ll')
   
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
@@ -60,8 +63,6 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
       }
     })
   }
-
-  console.log(`${event.event_name}: (${showReviewButton}) :${event.review}`)
   
   return(
     <Card>
@@ -70,6 +71,7 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
           src={event.image_url}
           alt={event.event_name}
           borderRadius='lg'
+          maxH='200px'
         />
         <Stack mt='6' spacing='3'>
           <Heading size='md'>{event.event_name}</Heading>
@@ -85,7 +87,6 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
       <CardFooter>
         <ButtonGroup spacing='2'>
           <EditEvent event={event} />
-          {/* {event.review === null && showReviewButton && <LeaveReviewModal event={event} /> } */}
           {event.review === null && showReviewButton && 
           <LeaveReviewModal 
             event={event} 
@@ -101,4 +102,4 @@ const EventCards = ({ event, showReviewButton, setShowReviewButton }) => {
   )
 }
 
-export default EventCards
+export default EventCard

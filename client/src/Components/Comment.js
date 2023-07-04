@@ -4,11 +4,11 @@ import { CheckIcon, CloseIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { VendorBookingContext } from "../context/vendorBooking"
 import { AiFillStar } from 'react-icons/ai'
 
-const Comment = ({ event, isLast, showReviewButton, setShowReviewButton }) => {
+const Comment = ({ event, isLast }) => {
   const { 
     user, 
-    events, 
-    setEvents, 
+    userEvents, 
+    setUserEvents, 
     vendors, 
     setVendors, 
     allUsers, 
@@ -53,7 +53,7 @@ const Comment = ({ event, isLast, showReviewButton, setShowReviewButton }) => {
   }
 
   const handleDeleteBtn = () => {
-    setShowReviewButton(true)
+    // setShowReviewButton(true)
 
     fetch(`/events/${event.id}`, {
       method: 'PATCH',
@@ -66,7 +66,7 @@ const Comment = ({ event, isLast, showReviewButton, setShowReviewButton }) => {
     })
     .then((r) => r.json())
     .then((deletedReview) => {
-      const updatedEvents = events.map((event) => {
+      const updatedEvents = userEvents.map((event) => {
         if (event.id === deletedReview.id) {
           const { rating, review, ...rest } = event
           return { 
@@ -78,7 +78,7 @@ const Comment = ({ event, isLast, showReviewButton, setShowReviewButton }) => {
           return event
         }
       })
-      setEvents(updatedEvents)
+      setUserEvents(updatedEvents)
   
       const updatedVendors = vendors.map((vendor) => {
         if (vendor.id === deletedReview.vendor_id) {
@@ -147,7 +147,7 @@ const Comment = ({ event, isLast, showReviewButton, setShowReviewButton }) => {
           value={updatedReview}
           onChange={(e) => setUpdatedReview(e.target.value)}
           />
-          {allUsers.map((user) => {
+          {allUsers.length > 0 && allUsers.map((user) => {
             if (user.id === event.user_id) {
               return (
                 <Text key={event.id} fontStyle='italic' fontSize='2xs' >

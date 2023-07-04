@@ -10,24 +10,6 @@ const VendorBookingProvider = ({ children }) => {
   const [allUsers, setAllUsers] = useState([])
 
   const vendorLength = vendors.length > 0
-
-  useEffect(() => {
-    fetch('/events')
-      .then((r) => r.json())
-      .then((allEvents) => setEvents(allEvents))
-  }, [])
-
-  useEffect(() => {
-    fetch('/users')
-      .then((r) => r.json())
-      .then((users) => setAllUsers(users))
-  }, [])
-
-  useEffect(() => {
-    fetch('/vendors')
-      .then((r) => r.json())
-      .then((vendors) => setVendors(vendors))
-  }, [])
   
   return (
     <VendorBookingContext.Provider value={{ user, setUser, vendors, setVendors, events, setEvents, vendorLength, userEvents, setUserEvents, allUsers, setAllUsers }} >

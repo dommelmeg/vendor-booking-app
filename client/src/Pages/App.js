@@ -12,15 +12,16 @@ function App() {
   const { 
     user, 
     setUser, 
-    setUserEvents 
+    setUserEvents,
+    setVendors,
+    setEvents,
+    setAllUsers 
   } = useContext(VendorBookingContext)
 
   const navigate = useNavigate()
   const location = useLocation()
   const isCreateAcct = location.pathname === '/signup'
   const isLogin = location.pathname === '/login'
-
-  const [showReviewButton, setShowReviewButton] = useState(false)
   
   useEffect(() => {
     fetch("/me")
@@ -33,6 +34,18 @@ function App() {
 
   useEffect(() => {
     user && navigate('/')
+
+    fetch('/users')
+      .then((r) => r.json())
+      .then((users) => setAllUsers(users))
+
+    // fetch('/events')
+    //   .then((r) => r.json())
+    //   .then((allEvents) => setEvents(allEvents))
+
+    fetch('/vendors')
+      .then((r) => r.json())
+      .then((vendors) => setVendors(vendors))
 
     fetch("/userevents")
       .then((r) => {
@@ -57,18 +70,12 @@ function App() {
         <Routes>
           <Route path='/' element={
             <GridItem rowSpan={9} colSpan={6}>
-              <Dashboard 
-                showReviewButton={showReviewButton} 
-                setShowReviewButton={setShowReviewButton} 
-              />
+              <Dashboard />
             </GridItem>} 
           />
           <Route path='/all-bands' element={
             <GridItem rowSpan={9} colSpan={6}>
-              <AllBands 
-                showReviewButton={showReviewButton} 
-                setShowReviewButton={setShowReviewButton} 
-              />
+              <AllBands />
             </GridItem>} 
           />
           <Route path='/signup' element={

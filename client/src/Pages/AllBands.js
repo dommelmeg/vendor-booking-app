@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
 import { HStack, Text, Box, SimpleGrid } from '@chakra-ui/react'
-import BandCards from "../Components/BandCards";
+import BandCard from "../Components/BandCard";
 import { VendorBookingContext } from "../context/vendorBooking"
 import Header from "../Components/Header";
 
-const AllBands = ({ showReviewButton, setShowReviewButton }) => {
+const AllBands = () => {
   const { 
     vendors, 
     vendorLength 
   } = useContext(VendorBookingContext)
+
+  console.log(vendors)
 
   return (
     <Box h='calc(100vh)' margin='4'>
@@ -22,11 +24,9 @@ const AllBands = ({ showReviewButton, setShowReviewButton }) => {
         <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))' marginTop='4' >
           {vendorLength && vendors.map((vendor) => {
             return(
-              <BandCards 
+              <BandCard
                 key={vendor.id} 
-                vendor={vendor} 
-                showReviewButton={showReviewButton} 
-                setShowReviewButton={setShowReviewButton} 
+                vendor={vendor}
               />
             )})}
         </SimpleGrid>

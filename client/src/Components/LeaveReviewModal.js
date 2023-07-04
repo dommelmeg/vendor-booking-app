@@ -3,10 +3,10 @@ import { Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, 
 import { VendorBookingContext } from "../context/vendorBooking"
 import StarRating from "./StarRating";
 
-const LeaveReviewModal = ({ event, showReviewButton, setShowReviewButton }) => {
+const LeaveReviewModal = ({ event, setShowReviewButton }) => {
   const { 
-    setEvents, 
-    events,
+    setUserEvents, 
+    userEvents,
     vendors,
     setVendors
   } = useContext(VendorBookingContext)
@@ -32,7 +32,7 @@ const LeaveReviewModal = ({ event, showReviewButton, setShowReviewButton }) => {
       .then((r) => r.json())
       .then((newReview) => {
         console.log(newReview)
-        const updatedEvents = events.map((oneEvent) => {
+        const updatedEvents = userEvents.map((oneEvent) => {
           if (oneEvent.id === newReview.id) {
             const { rating, review, ...rest } = oneEvent
             return {
@@ -44,10 +44,8 @@ const LeaveReviewModal = ({ event, showReviewButton, setShowReviewButton }) => {
             return oneEvent
           }
         })
-        setEvents(updatedEvents)
-
-        setShowReviewButton(false)
-
+        setUserEvents(updatedEvents)
+        
         const updatedVendors = vendors.map((oneVendor) => {
           if (oneVendor.id === newReview.vendor_id) {
             const { events: vendorEvents, ...restVendor } = oneVendor
@@ -59,18 +57,19 @@ const LeaveReviewModal = ({ event, showReviewButton, setShowReviewButton }) => {
                   review: newReview.review,
                   ...restEvent
                 }
-            } else {
-              return singleEvent
-            }
-          })
-          return { events: updatedVendorEvents, ...restVendor }
-        } else {
-          return oneVendor
-        }
+              } else {
+                return singleEvent
+              }
+            })
+            return { events: updatedVendorEvents, ...restVendor }
+          } else {
+            return oneVendor
+          }
+        })
+        setVendors(updatedVendors)
       })
-      setVendors(updatedVendors)
-      })
-
+      
+    setShowReviewButton(false)
     onClose()
   }
 

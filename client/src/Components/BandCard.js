@@ -1,22 +1,19 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Comment from "./Comment"
 
 import { Card, CardBody, Heading, Text, HStack, VStack, Popover, PopoverTrigger, Button, Portal, PopoverContent, PopoverArrow, PopoverBody,PopoverHeader, PopoverCloseButton } from "@chakra-ui/react"
 import { AiFillStar } from 'react-icons/ai'
 
-const BandCards = ({ vendor, showReviewButton, setShowReviewButton }) => {
+const BandCard = ({ vendor }) => {
   const vendorEvents = vendor.events
-  
+
   const eventsWithReviews = vendorEvents.filter((event) => {
     if(event.rating != null) {
       return event
     }
   })
-  const sum = eventsWithReviews.reduce(
-    (acc, currVal) => acc + currVal.rating,
-    0,
-    )
-    
+  
+  const sum = eventsWithReviews.reduce((acc, currVal) => acc + currVal.rating, 0,)
   const avgRating = Math.floor(sum/eventsWithReviews.length)
   
   return(
@@ -57,8 +54,6 @@ const BandCards = ({ vendor, showReviewButton, setShowReviewButton }) => {
                     key={event.id} 
                     event={event} 
                     isLast={eventsWithReviews.length - 1 === idx}
-                    showReviewButton={showReviewButton}
-                    setShowReviewButton={setShowReviewButton}
                   />
                 )}
               </PopoverBody>
@@ -71,4 +66,4 @@ const BandCards = ({ vendor, showReviewButton, setShowReviewButton }) => {
   )
 }
 
-export default BandCards
+export default BandCard

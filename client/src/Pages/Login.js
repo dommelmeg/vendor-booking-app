@@ -71,7 +71,7 @@ const Login = () => {
           </FormControl>
 
           <Text>
-            Don't have an account? <a href='/signup'>Sign up here!</a>
+            Don't have an account? <a href='/signup'><i>Sign up here!</i></a>
           </Text>
 
           <Button 

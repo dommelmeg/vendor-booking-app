@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { HStack, Text, Box, SimpleGrid } from '@chakra-ui/react'
-import EventCards from "../Components/EventCards";
+import EventCard from "../Components/EventCard";
 import { useNavigate } from 'react-router-dom'
 import AddEventModal from "../Components/AddEventModal";
 import { VendorBookingContext } from "../context/vendorBooking"
@@ -34,7 +34,7 @@ const Dashboard = ({ showReviewButton, setShowReviewButton }) => {
         {userEvents.length > 0 ? (
           userEvents.map((event) => {
             return (
-              <EventCards 
+              <EventCard
                 event={event} 
                 key={event.id} 
                 showReviewButton={showReviewButton} 

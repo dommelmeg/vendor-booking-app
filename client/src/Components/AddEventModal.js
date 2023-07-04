@@ -48,6 +48,7 @@ const AddEventModal = () => {
     })
       .then((r) => r.json())
       .then((newEvent) => {
+        console.log(events)
         setEvents([...events, newEvent])
         setUserEvents([...userEvents, newEvent])
       })
@@ -130,7 +131,7 @@ const AddEventModal = () => {
             <FormLabel>Date</FormLabel>
             <Input 
               onChange={(e) => setDateInput(e.target.value)}
-              type="datetime-local"
+              type="date"
               value={dateInput}
               />
           </FormControl>
