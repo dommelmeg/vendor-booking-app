@@ -33,28 +33,30 @@ function App() {
   }, [])
 
   useEffect(() => {
-    user && navigate('/')
-
-    fetch('/users')
-      .then((r) => r.json())
-      .then((users) => setAllUsers(users))
-
-    // fetch('/events')
-    //   .then((r) => r.json())
-    //   .then((allEvents) => setEvents(allEvents))
-
-    fetch('/vendors')
-      .then((r) => r.json())
-      .then((vendors) => setVendors(vendors))
-
-    fetch("/userevents")
-      .then((r) => {
-        if (r.ok) {
-          r.json().then((events) => setUserEvents(events))
-        } else {
-          r.json().then((errorData) => console.log(errorData.errors)) 
-        }
-      })
+    if (user) {
+      navigate('/')
+  
+      fetch('/users')
+        .then((r) => r.json())
+        .then((users) => setAllUsers(users))
+  
+      // fetch('/events')
+      //   .then((r) => r.json())
+      //   .then((allEvents) => setEvents(allEvents))
+  
+      fetch('/vendors')
+        .then((r) => r.json())
+        .then((vendors) => setVendors(vendors))
+  
+      fetch("/userevents")
+        .then((r) => {
+          if (r.ok) {
+            r.json().then((events) => setUserEvents(events))
+          } else {
+            r.json().then((errorData) => console.log(errorData.errors)) 
+          }
+        })
+    }
   }, [user])
 
   const showNav = !isCreateAcct && !isLogin

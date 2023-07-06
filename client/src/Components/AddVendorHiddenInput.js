@@ -1,10 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import { Divider, FormControl, FormLabel, Input } from "@chakra-ui/react"
 
-const AddVendorHiddenInput = () => {
-  const [vendorNameInput, setVendorNameInput] = useState('')
-  const [genreInput, setGenreInput] = useState('')
-
+const AddVendorHiddenInput = ({ vendorNameInput, setVendorNameInput, genreInput, setGenreInput }) => {
   return (
     <>
       <Divider mt='4' />
@@ -19,7 +16,7 @@ const AddVendorHiddenInput = () => {
       </FormControl>
 
       <FormControl>
-        <FormLabel>Genre</FormLabel>
+        <FormLabel mt='2'>Genre</FormLabel>
         <Input 
           placeholder='Genre'
           onChange={(e) => setGenreInput(e.target.value)}

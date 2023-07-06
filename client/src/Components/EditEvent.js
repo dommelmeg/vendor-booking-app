@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select } from '@chakra-ui/react'
+import { Alert, AlertIcon, VStack, Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select } from '@chakra-ui/react'
 import { VendorBookingContext } from "../context/vendorBooking";
 import AddVendorHiddenInput from "./AddVendorHiddenInput";
 
@@ -20,6 +20,7 @@ const EditEvent = ({ event }) => {
   const [dateInput, setDateInput] = useState(event.date)
   const [imageUrlInput, setImageUrlInput] = useState(event.image_url)
   const [vendorInput, setVendorInput] = useState(event.vendor_id)
+  const [errors, setErrors] = useState([])
 
   const handleSubmitClick = (e) => {
     e.preventDefault()
@@ -38,35 +39,40 @@ const EditEvent = ({ event }) => {
       },
       body: JSON.stringify(eventData),
     })
-      .then((r) => r.json())
-      .then((updatedEvent) => {
-        const updatedUserEvents = userEvents.map((event) => {
-          if (event.id === updatedEvent.id) {
-            return updatedEvent
-          } else {
-            return event
-          }
-        })
-        setUserEvents(updatedUserEvents)
-
-        const updatedVendors = vendors.map((vendor) => {
-          if (vendor.id === updatedEvent.vendor_id) {
-            const { events: vendorEvents, ...restVendor } = vendor
-            const updatedVendorEvents = vendorEvents.map((event) => {
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((updatedEvent) => {
+            const updatedUserEvents = userEvents.map((event) => {
               if (event.id === updatedEvent.id) {
                 return updatedEvent
               } else {
                 return event
               }
             })
-            return { events: updatedVendorEvents, ...restVendor}
-          } else {
-            return vendor
-          }
-        })
-        setVendors(updatedVendors)
+            setUserEvents(updatedUserEvents)
+    
+            const updatedVendors = vendors.map((vendor) => {
+              if (vendor.id === updatedEvent.vendor_id) {
+                const { events: vendorEvents, ...restVendor } = vendor
+                const updatedVendorEvents = vendorEvents.map((event) => {
+                  if (event.id === updatedEvent.id) {
+                    return updatedEvent
+                  } else {
+                    return event
+                  }
+                })
+                return { events: updatedVendorEvents, ...restVendor}
+              } else {
+                return vendor
+              }
+            })
+            setVendors(updatedVendors)
+          })
+          onClose()
+        } else {
+          r.json().then((errorData) => setErrors(errorData.errors))
+        }
       })
-      onClose()
     }
 
   return(
@@ -86,6 +92,22 @@ const EditEvent = ({ event }) => {
           <ModalHeader>Edit Event</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
+
+            {errors.length > 0 && 
+            <Alert status='error'>
+
+              <AlertIcon />
+              <VStack marginLeft='4'>
+              <ul>
+              {errors.map((error) => {
+                return (
+                    <li key={error}>{error}</li>
+                    )
+                  })}
+                </ul>
+              </VStack>
+            </Alert>}
+
             <FormControl>
               <FormLabel>Name of Event</FormLabel>
               <Input 
@@ -108,7 +130,7 @@ const EditEvent = ({ event }) => {
 
             {event.review === null && 
               <FormControl>
-                <FormLabel>Vendor</FormLabel>
+                <FormLabel mt='2'>Vendor</FormLabel>
                 <Select 
                   defaultValue={event.vendor.id} 
                   onChange={(e) => setVendorInput(e.target.value)}

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { VendorBookingContext } from "../context/vendorBooking"
-
-import { Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select, Divider } from '@chakra-ui/react'
+import { VStack, Alert, AlertIcon, Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select, Divider } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import AddVendorHiddenInput from "./AddVendorHiddenInput";
 
@@ -13,7 +12,7 @@ const AddEventModal = () => {
     setEvents, 
     setUserEvents, 
     userEvents, 
-    vendorLength
+    vendorLength,
   } = useContext(VendorBookingContext)
   
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -27,6 +26,8 @@ const AddEventModal = () => {
   const [vendorNameInput, setVendorNameInput] = useState('')
   const [genreInput, setGenreInput] = useState('')
 
+  const [errors, setErrors] = useState([])
+
   const handleClose = () => {
     setEventNameInput('')
     setDateInput('')
@@ -38,7 +39,8 @@ const AddEventModal = () => {
     onClose()
   }
 
-  const handleCreateEvent = (formData) => {
+  const handleCreateEvent = (formData, response) => {
+
     fetch('/events', {
       method: 'POST',
       headers: {
@@ -46,14 +48,32 @@ const AddEventModal = () => {
       },
       body: JSON.stringify(formData)
     })
-      .then((r) => r.json())
-      .then((newEvent) => {
-        console.log(events)
-        setEvents([...events, newEvent])
-        setUserEvents([...userEvents, newEvent])
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((newEvent) => {
+            setEvents([...events, newEvent])
+            setUserEvents([...userEvents, newEvent])
+            
+            const updatedVendors = vendors.map((vendor) => {
+              if (vendor.id === newEvent.vendor_id) {
+                const { events: vendorEvents, ...restVendor } = vendor
+                const updatedVendorEvents = [...vendorEvents, newEvent]
+                return {
+                  events: updatedVendorEvents,
+                  ...restVendor
+                }
+              } else {
+                return vendor
+              }
+            })
+            setVendors(updatedVendors)
+            setVendors([...vendors, response])
+          })
+          handleClose()
+        } else {
+          r.json().then((errorData) => setErrors(errorData.errors))
+        }
       })
-
-    handleClose()
   }
 
   const handleCreateVendor = async () => {
@@ -71,7 +91,6 @@ const AddEventModal = () => {
     })
       .then((r) => r.json())
       .then((newVendor) => {
-        setVendors([...vendors, newVendor])
         return newVendor
       })
     
@@ -82,7 +101,7 @@ const AddEventModal = () => {
       vendor_id: response.id
     }
       
-    handleCreateEvent(formData)
+    handleCreateEvent(formData, response)
   }
 
   const handleSubmitClick = (e) => {
@@ -116,8 +135,24 @@ const AddEventModal = () => {
         <ModalHeader>Add an Event</ModalHeader>
         <ModalCloseButton />
         <ModalBody pb={6}>
+
+          {errors.length > 0 && 
+          <Alert status='error'>
+
+            <AlertIcon />
+            <VStack marginLeft='4'>
+            <ul>
+            {errors.map((error) => {
+              return (
+                  <li key={error}>{error}</li>
+                  )
+                })}
+              </ul>
+            </VStack>
+          </Alert>}
+
           <FormControl>
-            <FormLabel>Name of Event</FormLabel>
+            <FormLabel mt='2'>Name of Event</FormLabel>
             <Input 
               ref={initialRef} 
               placeholder='Event Name' 
@@ -137,7 +172,7 @@ const AddEventModal = () => {
           </FormControl>
 
           <FormControl>
-            <FormLabel>Vendor</FormLabel>
+            <FormLabel mt='2'>Vendor</FormLabel>
             <Select placeholder='Select Vendor' onChange={(e) => setVendorInput(e.target.value)}>
               <option value='addNewVendor'>Add a New Vendor</option>
               {vendorLength && vendors.map((vendor) => {
@@ -156,7 +191,7 @@ const AddEventModal = () => {
               />
           </FormControl>
 
-          {vendorInput === 'addNewVendor' && <AddVendorHiddenInput />}
+          {vendorInput === 'addNewVendor' && <AddVendorHiddenInput genreInput={genreInput} setGenreInput={setGenreInput} vendorNameInput={vendorNameInput} setVendorNameInput={setVendorNameInput} />}
         </ModalBody>
 
         <ModalFooter>

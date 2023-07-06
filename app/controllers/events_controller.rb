@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   def index
     events = Event.all
@@ -8,11 +9,7 @@ class EventsController < ApplicationController
 
   def user_index
     user_events = Event.where(user_id: session[:user_id])
-    if user_events
-      render json: user_events.order('date')
-    else
-      render json: { errors: user_events.errors.full_messages }, status: :unprocessable_entity
-    end
+    render json: user_events.order('date')
   end
 
   def show
@@ -22,12 +19,8 @@ class EventsController < ApplicationController
 
   def update
     event = Event.find_by(id: params[:id])
-    if event
-      event.update(event_params)
+      event.update!(event_params)
       render json: event
-    else
-      render json: { error: 'Event not found' }, status: :not_found
-    end
   end
 
   def destroy
@@ -48,11 +41,7 @@ class EventsController < ApplicationController
       date: params[:date],
       image_url: params[:image_url]
     )
-    if new_event.valid?
       render json: new_event, status: :created
-    else
-      render json: { errors: new_event.errors.full_messages }, status: :unprocessable_entity
-    end
   end
 
   private
@@ -63,6 +52,10 @@ class EventsController < ApplicationController
 
   def render_not_found_response
     render json: { error: "Event not found" }, status: :not_found
+  end
+
+  def render_unprocessable_entity_response(invalid)
+    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
   
 end
