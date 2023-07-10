@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
   resources :events
-  resources :vendors
-  resources :users, only: [:index]
+  resources :vendors, only: [:index, :create]
+  resources :users, only: [:index, :show, :create]
 
   post"/signup", to: "users#create"
   get "/me", to: "users#show"

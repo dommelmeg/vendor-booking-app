@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { VendorBookingContext } from "../context/vendorBooking"
-import { VStack, Alert, AlertIcon, Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select, Divider } from '@chakra-ui/react'
+import { VStack, Alert, AlertIcon, Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import AddVendorHiddenInput from "./AddVendorHiddenInput";
 

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Alert, AlertIcon, VStack, Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select } from '@chakra-ui/react'
 import { VendorBookingContext } from "../context/vendorBooking";
-import AddVendorHiddenInput from "./AddVendorHiddenInput";
 
 const EditEvent = ({ event }) => {
   const { 
@@ -135,7 +134,7 @@ const EditEvent = ({ event }) => {
                   defaultValue={event.vendor.id} 
                   onChange={(e) => setVendorInput(e.target.value)}
                 >
-                  <option value='addNewVendor'>Add a New Vendor</option>
+                  {/* <option value='addNewVendor'>Add a New Vendor</option> */}
                   {vendorLength && vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor?.name}</option>)})}
                 </Select>
               </FormControl>
@@ -151,7 +150,7 @@ const EditEvent = ({ event }) => {
                 />
             </FormControl>
 
-            {vendorInput === 'addNewVendor' && <AddVendorHiddenInput />}
+            {/* {vendorInput === 'addNewVendor' && <AddVendorHiddenInput />} */}
 
           </ModalBody>
 
