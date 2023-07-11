@@ -14,8 +14,6 @@ function App() {
     setUser, 
     setUserEvents,
     setVendors,
-    setEvents,
-    setAllUsers 
   } = useContext(VendorBookingContext)
 
   const navigate = useNavigate()
@@ -29,20 +27,15 @@ function App() {
         if (r.ok) {
           r.json().then((user) => {
             setUser(user)
-            setUserEvents(user.events)
           })
         }
       })
   }, [])
   
-  // user & userevents dont need to be here
   useEffect(() => {
     if (user) {
       navigate('/')
-  
-      fetch('/users')
-        .then((r) => r.json())
-        .then((users) => setAllUsers(users))
+      setUserEvents(user.events)
   
       fetch('/vendors')
         .then((r) => r.json())

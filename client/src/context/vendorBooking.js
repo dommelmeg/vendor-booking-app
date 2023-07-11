@@ -7,7 +7,6 @@ const VendorBookingProvider = ({ children }) => {
   const [vendors, setVendors] = useState([])
   const [events, setEvents] = useState([])
   const [userEvents, setUserEvents] = useState([])
-  const [allUsers, setAllUsers] = useState([])
   const [vendorNameInput, setVendorNameInput] = useState('')
   const [genreInput, setGenreInput] = useState('')
 
@@ -21,7 +20,6 @@ const VendorBookingProvider = ({ children }) => {
         events, setEvents, 
         vendorLength, 
         userEvents, setUserEvents, 
-        allUsers, setAllUsers, 
         vendorNameInput, setVendorNameInput, 
         genreInput, setGenreInput 
       }} 

@@ -3,7 +3,7 @@ import { Alert, AlertIcon, Container, Center, VStack, Heading, FormControl, Form
 import { VendorBookingContext } from "../context/vendorBooking";
 
 const CreateAccount = () => {
-  const { setUser, setAllUsers, allUsers } = useContext(VendorBookingContext)
+  const { setUser } = useContext(VendorBookingContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState([])

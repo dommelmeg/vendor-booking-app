@@ -15,6 +15,8 @@ const BandCard = ({ vendor }) => {
   
   const sum = eventsWithReviews.reduce((acc, currVal) => acc + currVal.rating, 0,)
   const avgRating = Math.floor(sum/eventsWithReviews.length)
+
+  console.log(eventsWithReviews)
   
   return(
     <Card

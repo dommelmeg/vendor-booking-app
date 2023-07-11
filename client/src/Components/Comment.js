@@ -11,7 +11,6 @@ const Comment = ({ event, isLast }) => {
     setUserEvents, 
     vendors, 
     setVendors, 
-    allUsers, 
   } = useContext(VendorBookingContext)
   
   const [updatedReview, setUpdatedReview] = useState('')
@@ -147,15 +146,9 @@ const Comment = ({ event, isLast }) => {
           value={updatedReview}
           onChange={(e) => setUpdatedReview(e.target.value)}
           />
-          {allUsers.length > 0 && allUsers.map((user) => {
-            if (user.id === event.user_id) {
-              return (
-                <Text key={event.id} fontStyle='italic' fontSize='2xs' >
-                  – {user.username}, {event.event_name}
-                </Text>
-              )
-            }
-          })}
+          <Text key={event.id} fontStyle='italic' fontSize='2xs' >
+            – {event.username}, {event.event_name}
+          </Text>
       {user?.id === event.user_id && <EditableControls />}
         {!isLast && <Divider marginTop='2' />}
       </Editable>

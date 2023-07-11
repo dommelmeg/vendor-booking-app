@@ -30,7 +30,6 @@ const EventCard = ({ event }) => {
       setShowReviewButton(false)
     }
   }, [event.review, setShowReviewButton, user])
-
   
   const handleDeletedEvent = (deletedEvent) => {
     const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
@@ -64,8 +63,6 @@ const EventCard = ({ event }) => {
     })
   }
 
-  console.log(userEvents)
-  
   return(
     <Card>
       <CardBody>
