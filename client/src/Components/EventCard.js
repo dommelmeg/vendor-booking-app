@@ -63,6 +63,8 @@ const EventCard = ({ event }) => {
       }
     })
   }
+
+  console.log(userEvents)
   
   return(
     <Card>

@@ -131,7 +131,7 @@ const EditEvent = ({ event }) => {
               <FormControl>
                 <FormLabel mt='2'>Vendor</FormLabel>
                 <Select 
-                  defaultValue={event.vendor.id} 
+                  defaultValue={event.vendor_id} 
                   onChange={(e) => setVendorInput(e.target.value)}
                 >
                   {/* <option value='addNewVendor'>Add a New Vendor</option> */}

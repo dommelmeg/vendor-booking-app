@@ -27,11 +27,15 @@ function App() {
     fetch("/me")
       .then((r) => {
         if (r.ok) {
-          r.json().then((user) => setUser(user))
-        } 
+          r.json().then((user) => {
+            setUser(user)
+            setUserEvents(user.events)
+          })
+        }
       })
   }, [])
-
+  
+  // user & userevents dont need to be here
   useEffect(() => {
     if (user) {
       navigate('/')
@@ -40,22 +44,18 @@ function App() {
         .then((r) => r.json())
         .then((users) => setAllUsers(users))
   
-      // fetch('/events')
-      //   .then((r) => r.json())
-      //   .then((allEvents) => setEvents(allEvents))
-  
       fetch('/vendors')
         .then((r) => r.json())
         .then((vendors) => setVendors(vendors))
   
-      fetch("/userevents")
-        .then((r) => {
-          if (r.ok) {
-            r.json().then((events) => setUserEvents(events))
-          } else {
-            r.json().then((errorData) => console.log(errorData.errors)) 
-          }
-        })
+      // fetch("/userevents")
+      //   .then((r) => {
+      //     if (r.ok) {
+      //       r.json().then((events) => setUserEvents(events))
+      //     } else {
+      //       r.json().then((errorData) => console.log(errorData.errors)) 
+      //     }
+      //   })
     }
   }, [user])
 

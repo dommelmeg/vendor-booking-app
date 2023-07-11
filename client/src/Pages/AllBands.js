@@ -10,8 +10,6 @@ const AllBands = () => {
     vendorLength 
   } = useContext(VendorBookingContext)
 
-  console.log(vendors)
-
   return (
     <Box h='calc(100vh)' margin='4'>
       <Box>

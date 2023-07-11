@@ -14,7 +14,18 @@ const VendorBookingProvider = ({ children }) => {
   const vendorLength = vendors.length > 0
   
   return (
-    <VendorBookingContext.Provider value={{ user, setUser, vendors, setVendors, events, setEvents, vendorLength, userEvents, setUserEvents, allUsers, setAllUsers, vendorNameInput, setVendorNameInput, genreInput, setGenreInput }} >
+    <VendorBookingContext.Provider 
+      value={{ 
+        user, setUser, 
+        vendors, setVendors, 
+        events, setEvents, 
+        vendorLength, 
+        userEvents, setUserEvents, 
+        allUsers, setAllUsers, 
+        vendorNameInput, setVendorNameInput, 
+        genreInput, setGenreInput 
+      }} 
+    >
       {children}
     </VendorBookingContext.Provider>
   )
