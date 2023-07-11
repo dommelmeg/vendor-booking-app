@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { ChakraProvider, Grid, GridItem } from '@chakra-ui/react'
 import Dashboard from './Dashboard';
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
@@ -25,9 +25,8 @@ function App() {
     fetch("/me")
       .then((r) => {
         if (r.ok) {
-          r.json().then((user) => {
-            setUser(user)
-          })
+          r.json()
+          .then((user) => setUser(user))
         }
       })
   }, [])
@@ -40,15 +39,6 @@ function App() {
       fetch('/vendors')
         .then((r) => r.json())
         .then((vendors) => setVendors(vendors))
-  
-      // fetch("/userevents")
-      //   .then((r) => {
-      //     if (r.ok) {
-      //       r.json().then((events) => setUserEvents(events))
-      //     } else {
-      //       r.json().then((errorData) => console.log(errorData.errors)) 
-      //     }
-      //   })
     }
   }, [user])
 

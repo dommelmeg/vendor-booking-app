@@ -9,8 +9,7 @@ import Header from "../Components/Header";
 const Dashboard = ({ showReviewButton, setShowReviewButton }) => {
   const { 
     user, 
-    userEvents,
-    setUserEvents 
+    userEvents
   } = useContext(VendorBookingContext)
   
   const navigate = useNavigate()

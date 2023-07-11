@@ -5,7 +5,6 @@ const VendorBookingContext = React.createContext()
 const VendorBookingProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [vendors, setVendors] = useState([])
-  const [events, setEvents] = useState([])
   const [userEvents, setUserEvents] = useState([])
   const [vendorNameInput, setVendorNameInput] = useState('')
   const [genreInput, setGenreInput] = useState('')
@@ -17,7 +16,6 @@ const VendorBookingProvider = ({ children }) => {
       value={{ 
         user, setUser, 
         vendors, setVendors, 
-        events, setEvents, 
         vendorLength, 
         userEvents, setUserEvents, 
         vendorNameInput, setVendorNameInput, 

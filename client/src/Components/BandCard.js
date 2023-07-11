@@ -1,14 +1,29 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Comment from "./Comment"
-
-import { Card, CardBody, Heading, Text, HStack, VStack, Popover, PopoverTrigger, Button, Portal, PopoverContent, PopoverArrow, PopoverBody,PopoverHeader, PopoverCloseButton } from "@chakra-ui/react"
+import { 
+  Card, 
+  CardBody, 
+  Heading, 
+  Text, 
+  HStack, 
+  VStack, 
+  Popover, 
+  PopoverTrigger, 
+  Button, 
+  Portal, 
+  PopoverContent, 
+  PopoverArrow, 
+  PopoverBody,
+  PopoverHeader, 
+  PopoverCloseButton 
+} from "@chakra-ui/react"
 import { AiFillStar } from 'react-icons/ai'
 
 const BandCard = ({ vendor }) => {
   const vendorEvents = vendor.events
 
   const eventsWithReviews = vendorEvents.filter((event) => {
-    if(event.rating != null) {
+    if (event.rating != null) {
       return event
     }
   })
@@ -16,8 +31,6 @@ const BandCard = ({ vendor }) => {
   const sum = eventsWithReviews.reduce((acc, currVal) => acc + currVal.rating, 0,)
   const avgRating = Math.floor(sum/eventsWithReviews.length)
 
-  console.log(eventsWithReviews)
-  
   return(
     <Card
       size='sm'

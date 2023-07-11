@@ -11,8 +11,6 @@ const EventCard = ({ event }) => {
     user,
     userEvents, 
     setUserEvents, 
-    events, 
-    setEvents, 
     vendors, 
     setVendors 
   } = useContext(VendorBookingContext)
@@ -32,8 +30,6 @@ const EventCard = ({ event }) => {
   }, [event.review, setShowReviewButton, user])
   
   const handleDeletedEvent = (deletedEvent) => {
-    const updatedEvents = events.filter((event) => event.id !== deletedEvent.id)
-    setEvents(updatedEvents)
     const updatedUserEvents = userEvents.filter((event) => event.id !== deletedEvent.id)
     setUserEvents(updatedUserEvents)
     

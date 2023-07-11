@@ -4,5 +4,3 @@ class UserSerializer < ActiveModel::Serializer
   has_many :events
   has_many :vendors, through: :events
 end
-
-#user or vendor can see all 

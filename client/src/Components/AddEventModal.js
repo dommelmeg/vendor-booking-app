@@ -8,8 +8,6 @@ const AddEventModal = () => {
   const {  
     vendors, 
     setVendors, 
-    events, 
-    setEvents, 
     setUserEvents, 
     userEvents, 
     vendorLength,
@@ -51,7 +49,6 @@ const AddEventModal = () => {
       .then((r) => {
         if (r.ok) {
           r.json().then((newEvent) => {
-            setEvents([...events, newEvent])
             setUserEvents([...userEvents, newEvent])
             
             const updatedVendors = vendors.map((vendor) => {
