@@ -21,13 +21,7 @@ import { AiFillStar } from 'react-icons/ai'
 
 const BandCard = ({ vendor }) => {
   const vendorEvents = vendor.events
-
-  const eventsWithReviews = vendorEvents.filter((event) => {
-    if (event.rating != null) {
-      return event
-    }
-  })
-  
+  const eventsWithReviews = vendorEvents.filter((event) => event.rating != null)
   const sum = eventsWithReviews.reduce((acc, currVal) => acc + currVal.rating, 0,)
   const avgRating = Math.floor(sum/eventsWithReviews.length)
 

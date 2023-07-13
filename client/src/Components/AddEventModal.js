@@ -1,6 +1,23 @@
 import React, { useContext, useState } from "react";
 import { VendorBookingContext } from "../context/vendorBooking"
-import { VStack, Alert, AlertIcon, Input, Modal, useDisclosure, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, ModalFooter, Select } from '@chakra-ui/react'
+import { 
+  VStack, 
+  Alert, 
+  AlertIcon, 
+  Input, 
+  Modal, 
+  useDisclosure, 
+  Button, 
+  ModalOverlay, 
+  ModalContent, 
+  ModalHeader, 
+  ModalCloseButton, 
+  ModalBody, 
+  FormControl, 
+  FormLabel, 
+  ModalFooter, 
+  Select 
+} from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import AddVendorHiddenInput from "./AddVendorHiddenInput";
 
@@ -23,7 +40,6 @@ const AddEventModal = () => {
   const [vendorInput, setVendorInput] = useState('')
   const [vendorNameInput, setVendorNameInput] = useState('')
   const [genreInput, setGenreInput] = useState('')
-
   const [errors, setErrors] = useState([])
 
   const handleClose = () => {
@@ -38,7 +54,6 @@ const AddEventModal = () => {
   }
 
   const handleCreateEvent = (formData, response) => {
-
     fetch('/events', {
       method: 'POST',
       headers: {
