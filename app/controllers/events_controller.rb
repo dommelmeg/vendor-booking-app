@@ -25,12 +25,8 @@ class EventsController < ApplicationController
 
   def destroy
     event = Event.find_by(id: params[:id])
-    if event
-      event.destroy
-      # head :no_content
-    else
-      render json: { error: 'Event not found' }, status: :not_found
-    end
+    event.destroy
+    head :no_content
   end
 
   def create

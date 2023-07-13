@@ -4,5 +4,4 @@ class Vendor < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :genre, presence: true
-
 end
