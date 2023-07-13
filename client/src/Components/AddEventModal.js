@@ -78,8 +78,8 @@ const AddEventModal = () => {
                 return vendor
               }
             })
-            setVendors(updatedVendors)
-            setVendors([...vendors, response])
+            !response && setVendors(updatedVendors)
+            response && setVendors([...vendors, response])
           })
           handleClose()
         } else {
@@ -188,7 +188,7 @@ const AddEventModal = () => {
             <Select placeholder='Select Vendor' onChange={(e) => setVendorInput(e.target.value)}>
               <option value='addNewVendor'>Add a New Vendor</option>
               {vendorLength && vendors.map((vendor) => {
-                return(<option value={vendor.id} key={vendor.id}>{vendor?.name}</option>)
+                return(<option value={vendor.id} key={vendor.id}>{vendor.name}</option>)
                 })}
             </Select>
           </FormControl>
