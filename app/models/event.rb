@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   belongs_to :vendor, optional: true
 
   validates :event_name, presence: true
+  validates :date, presence: true
   validate :date_cannot_be_in_the_past
 
   def username

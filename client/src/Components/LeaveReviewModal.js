@@ -31,7 +31,6 @@ const LeaveReviewModal = ({ event, setShowReviewButton }) => {
     })
       .then((r) => r.json())
       .then((newReview) => {
-        console.log(newReview)
         const updatedEvents = userEvents.map((oneEvent) => {
           if (oneEvent.id === newReview.id) {
             const { rating, review, ...rest } = oneEvent

@@ -134,7 +134,6 @@ const EditEvent = ({ event }) => {
                   defaultValue={event.vendor_id} 
                   onChange={(e) => setVendorInput(e.target.value)}
                 >
-                  {/* <option value='addNewVendor'>Add a New Vendor</option> */}
                   {vendorLength && vendors.map((vendor) => {return(<option value={vendor.id} key={vendor.id}>{vendor?.name}</option>)})}
                 </Select>
               </FormControl>

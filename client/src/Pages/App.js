@@ -29,6 +29,10 @@ function App() {
           .then((user) => setUser(user))
         }
       })
+
+    if (!user) {
+      navigate('/login')
+    }  
   }, [])
   
   useEffect(() => {
@@ -39,8 +43,6 @@ function App() {
       fetch('/vendors')
         .then((r) => r.json())
         .then((vendors) => setVendors(vendors))
-    } else {
-      navigate('/login')
     }
   }, [user])
 
