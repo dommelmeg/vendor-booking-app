@@ -28,11 +28,7 @@ function App() {
           r.json()
           .then((user) => setUser(user))
         }
-      })
-
-    if (!user) {
-      navigate('/login')
-    }  
+      }) 
   }, [])
   
   useEffect(() => {

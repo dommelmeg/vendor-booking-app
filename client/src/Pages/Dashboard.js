@@ -4,9 +4,16 @@ import EventCard from "../Components/EventCard";
 import AddEventModal from "../Components/AddEventModal";
 import { VendorBookingContext } from "../context/vendorBooking"
 import Header from "../Components/Header";
+import { useNavigate } from "react-router-dom"
+
 
 const Dashboard = ({ showReviewButton, setShowReviewButton }) => {
-  const { userEvents } = useContext(VendorBookingContext)
+  const { userEvents, user } = useContext(VendorBookingContext)
+  const navigate = useNavigate()
+
+  if (!user) {
+    navigate('/login')
+  } 
   
   return (
     <Box h='full' margin='4'>

@@ -21,6 +21,11 @@ const EditEvent = ({ event }) => {
   const [vendorInput, setVendorInput] = useState(event.vendor_id)
   const [errors, setErrors] = useState([])
 
+  const handleClose = () => {
+    setErrors([])
+    onClose()
+  }
+
   const handleSubmitClick = (e) => {
     e.preventDefault()
 
@@ -161,7 +166,7 @@ const EditEvent = ({ event }) => {
               >
               Save
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={() => handleClose()}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

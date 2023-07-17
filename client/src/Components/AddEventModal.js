@@ -49,6 +49,7 @@ const AddEventModal = () => {
     setVendorInput('')
     setGenreInput('')
     setVendorNameInput('')
+    setErrors([])
 
     onClose()
   }
