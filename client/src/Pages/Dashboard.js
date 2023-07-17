@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { HStack, Text, Box, SimpleGrid } from '@chakra-ui/react'
 import EventCard from "../Components/EventCard";
 import AddEventModal from "../Components/AddEventModal";
@@ -11,10 +11,12 @@ const Dashboard = ({ showReviewButton, setShowReviewButton }) => {
   const { userEvents, user } = useContext(VendorBookingContext)
   const navigate = useNavigate()
 
-  if (!user) {
-    navigate('/login')
-  } 
-  
+  useEffect(() => {
+    if (!user) {
+      navigate('/login')
+    } 
+  }, [user])
+
   return (
     <Box h='full' margin='4'>
       <HStack direction={['column', 'row']} spacing='auto' >
