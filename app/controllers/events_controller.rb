@@ -16,7 +16,8 @@ class EventsController < ApplicationController
   end
 
   def update
-    event = Event.find_by(id: params[:id])
+    user_events = Event.where(user_id: session[:user_id])
+    event = user_events.find_by(id: params[:id])
     event.update!(event_params)
     render json: event
   end
