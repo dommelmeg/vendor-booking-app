@@ -6,7 +6,7 @@ databases:
 
 services:
   - type: web
-    name: Vendor-Booking-App
+    name: vendor-booking-app
     env: ruby
     buildCommand: "./render-build.sh"
     startCommand: "bundle exec rails s"
