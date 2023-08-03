@@ -91,6 +91,3 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: postgres
-  username: dommelmeg
-  password: <%= ENV['MY_DATABASE_PASSWORD'] %>
